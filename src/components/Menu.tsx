@@ -1,9 +1,17 @@
-export default function Menu({show}: {show: boolean}) {
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faXmark} from "@fortawesome/free-solid-svg-icons";
 
-    return show && (
+export default function Menu({show, toggle}: { show: boolean, toggle: () => void }) {
+
+    return (
         <>
-            <div className={'w-screen h-screen absolute bg-black top-0 opacity-30'}></div>
-            <nav className={'absolute top-0 right-0 h-full w-full bg-white font-spartan lg:w-1/4 py-5 px-8 md:w-1/2'}>
+            <div
+                className={`${show ? 'opacity-30 visible' : 'opacity-0 invisible'} cursor-pointer duration-400 translate-all ease-in-out w-screen h-screen fixed bg-black top-0`}
+                onClick={toggle}></div>
+            <nav
+                className={`${show ? 'translate-x-0' : 'translate-x-full'} duration-200 transition-all ease-in-out fixed right-0 top-0 h-full w-full bg-white font-spartan min-w-[26rem] lg:w-1/4 py-5 px-8 md:w-1/2`}>
+                <FontAwesomeIcon icon={faXmark} size={'2xl'}
+                                 className={'cursor-pointer absolute top-3 right-5 sm:right-12'} onClick={toggle}/>
                 <ul>
                     <li className={'flex gap-5 border-b-2 border-slate-300 py-5 px-2 mb-2'}>
                         <div className={'w-20 h-20 bg-slate-500 rounded-full'}></div>

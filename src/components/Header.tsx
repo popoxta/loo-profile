@@ -1,6 +1,6 @@
 import Menu from "./Menu.tsx";
 import {useState} from "react";
-import {faBars, faXmark} from "@fortawesome/free-solid-svg-icons";
+import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 export default function Header() {
@@ -15,10 +15,9 @@ export default function Header() {
                 <h1 className={'font-spartan text-xl font-bold text-slate-500 hover:text-sky-700 transition-colors ease-in-out'}>
                     <a href="/">LOO PROFILE</a>
                 </h1>
-                <FontAwesomeIcon icon={showMenu ? faXmark : faBars} size={showMenu ? '2xl' : 'xl'}
-                                 className={'cursor-pointer absolute sm:right-12 right-5 z-50'} onClick={toggleMenu}/>
+                <FontAwesomeIcon icon={faBars} size={'xl'} className={'cursor-pointer'} onClick={toggleMenu}/>
             </header>
-            <Menu show={showMenu}/>
+            <Menu toggle={toggleMenu} show={showMenu}/>
         </>
     )
 }
