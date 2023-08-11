@@ -1,6 +1,7 @@
-export default function Menu() {
-    return (
-        <div>
+export default function Menu({show}: {show: boolean}) {
+
+    return show && (
+        <>
             <div className={'w-screen h-screen absolute bg-black top-0 opacity-30'}></div>
             <nav className={'absolute top-0 right-0 h-full w-full bg-white font-spartan lg:w-1/4 py-5 px-8 md:w-1/2'}>
                 <ul>
@@ -25,6 +26,6 @@ export default function Menu() {
                     </li>
                 </ul>
             </nav>
-        </div>
+        </>
     )
 }

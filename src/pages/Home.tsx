@@ -1,3 +1,7 @@
 export default function Home() {
-    return <h1>HOME</h1>
+    return (
+        <main className={'bg-red-300 flex-grow'}>
+            <h1>Loo Profile</h1>
+        </main>
+    )
 }
