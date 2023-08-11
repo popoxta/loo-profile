@@ -16,20 +16,20 @@ export default function Menu({show, toggle}: { show: boolean, toggle: () => void
                     <li className={'flex gap-5 border-b-2 border-slate-300 py-5 px-2 mb-2'}>
                         <div className={'w-20 h-20 bg-slate-500 rounded-full'}></div>
                         <div className={'flex flex-col justify-center'}>
-                            <p className={'font-bold text-2xl uppercase'}>Username</p>
+                            <p className={'font-bold text-2xl uppercase text-slate-900'}>Username</p>
                             <p className={'text-slate-500'}>123 reviews | 34 saved</p>
                         </div>
                     </li>
-                    <li className={'border-b-2 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
+                    <li className={'border-b-2 text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
                         Dashboard
                     </li>
-                    <li className={'border-b-2 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
+                    <li className={'border-b-2 text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
                         Locator
                     </li>
-                    <li className={'border-b-2 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
+                    <li className={'border-b-2 text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
                         Saved
                     </li>
-                    <li className={'py-8 px-2 text-2xl font-medium mx-5 text-center'}>
+                    <li className={'text-slate-900 py-8 px-2 text-2xl font-medium mx-5 text-center'}>
                         Account
                     </li>
                 </ul>
