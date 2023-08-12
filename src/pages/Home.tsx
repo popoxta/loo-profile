@@ -2,20 +2,19 @@ import Button from "../components/Button.tsx";
 
 export default function Home() {
     return (
-        <main className={'flex-grow flex justify-center font-spartan min-h-screen'}>
-            <div className={'flex place-items-center h-fit mt-[10%] gap-8 flex-col sm:flex-row'}>
+        <main className={'flex justify-center px-5'}>
+            <div className={'flex gap-10 place-items-center flex-col md:flex-row mt-20 mb-60 md:mt-52 md:mb-96'}>
                 <img
                     src="https://images.unsplash.com/photo-1603568534543-29a3328479f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
                     alt="A very nice toilet on the outskirts of a town"
-                    className={'w-80 h-80 rounded-2xl object-cover '}
+                    className={'w-[22rem] h-[22rem] rounded-2xl object-cover '}
                 />
-                <div className={'flex flex-col gap-2 flex-grow justify-center max-w-md text-center sm:text-left'}>
-                    <h1 className={'font-bold uppercase text-7xl text-slate-900'}>Loo Profile</h1>
-                    <p className={'text-xl text-slate-500 mb-3'}>Slightly less witty subtitle that describes what this is, probably.</p>
+                <div className={'max-w-xl text-center md:text-left'}>
+                    <h1 className={'font-bold uppercase text-slate-900 text-5xl md:text-8xl'}>Loo Profile</h1>
+                    <p className={'text-slate-500 mb-6 text-xl md:text-2xl '}>Slightly less witty subtitle that describes what this is, probably.</p>
                     <Button link={'.'}>Get started</Button>
                 </div>
             </div>
-
         </main>
     )
 }
