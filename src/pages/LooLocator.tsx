@@ -1,4 +1,5 @@
 import {Form} from "react-router-dom";
+import Map from "../components/Map.tsx";
 
 export default function LooLocator() {
     return (
@@ -21,8 +22,8 @@ export default function LooLocator() {
             </Form>
             <div>
                 <h1>MAP</h1>
-                <div>
-
+                <div className={'w-40 h-40'}>
+                    <Map center={[51.505, -0.09]}/>
                 </div>
             </div>
         </main>
