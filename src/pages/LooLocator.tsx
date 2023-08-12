@@ -21,9 +21,11 @@ export default function LooLocator() {
                 </label>
             </Form>
             <div>
-                <h1>MAP</h1>
                 <div className={'w-40 h-40'}>
-                    <Map center={[51.505, -0.09]}/>
+                    <Map center={[51.505, -0.09]} markers={undefined}/>
+                </div>
+                <div>
+
                 </div>
             </div>
         </main>
