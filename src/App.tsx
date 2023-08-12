@@ -6,6 +6,7 @@ import Landing from "./pages/Landing.tsx";
 const router: Router = createBrowserRouter(createRoutesFromElements(
     <Route path={'/'} element={<MainLayout/>} id={'root'}>
         <Route index element={<Landing/>}/>
+        <Route element={<Dashboard/>}/>
     </Route>
 ))
 
