@@ -9,9 +9,9 @@ export default function Home() {
                     alt="A very nice toilet on the outskirts of a town"
                     className={'w-[22rem] h-[22rem] rounded-2xl object-cover '}
                 />
-                <div className={'max-w-xl text-center md:text-left'}>
-                    <h1 className={'font-bold uppercase text-slate-900 text-5xl md:text-8xl'}>Loo Profile</h1>
-                    <p className={'text-slate-500 mb-6 text-xl md:text-2xl '}>Slightly less witty subtitle that describes what this is, probably.</p>
+                <div className={'max-w-lg text-center md:text-left'}>
+                    <h1 className={'font-bold uppercase text-slate-900 mb-5 text-5xl md:text-7xl'}>Loo Profile</h1>
+                    <p className={'text-slate-500 mb-8 text-xl'}>Slightly less witty subtitle that describes what this is, probably.</p>
                     <Button link={'.'}>Get started</Button>
                 </div>
             </div>
