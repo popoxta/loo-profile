@@ -1,6 +1,8 @@
 import {Form} from "react-router-dom";
 import Map from "../components/Map.tsx";
 import {Loo, Marker} from "../lib/types.ts";
+import LooCard from "../components/LooCard.tsx";
+import {ReactElement} from "react";
 
 const fakeLoos: Loo[] = [
     {
@@ -34,6 +36,8 @@ const fakeLoos: Loo[] = [
 
 const looMarkers: Marker[] = fakeLoos.map((loo: Loo) => ({id: loo.id, msg: loo.name, coords: loo.coords}))
 
+const looCards: ReactElement[] = fakeLoos.map(() => <LooCard/>)
+
 export default function LooLocator() {
     return (
         <main className={'mt-20 md:mt-24 px-5'}>
@@ -54,12 +58,12 @@ export default function LooLocator() {
                         </select>
                     </label>
                 </Form>
-                <div className={'flex gap-10'}>
-                    <div className={'w-[70%] h-[30rem]'}>
+                <div className={'flex gap-10 h-[30rem]'}>
+                    <div className={'w-full h-full'}>
                         <Map center={[51.505, -0.09]} markers={looMarkers}/>
                     </div>
-                    <div className={'border-2 flex-grow border-slate-300 w-20 rounded-lg'}>
-
+                    <div className={'border-2 flex-grow border-slate-300 w-[30rem] rounded-lg overflow-y-scroll'}>
+                        {looCards}
                     </div>
                 </div>
             </div>
