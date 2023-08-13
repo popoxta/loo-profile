@@ -3,6 +3,7 @@ import Map from "../components/Map.tsx";
 import {coord, Loo, Marker} from "../lib/types.ts";
 import LooCard from "../components/LooCard.tsx";
 import {ChangeEvent, ReactElement, useEffect, useState} from "react";
+import {getDistance} from "geolib";
 
 const fakeLoos: Loo[] = [
     {
@@ -55,12 +56,20 @@ export default function LooLocator() {
     const selectView = (coords: coord) => setView(coords)
 
     const handleSelectDistance = (e: ChangeEvent<HTMLSelectElement>) => setDistance(Number(e.target.value))
-    console.log(distance)
 
-    const looMarkers: Marker[] = fakeLoos.map((loo: Loo) => ({id: loo.id, title: loo.name, coords: loo.coords}))
+    const loos = fakeLoos.filter((loo: Loo): boolean => {
+        return distance === 11
+            ? true
+            : getDistance({latitude: loo.coords[0], longitude: loo.coords[1]}, {
+            latitude: location[0],
+            longitude: location[1]
+        }) < (distance * 1000)
+    })
 
-    const looCards: ReactElement[] = fakeLoos.map((loo: Loo) => <LooCard onClick={() => selectView(loo.coords)}
-                                                                         key={loo.id + loo.name} loo={loo}/>)
+    const looMarkers: Marker[] = loos.map((loo: Loo) => ({id: loo.id, title: loo.name, coords: loo.coords}))
+
+    const looCards: ReactElement[] = loos.map((loo: Loo) => <LooCard onClick={() => selectView(loo.coords)}
+                                                                     key={loo.id + loo.name} loo={loo}/>)
 
     return (
         <main className={'mt-20 md:mt-24 px-5'}>
