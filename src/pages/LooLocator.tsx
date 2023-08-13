@@ -2,40 +2,41 @@ import {Form} from "react-router-dom";
 import Map from "../components/Map.tsx";
 import {coord, Loo, Marker} from "../lib/types.ts";
 import LooCard from "../components/LooCard.tsx";
-import {ReactElement, useEffect, useState} from "react";
+import {ChangeEvent, ReactElement, useEffect, useState} from "react";
 
 const fakeLoos: Loo[] = [
     {
         id: 1,
         stars: 5,
-        name: 'Some loo name',
+        name: 'Burgerfuel Cuba Loo',
         street: '123 Something Ln',
         area: 'Witty, TX, 82309',
         phone: '02323232',
-        coords: [41, 175]
+        coords: [-41.294610, 174.775120]
     },
     {
         id: 2,
         stars: 4.5,
-        name: 'Some loo name',
+        name: 'Newtown Loo',
         street: '123 Something Ln',
         area: 'Witty, TX, 82309',
         phone: '02323232',
-        coords: [38, 170]
+        coords: [-41.312440, 174.786270]
     },
     {
         id: 3,
         stars: 3,
-        name: 'Some loo name',
+        name: 'Nelson Loo',
         street: '123 Something Ln',
         area: 'Witty, TX, 82309',
         phone: '02323232',
-        coords: [43, 185]
+        coords: [-41.291970, 173.236430]
     },
 ]
 
 export default function LooLocator() {
     const [location, setLocation] = useState([-36.848461, 174.763336])
+    const [distance, setDistance] = useState(11)
 
     useEffect((): void => {
         if (navigator.geolocation) navigator.geolocation.getCurrentPosition(success, error)
@@ -51,9 +52,13 @@ export default function LooLocator() {
 
     const selectView = (coords: coord) => setLocation(coords)
 
+    const handleSelectDistance = (e: ChangeEvent<HTMLSelectElement>) => setDistance(Number(e.target.value))
+    console.log(distance)
+
     const looMarkers: Marker[] = fakeLoos.map((loo: Loo) => ({id: loo.id, title: loo.name, coords: loo.coords}))
 
-    const looCards: ReactElement[] = fakeLoos.map((loo: Loo) => <LooCard onClick={() => selectView(loo.coords)} key={loo.id + loo.name} loo={loo}/>)
+    const looCards: ReactElement[] = fakeLoos.map((loo: Loo) => <LooCard onClick={() => selectView(loo.coords)}
+                                                                         key={loo.id + loo.name} loo={loo}/>)
 
     return (
         <main className={'mt-20 md:mt-24 px-5'}>
@@ -68,12 +73,14 @@ export default function LooLocator() {
                     <label className={'font-medium text-sm'}>
                         Distance
                         <select
+                            onChange={handleSelectDistance}
+                            defaultValue={11}
                             className={'block px-2 py-[0.4rem] mt-1 bg-slate-200 rounded-md min-w-[6rem] font-normal'}
                             name={'distance'}>
-                            <option>{'1km'}</option>
-                            <option>{'5km'}</option>
-                            <option>{'10km'}</option>
-                            <option>{'25km'}</option>
+                            <option value={1}>{'1km'}</option>
+                            <option value={5}>{'5km'}</option>
+                            <option value={10}>{'10km'}</option>
+                            <option value={11}>{'10km+'}</option>
                         </select>
                     </label>
                     <button

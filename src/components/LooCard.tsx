@@ -11,7 +11,7 @@ export default function LooCard({loo, onClick}: { loo: Loo, onClick: () => void 
             <FontAwesomeIcon className={'mx-6 text-slate-400'} size={'2xl'} icon={faToilet}/>
             <div className={'flex flex-col w-full h-full justify-between'}>
                 <div className={'flex justify-between place-items-center'}>
-                    <h3 className={'text-sm font-semibold'}>Some title</h3>
+                    <h3 className={'text-sm font-semibold'}>{loo.name}</h3>
                     <div className={'flex gap-[0.1rem]'}>
                         <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
                         <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
