@@ -4,7 +4,7 @@ export interface Marker {
     msg: string
 }
 
-type coord = [number, number]
+export type coord = [number, number]
 
 export interface Loo {
     id: number,
