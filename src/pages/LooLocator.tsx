@@ -36,7 +36,7 @@ const fakeLoos: Loo[] = [
 
 const looMarkers: Marker[] = fakeLoos.map((loo: Loo) => ({id: loo.id, msg: loo.name, coords: loo.coords}))
 
-const looCards: ReactElement[] = fakeLoos.map(() => <LooCard/>)
+const looCards: ReactElement[] = fakeLoos.map((loo: Loo) => <LooCard loo={loo}/>)
 
 export default function LooLocator() {
     return (
