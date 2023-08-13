@@ -36,21 +36,21 @@ const fakeLoos: Loo[] = [
 
 const looMarkers: Marker[] = fakeLoos.map((loo: Loo) => ({id: loo.id, msg: loo.name, coords: loo.coords}))
 
-const looCards: ReactElement[] = fakeLoos.map((loo: Loo) => <LooCard loo={loo}/>)
+const looCards: ReactElement[] = fakeLoos.map((loo: Loo) => <LooCard key={loo.id + loo.name} loo={loo}/>)
 
 export default function LooLocator() {
     return (
         <main className={'mt-20 md:mt-24 px-5'}>
             <div className={'flex flex-col mx-auto max-w-6xl gap-5'}>
                 <h2 className={'text-5xl font-semibold font-spartan uppercase'}>Loocator</h2>
-                <Form>
+                <Form className={'font-open-sans flex place-items-center gap-10'}>
                     <label>
                         Enter a location
-                        <input type={'text'} name={'location'}/>
+                        <input className={'border-2 border-slate-300 mt-1 rounded-md block px-1 py-0.5'} type={'text'} name={'location'}/>
                     </label>
                     <label>
                         Distance
-                        <select name={'distance'}>
+                        <select className={'block px-2 py-[0.3rem] mt-1 bg-slate-200 rounded-md min-w-[6rem]'} name={'distance'}>
                             <option>{'1km'}</option>
                             <option>{'5km'}</option>
                             <option>{'10km'}</option>

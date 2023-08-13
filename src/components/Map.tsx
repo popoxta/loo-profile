@@ -6,7 +6,7 @@ import {ReactElement} from "react";
 export default function Map({center, markers}: { center: [number, number], markers: MarkerType[] | undefined }) {
     const markerElements: ReactElement[] | undefined = markers?.map((marker: MarkerType): ReactElement => {
         return (
-            <Marker position={marker.coords}>
+            <Marker key={String(marker.coords)} position={marker.coords}>
                 <Popup>
                     {marker.msg}
                 </Popup>
