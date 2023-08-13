@@ -41,16 +41,16 @@ const looCards: ReactElement[] = fakeLoos.map((loo: Loo) => <LooCard key={loo.id
 export default function LooLocator() {
     return (
         <main className={'mt-20 md:mt-24 px-5'}>
-            <div className={'flex flex-col mx-auto max-w-6xl gap-5'}>
+            <div className={'flex flex-col mx-auto max-w-6xl gap-5 text-slate-900'}>
                 <h2 className={'text-5xl font-semibold font-spartan uppercase'}>Loocator</h2>
                 <Form className={'font-open-sans flex place-items-center gap-10'}>
-                    <label>
+                    <label className={'font-medium text-sm'}>
                         Enter a location
-                        <input className={'border-2 border-slate-300 mt-1 rounded-md block px-1 py-0.5'} type={'text'} name={'location'}/>
+                        <input className={'border-2 border-slate-300 mt-1 rounded-md block px-1 py-1 font-normal w-60'} type={'text'} name={'location'}/>
                     </label>
-                    <label>
+                    <label className={'font-medium text-sm'}>
                         Distance
-                        <select className={'block px-2 py-[0.3rem] mt-1 bg-slate-200 rounded-md min-w-[6rem]'} name={'distance'}>
+                        <select className={'block px-2 py-[0.4rem] mt-1 bg-slate-200 rounded-md min-w-[6rem] font-normal'} name={'distance'}>
                             <option>{'1km'}</option>
                             <option>{'5km'}</option>
                             <option>{'10km'}</option>
