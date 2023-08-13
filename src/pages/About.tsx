@@ -1,7 +1,7 @@
 export default function About() {
     return (
-        <article className={'flex justify-center mb-72'}>
-            <div className={'flex max-w-5xl gap-8 flex-col px-5 text-center md:text-left'}>
+        <article className={'flex justify-center mb-72 px-5'}>
+            <div className={'flex max-w-5xl gap-8 flex-col text-center md:text-left'}>
                 <div className={'flex gap-5 flex-col-reverse place-items-center md:place-items-start md:flex-row'}>
                     <div className={'flex flex-col gap-8'}>
                         <h2 className={'font-medium uppercase text-5xl text-slate-900'}>Why this cool witty thing?</h2>
