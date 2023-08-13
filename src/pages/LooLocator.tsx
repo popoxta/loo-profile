@@ -1,6 +1,36 @@
 import {Form} from "react-router-dom";
 import Map from "../components/Map.tsx";
 
+const fakeLoos = [
+    {
+        id: 1,
+        stars: 5,
+        name: 'Some loo name',
+        street: '123 Something Ln',
+        area: 'Witty, TX, 82309',
+        phone: '02323232',
+        coords: [41, 175]
+    },
+    {
+        id: 2,
+        stars: 4.5,
+        name: 'Some loo name',
+        street: '123 Something Ln',
+        area: 'Witty, TX, 82309',
+        phone: '02323232',
+        coords: [38, 170]
+    },
+    {
+        id: 3,
+        stars: 3,
+        name: 'Some loo name',
+        street: '123 Something Ln',
+        area: 'Witty, TX, 82309',
+        phone: '02323232',
+        coords: [43, 185]
+    },
+]
+
 export default function LooLocator() {
     return (
         <main>
