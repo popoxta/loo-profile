@@ -36,6 +36,7 @@ const fakeLoos: Loo[] = [
 
 export default function LooLocator() {
     const [location, setLocation] = useState([-36.848461, 174.763336])
+    const [view, setView] = useState([0, 0])
     const [distance, setDistance] = useState(11)
 
     useEffect((): void => {
@@ -46,11 +47,12 @@ export default function LooLocator() {
         const lat: number = pos.coords.latitude
         const long: number = pos.coords.longitude
         setLocation([lat, long])
+        setView([lat, long])
     }
 
     const error = () => alert('Could not read geolocation')
 
-    const selectView = (coords: coord) => setLocation(coords)
+    const selectView = (coords: coord) => setView(coords)
 
     const handleSelectDistance = (e: ChangeEvent<HTMLSelectElement>) => setDistance(Number(e.target.value))
     console.log(distance)
@@ -89,7 +91,7 @@ export default function LooLocator() {
                 </Form>
                 <div className={'flex gap-10 h-[30rem]'}>
                     <div className={'w-full h-full'}>
-                        <Map center={location as coord} markers={looMarkers}/>
+                        <Map center={view as coord} markers={looMarkers}/>
                     </div>
                     <div className={'border-2 flex-grow border-slate-300 w-[30rem] rounded-lg overflow-y-scroll'}>
                         {looCards}
