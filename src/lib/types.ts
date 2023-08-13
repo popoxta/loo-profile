@@ -1,7 +1,7 @@
 export interface Marker {
     id: number,
     coords: coord,
-    msg: string
+    title: string,
 }
 
 export type coord = [number, number]

@@ -34,10 +34,6 @@ const fakeLoos: Loo[] = [
     },
 ]
 
-const looMarkers: Marker[] = fakeLoos.map((loo: Loo) => ({id: loo.id, msg: loo.name, coords: loo.coords}))
-
-const looCards: ReactElement[] = fakeLoos.map((loo: Loo) => <LooCard key={loo.id + loo.name} loo={loo}/>)
-
 export default function LooLocator() {
     const [location, setLocation] = useState([-36.848461, 174.763336])
 
@@ -52,6 +48,12 @@ export default function LooLocator() {
     }
 
     const error = () => alert('Could not read geolocation')
+
+    const selectView = (coords: coord) => setLocation(coords)
+
+    const looMarkers: Marker[] = fakeLoos.map((loo: Loo) => ({id: loo.id, title: loo.name, coords: loo.coords}))
+
+    const looCards: ReactElement[] = fakeLoos.map((loo: Loo) => <LooCard onClick={() => selectView(loo.coords)} key={loo.id + loo.name} loo={loo}/>)
 
     return (
         <main className={'mt-20 md:mt-24 px-5'}>

@@ -18,12 +18,13 @@ export default function Map({center, markers}: { center: [number, number], marke
         return (
             <Marker key={String(marker.coords)} position={marker.coords}>
                 <Popup>
-                    {marker.msg}
+                    {marker.title}
+                    {marker.coords && <><br/><a target={'_blank'} href={`https://www.google.com/maps/place/${marker.coords}`}>Get
+                        directions</a></>}
                 </Popup>
             </Marker>
         )
     })
-
 
     return (
         <MapContainer center={center} zoom={13} className={'w-80'}>

@@ -3,9 +3,10 @@ import {faToilet, faStar} from "@fortawesome/free-solid-svg-icons";
 import SmallButton from "./SmallButton.tsx";
 import {Loo} from "../lib/types.ts";
 
-export default function LooCard({loo}: { loo: Loo }) {
+export default function LooCard({loo, onClick}: { loo: Loo, onClick: () => void }) {
     return (
         <div
+            onClick={onClick}
             className={'flex w-full place-items-center py-5 pr-5 border-b-2 border-slate-200 text-slate-900 h-32 font-open-sans'}>
             <FontAwesomeIcon className={'mx-6 text-slate-400'} size={'2xl'} icon={faToilet}/>
             <div className={'flex flex-col w-full h-full justify-between'}>
