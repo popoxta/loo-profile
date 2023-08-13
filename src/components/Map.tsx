@@ -1,6 +1,6 @@
 import {MapContainer, Marker, TileLayer, Popup} from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
-import {Marker as MarkerType} from "../types/marker.ts";
+import {Marker as MarkerType} from "../lib/types.ts";
 import {ReactElement} from "react";
 
 export default function Map({center, markers}: { center: [number, number], markers: MarkerType[] | undefined }) {
