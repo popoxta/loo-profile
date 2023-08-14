@@ -1,13 +1,12 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
+import Cover from "./Cover.tsx";
 
 export default function Menu({show, toggle}: { show: boolean, toggle: () => void }) {
 
     return (
         <>
-            <div
-                className={`${show ? 'opacity-30 visible' : 'opacity-0 invisible'} cursor-pointer duration-400 translate-all ease-in-out w-screen h-screen fixed bg-black top-0 z-10`}
-                onClick={toggle}></div>
+            <Cover show={show} onClick={toggle}/>
             <nav
                 className={`${show ? 'translate-x-0' : 'translate-x-full'} duration-200 transition-all ease-in-out fixed right-0 top-0 h-full w-full bg-white z-20 font-spartan min-w-[26rem] lg:w-1/4 py-5 px-8 md:w-1/2`}>
                 <FontAwesomeIcon icon={faXmark} size={'2xl'}
