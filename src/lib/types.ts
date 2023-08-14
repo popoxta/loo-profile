@@ -15,3 +15,15 @@ export interface Loo {
     phone: string,
     coords: coord,
 }
+
+export interface User {
+    id: number,
+    name: string,
+}
+
+export interface Review {
+    id: number,
+    user: User,
+    stars: number,
+    review: string
+}
