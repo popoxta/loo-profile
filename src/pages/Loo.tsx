@@ -14,18 +14,14 @@ export default function Loo() {
     const fakeLooMarker: Marker[] = [{id: loo.id, coords: loo.coords, title: loo.name}]
 
     return (
-        <main className={'mt-20 md:mt-24 px-5'}>
-            {/*main container for everything*/}
+        <main className={'mt-20 md:mt-24 px-5 mb-10'}>
             <div className={'max-w-6xl mx-auto text-slate-900'}>
-                {/*container for info and img*/}
-                <section className={'flex flex-col gap-10 justify-between place-items-center lg:flex-row lg:place-items-start'}>
-                    {/*info container*/}
+                <section className={'flex flex-col gap-10 justify-between place-items-center mb-10 lg:flex-row lg:place-items-start'}>
                     <div className={'flex flex-col font-open-sans max-w-xl'}>
                         <h2 className={'text-4xl mb-10 font-semibold font-spartan uppercase text-center lg:text-left'}>
                             Some title for a thing
                         </h2>
-                        {/*container for addr and ph*/}
-                        <div className={'flex justify-between mb-5'}>
+                        <div className={'flex justify-between mb-5 flex-col gap-5 sm:gap-0 sm:flex-row'}>
                             <address className={'not-italic flex flex-col gap-2'}>
                                 <div className={'font-bold'}>
                                     <p>123 Something Ln, City</p>
@@ -52,31 +48,29 @@ export default function Loo() {
                             </p>
                         </div>
                     </div>
-                    <div className={'h-[22rem] w-[32rem] shrink-0'}>
+                    <div className={'h-[22rem] shrink-0 w-full sm:w-[32rem]'}>
                         <Map center={loo.coords} markers={fakeLooMarker}/>
                     </div>
                 </section>
-                {/*reviews*/}
-                <section>
-                    {/*reviews header thing*/}
-                    <div>
-                        <div>
-                            <h4>Reviews</h4>
-                            <div>
-                                <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
-                                <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
-                                <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
-                                <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
-                                <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
+                <section >
+                    <div className={'flex place-items-center justify-between mb-5 flex-col sm:flex-row'}>
+                        <div className={'flex place-items-center gap-5 flex-col mb-5 sm:flex-row sm:mb-0'}>
+                            <h4 className={'text-3xl font-semibold font-spartan'}>Reviews</h4>
+                            <div className={'flex gap-0.5'}>
+                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
+                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
+                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
+                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
+                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
                             </div>
-                            <p>27 Reviews</p>
+                            <p className={'font-open-sans text-sm text-slate-500'}>27 Reviews</p>
                         </div>
                         <Button link={''}>Write a review</Button>
                     </div>
+                    <div className={'border-2 flex-grow border-slate-300 w-full min-h-[10rem] rounded-lg overflow-y-scroll'}>
+                        {/*reviews here*/}
+                    </div>
                 </section>
-                <div>
-                    {/*reviews here*/}
-                </div>
             </div>
         </main>
     )

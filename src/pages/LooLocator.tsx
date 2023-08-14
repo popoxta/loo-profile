@@ -43,7 +43,7 @@ export default function LooLocator() {
                                                                      key={loo.id + loo.name} loo={loo}/>)
 
     return (
-        <main className={'mt-20 md:mt-24 px-5'}>
+        <main className={'mt-20 md:mt-24 px-5 mb-10'}>
             <div className={'flex flex-col mx-auto max-w-6xl gap-5 text-slate-900'}>
                 <h2 className={'text-5xl font-semibold font-spartan uppercase'}>Loocator</h2>
                 <Form className={'font-open-sans flex place-items-center gap-10'}>
