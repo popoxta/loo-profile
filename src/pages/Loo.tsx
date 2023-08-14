@@ -5,6 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar} from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Button.tsx";
 import Map from "../components/Map.tsx";
+import {ReactElement} from "react";
+import ReviewCard from "../components/ReviewCard.tsx";
 
 export default function Loo() {
     const id: string | undefined = useParams().id
@@ -12,6 +14,8 @@ export default function Loo() {
     const loo: LooType = fakeLoos[Number(id)]
 
     const fakeLooMarker: Marker[] = [{id: loo.id, coords: loo.coords, title: loo.name}]
+
+    const fakeReviews: ReactElement[] = new Array(5).fill(0).map((el: number, i: number) => <ReviewCard key={i}/>)
 
     return (
         <main className={'mt-20 md:mt-24 px-5 mb-10'}>
@@ -68,7 +72,7 @@ export default function Loo() {
                         <Button link={''}>Write a review</Button>
                     </div>
                     <div className={'border-2 flex-grow border-slate-300 w-full min-h-[10rem] rounded-lg overflow-y-scroll'}>
-                        {/*reviews here*/}
+                        {fakeReviews}
                     </div>
                 </section>
             </div>
