@@ -5,10 +5,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar} from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Button.tsx";
 import Map from "../components/Map.tsx";
-import {ReactElement} from "react";
+import {ReactElement, useState} from "react";
 import ReviewCard from "../components/ReviewCard.tsx";
+import AddReview from "../components/AddReview.tsx";
 
 export default function Loo() {
+    const [showAddReview, setShowAddReview] = useState(true)
     const id: string | undefined = useParams().id
 
     const loo: LooType = fakeLoos[Number(id)]
@@ -17,8 +19,11 @@ export default function Loo() {
 
     const fakeReviews: ReactElement[] = new Array(5).fill(0).map((el: number, i: number) => <ReviewCard key={i}/>)
 
+    const toggleAddReview = (): void => setShowAddReview(!showAddReview)
+
     return (
-        <main className={'mt-20 md:mt-24 px-5 mb-10'}>
+        <main className={'relative mt-20 md:mt-24 px-5 mb-10'}>
+            {showAddReview && <AddReview toggle={toggleAddReview}/>}
             <div className={'max-w-6xl mx-auto text-slate-900'}>
                 <section className={'flex flex-col gap-10 justify-between place-items-center mb-10 lg:flex-row lg:place-items-start'}>
                     <div className={'flex flex-col font-open-sans max-w-xl'}>
@@ -69,7 +74,7 @@ export default function Loo() {
                             </div>
                             <p className={'font-open-sans text-sm text-slate-500'}>27 Reviews</p>
                         </div>
-                        <Button link={''}>Write a review</Button>
+                        <Button link={undefined} onClick={toggleAddReview}>Write a review</Button>
                     </div>
                     <div className={'border-2 flex-grow border-slate-300 w-full min-h-[10rem] rounded-lg overflow-y-scroll'}>
                         {fakeReviews}
