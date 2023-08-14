@@ -1,4 +1,4 @@
-import Button from "../components/Button.tsx";
+import BigButton from "../components/BigButton.tsx";
 
 export default function Home() {
     return (
@@ -12,7 +12,7 @@ export default function Home() {
                 <div className={'max-w-lg text-center md:text-left'}>
                     <h1 className={'font-bold uppercase text-slate-900 mb-5 text-5xl md:text-7xl'}>Loo Profile</h1>
                     <p className={'text-slate-500 mb-8 text-xl'}>Slightly less witty subtitle that describes what this is, probably.</p>
-                    <Button link={'.'}>Get started</Button>
+                    <BigButton link={'.'}>Get started</BigButton>
                 </div>
             </div>
         </main>
