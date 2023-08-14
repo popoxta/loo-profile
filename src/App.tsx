@@ -4,6 +4,7 @@ import MainLayout from "./layouts/MainLayout.tsx";
 import Landing from "./pages/Landing.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import LooLocator from "./pages/LooLocator.tsx";
+import Loo from "./pages/Loo.tsx";
 
 const router: Router = createBrowserRouter(createRoutesFromElements(
     <Route path={'/'} element={<MainLayout/>} id={'root'}>
@@ -11,6 +12,7 @@ const router: Router = createBrowserRouter(createRoutesFromElements(
         <Route element={<Dashboard/>}/>
         <Route path={'/loos'}>
             <Route index element={<LooLocator/>}/>
+            <Route path={':id'} element={<Loo/>}/>
         </Route>
     </Route>
 ))
