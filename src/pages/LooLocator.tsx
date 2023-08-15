@@ -1,43 +1,29 @@
 import {Form} from "react-router-dom";
 import Map from "../components/Map.tsx";
-import {coord, Loo, Marker} from "../lib/types.ts";
+import {coord, Loo} from "../lib/types.ts";
 import LooCard from "../components/LooCard.tsx";
 import {ChangeEvent, ReactElement, useEffect, useState} from "react";
-import {getDistance} from "geolib";
 import {fakeLoos} from "../looData.ts";
+import {filterDistance, geoError, geoSuccess, getMarkers} from "../lib/geo-utils.ts";
 
 export default function LooLocator() {
-    const [location, setLocation] = useState([-36.848461, 174.763336])
-    const [view, setView] = useState([0, 0])
+    const [location, setLocation] = useState<coord>([-36.848461, 174.763336])
+    const [view, setView] = useState<coord>([0, 0])
     const [distance, setDistance] = useState(11)
 
-    useEffect((): void => {
-        if (navigator.geolocation) navigator.geolocation.getCurrentPosition(success, error)
+    useEffect(() => {
+        if (navigator.geolocation) navigator.geolocation.getCurrentPosition(success, geoError)
     }, [])
 
-    const success = (pos: GeolocationPosition): void => {
-        const lat: number = pos.coords.latitude
-        const long: number = pos.coords.longitude
-        setLocation([lat, long])
-        setView([lat, long])
-    }
-
-    const error = () => alert('Could not read geolocation')
+    const success = (pos: GeolocationPosition) => geoSuccess(pos, setLocation, setView)
 
     const selectView = (coords: coord) => setView(coords)
 
     const handleSelectDistance = (e: ChangeEvent<HTMLSelectElement>) => setDistance(Number(e.target.value))
 
-    const loos = fakeLoos.filter((loo: Loo): boolean => {
-        return distance === 11
-            ? true
-            : getDistance({latitude: loo.coords[0], longitude: loo.coords[1]}, {
-            latitude: location[0],
-            longitude: location[1]
-        }) < (distance * 1000)
-    })
+    const loos = filterDistance(fakeLoos, distance, location)
 
-    const looMarkers: Marker[] = loos.map((loo: Loo) => ({id: loo.id, title: loo.name, coords: loo.coords}))
+    const looMarkers = getMarkers(loos)
 
     const looCards: ReactElement[] = loos.map((loo: Loo) => <LooCard onClick={() => selectView(loo.coords)}
                                                                      key={loo.id + loo.name} loo={loo}/>)
@@ -71,7 +57,7 @@ export default function LooLocator() {
                 </Form>
                 <div className={'flex gap-10 h-[30rem]'}>
                     <div className={'w-full h-full'}>
-                        <Map center={view as coord} markers={looMarkers}/>
+                        <Map center={view} markers={looMarkers}/>
                     </div>
                     <div className={'border-2 flex-grow border-slate-300 w-[30rem] rounded-lg overflow-y-scroll'}>
                         {looCards}

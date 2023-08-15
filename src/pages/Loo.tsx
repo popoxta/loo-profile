@@ -78,7 +78,7 @@ export default function Loo() {
                             </div>
                             <p className={'font-open-sans text-sm text-slate-500'}>27 Reviews</p>
                         </div>
-                        <Button onClick={toggleAddReview}>Write a review</Button>
+                        <Button size={'md'} onClick={toggleAddReview}>Write a review</Button>
                     </div>
                     <div className={'border-2 flex-grow border-slate-300 w-full min-h-[10rem] rounded-lg overflow-y-scroll'}>
                         {fakeReviews}
