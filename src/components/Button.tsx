@@ -16,7 +16,7 @@ export default function Button(props: Props) {
             ? 'py-3 px-6 font-bold uppercase'
             : `py-2 px-5 font-semibold text-sm`
 
-    const buttonStyles = `${props.className} ${sizingStyles} font-spartan text-slate-900 rounded-lg hover:text-slate-800 hover:bg-slate-300 transition-all ease-in-out`
+    const buttonStyles = `${props.className} ${sizingStyles} bg-slate-200 font-spartan text-slate-900 rounded-lg hover:text-slate-800 hover:bg-slate-300 transition-all ease-in-out`
 
     return (
         <>
