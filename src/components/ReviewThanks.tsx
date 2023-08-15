@@ -24,7 +24,7 @@ export default function ReviewThanks({toggle}: { toggle: () => void }) {
                             elit. Sed lacinia ante eu elit pretium imperdiet. Nullam in tristique justo.
                         </p>
                     </div>
-                    <Button className={'mx-auto'} link={undefined} onClick={toggle}>Go back</Button>
+                    <Button size={'md'} className={'mx-auto'} link={undefined} onClick={toggle}>Go back</Button>
                 </div>
             </div>
         </>

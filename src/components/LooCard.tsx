@@ -1,7 +1,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faToilet, faStar} from "@fortawesome/free-solid-svg-icons";
-import SmallButton from "./SmallButton.tsx";
 import {Loo} from "../lib/types.ts";
+import Button from "./Button.tsx";
 
 export default function LooCard({loo, onClick}: { loo: Loo, onClick: () => void }) {
     return (
@@ -26,7 +26,7 @@ export default function LooCard({loo, onClick}: { loo: Loo, onClick: () => void 
                 </div>
                 <div className={'flex place-items-center justify-between'}>
                     <p className={'text-xs text-slate-500'}>022 302 6406</p>
-                    <SmallButton link={`/loos/${loo.id}`}>View</SmallButton>
+                    <Button size={'sm'} link={`/loos/${loo.id}`}>View</Button>
                 </div>
             </div>
         </div>
