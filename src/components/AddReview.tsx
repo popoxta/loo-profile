@@ -59,7 +59,7 @@ export default function AddReview({toggle}: { toggle: () => void }) {
                             <textarea name={'review'}
                                       className={'border-2 flex-grow border-slate-300 w-full min-h-[10rem] rounded-md overflow-y-scroll p-1'}/>
                         </div>
-                        <Button className={'mx-auto'} link={undefined} onClick={(): void => {}}>Submit Review</Button>
+                        <Button className={'mx-auto'}>Submit Review</Button>
                     </Form>
                 </div>
             </div>
