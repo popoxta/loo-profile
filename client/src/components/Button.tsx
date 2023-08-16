@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 interface Props {
     link?: string,
     children?: string
@@ -21,7 +23,7 @@ export default function Button(props: Props) {
     return (
         <>
             {props.link
-                ? <a href={props.link}><button onClick={props.onClick} className={buttonStyles}>{props.children}</button></a>
+                ? <Link to={props.link}><button onClick={props.onClick} className={buttonStyles}>{props.children}</button></Link>
                 : <button onClick={props.onClick} className={buttonStyles}>{props.children}</button>}
         </>
     )
