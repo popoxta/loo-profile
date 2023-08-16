@@ -20,7 +20,7 @@ export default function Loo() {
     const fakeLooMarker: Marker[] = [{id: loo.id, coords: loo.coords, title: loo.name}]
 
     // @ts-ignore
-    const fakeReviews = new Array(5).fill(0).map((el, i) => <ReviewCard key={i}/>)
+    const fakeReviews = new Array(5).fill(0).map((el, i) => <ReviewCard key={`${el} ${i}`}/>)
 
     const toggleAddReview = () => setShowAddReview(!showAddReview)
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
