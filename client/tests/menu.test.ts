@@ -1,17 +1,21 @@
 // @vitest-environment jsdom
-import { describe, it, expect } from 'vitest'
+import {describe, it, expect, beforeEach} from 'vitest'
 import './test-setup.ts'
-import {renderApp} from "./testUtils";
+import {renderApp, setupUser} from "./testUtils";
+import {screen} from "@testing-library/react";
 
 describe('Menu', () => {
+    beforeEach(() => {
+        renderApp('/')
+    })
+
     it('Should not be visible when toggled off', () => {
-        const screen = renderApp('/')
         const menu = screen.getByRole('navigation')
         expect(menu).toHaveClass('invisible')
     })
 
     it('Should be visible when clicked', async () => {
-        const {user, ...screen} = renderApp('/')
+        const user = setupUser()
         const menu = screen.getByRole('navigation')
         const menuBtn = screen.getByTitle('Show Menu')
         await user.click(menuBtn)
@@ -19,7 +23,6 @@ describe('Menu', () => {
     })
 
     it('Should render a list of menu items', () => {
-        const screen = renderApp('/')
         const menuItems = screen.getByRole('list')
         expect(menuItems).toBeInTheDocument()
     })
