@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import './test-setup.ts'
 import {renderApp} from "./testUtils";
 
@@ -18,10 +18,9 @@ describe('Menu', () => {
         expect(menu).toHaveClass('visible')
     })
 
-    it('Should render a cover element when shown', () => {
-
+    it('Should render a list of menu items', () => {
+        const screen = renderApp('/')
+        const menuItems = screen.getByRole('list')
+        expect(menuItems).toBeInTheDocument()
     })
-
-    it('Should render a list of menu items')
-    it('Should render a button that calls the toggle method')
 })
