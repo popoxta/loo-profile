@@ -15,7 +15,7 @@ export default function Header() {
                 <h1 className={'font-spartan text-xl font-bold text-slate-500 hover:text-sky-700 transition-colors ease-in-out'}>
                     <a href="/">LOO PROFILE</a>
                 </h1>
-                <FontAwesomeIcon icon={faBars} size={'xl'} className={'cursor-pointer'} onClick={toggleMenu}/>
+                <FontAwesomeIcon icon={faBars} size={'xl'} title={'Show Menu'} className={'cursor-pointer'} onClick={toggleMenu}/>
             </header>
             <Menu toggle={toggleMenu} show={showMenu}/>
         </>

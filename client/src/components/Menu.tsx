@@ -8,8 +8,8 @@ export default function Menu({show, toggle}: { show: boolean, toggle: () => void
         <>
             <Cover show={show} onClick={toggle}/>
             <nav
-                className={`${show ? 'translate-x-0' : 'translate-x-full'} duration-200 transition-all ease-in-out fixed right-0 top-0 h-full w-full bg-white z-20 font-spartan min-w-[26rem] lg:w-1/4 py-5 px-8 md:w-1/2`}>
-                <FontAwesomeIcon icon={faXmark} size={'2xl'}
+                className={`${show ? 'translate-x-0 visible' : 'translate-x-full invisible'} duration-200 transition-all ease-in-out fixed right-0 top-0 h-full w-full bg-white z-20 font-spartan min-w-[26rem] lg:w-1/4 py-5 px-8 md:w-1/2`}>
+                <FontAwesomeIcon icon={faXmark} size={'2xl'} title={'Close Menu'}
                                  className={'cursor-pointer absolute top-3 right-5 sm:right-12'} onClick={toggle}/>
                 <ul>
                     <li className={'flex gap-5 border-b-2 border-slate-300 py-5 px-2 mb-2'}>
