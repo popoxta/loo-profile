@@ -6,6 +6,7 @@ interface Props {
     size?: buttonSizes
     onClick?: () => void
     className?: string
+    title?: string
 }
 
 type buttonSizes = ('sm' | 'md' | 'lg')
@@ -23,8 +24,8 @@ export default function Button(props: Props) {
     return (
         <>
             {props.link
-                ? <Link to={props.link}><button onClick={props.onClick} className={buttonStyles}>{props.children}</button></Link>
-                : <button onClick={props.onClick} className={buttonStyles}>{props.children}</button>}
+                ? <Link to={props.link}><button onClick={props.onClick} title={props.title ? props.title : ''} className={buttonStyles}>{props.children}</button></Link>
+                : <button onClick={props.onClick} title={props.title ? props.title : ''} className={buttonStyles}>{props.children}</button>}
         </>
     )
 }
