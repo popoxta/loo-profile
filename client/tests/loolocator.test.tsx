@@ -1,10 +1,10 @@
 // @vitest-environment jsdom
-import {describe, it, expect, vi, beforeEach} from 'vitest'
+import {describe, it, expect, beforeEach} from 'vitest'
 import {screen} from "@testing-library/react";
-import './test-setup.ts'
 import {renderApp, renderComponent} from "./testUtils";
 import LooCard from "../src/components/LooCard";
 import {coord} from "../src/lib/types";
+import './test-setup.ts'
 
 describe('Loos', () => {
     beforeEach(() => {

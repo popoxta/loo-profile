@@ -3,6 +3,7 @@ import {describe, it, expect, beforeEach} from 'vitest'
 import './test-setup.ts'
 import {renderApp, setupUser} from "./testUtils";
 import {screen} from "@testing-library/react";
+import './test-setup.ts'
 
 describe('Menu', () => {
     beforeEach(() => {

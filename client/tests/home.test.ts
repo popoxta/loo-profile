@@ -1,8 +1,8 @@
 // @vitest-environment jsdom
 import {describe, it, expect, beforeEach,} from 'vitest'
-import './test-setup.ts'
 import {renderApp} from "./testUtils";
 import {screen} from "@testing-library/react";
+import './test-setup.ts'
 
 describe('Home', () => {
     beforeEach(() => {
