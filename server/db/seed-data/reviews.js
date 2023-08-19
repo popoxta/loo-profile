@@ -1,11 +1,4 @@
-interface Review {
-    id: number
-    loo_id: number
-    review: string
-    rating: number
-}
-
-export const reviews: Review[] = [
+export const reviews = [
     {
         "id": 1,
         "loo_id": 25,

@@ -1,14 +1,4 @@
-interface Loo {
-    id: number
-    name: string
-    street: string
-    region: string
-    contact: string
-    lat: number
-    long: number
-}
-
-export const loos: Loo[] = [
+export const loos = [
     {
         "id": 1,
         "name": "City Park Restroom",
