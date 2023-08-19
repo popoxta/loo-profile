@@ -1,5 +1,5 @@
 export function up(knex) {
-    return knex.createTable('loos', table => {
+    return knex.schema.createTable('loos', table => {
         table.increments('id').primary()
         table.string('name')
         table.string('street')
