@@ -14,8 +14,9 @@ looRouter.get('/:id', async (req, res, next) => {
         const loo = await db.getLoo(id)
 
         if (!loo.length) return utils.clientError(res, `Client Error: Loo ${id} does not exist.`)
+        const reviews = await db.getReviews(id)
 
-        else res.json({loo})
+        res.json({loo, reviews})
     }, next)
 })
 

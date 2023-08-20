@@ -9,7 +9,7 @@ const getLoo = (id: number) => {
 }
 
 const getReviews = (id: number) => {
-    return connection('reviews').select('*').avg('rating AS avg_rating').where({loo_id: id})
+    return connection('reviews').select('*').where({loo_id: id})
 }
 
 const getReviewsAvg = (id: number) => {
