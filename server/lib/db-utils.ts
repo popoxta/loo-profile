@@ -29,8 +29,12 @@ const updateReview = (review: Review) => {
     return connection('reviews').update(review).where({id: review.id})
 }
 
+const addReview = (review: Review) => {
+    return connection('reviews').insert(review)
+}
+
 // getLoosAndAvgRating
 // getLoosWithinDistance
 // lari, matija
 
-export default {getAllLoos, getLoo, getReviews, getReview, updateReview}
+export default {getAllLoos, getLoo, getReviews, getReview, updateReview, addReview}

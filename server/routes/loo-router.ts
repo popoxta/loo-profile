@@ -2,6 +2,7 @@ import express from "express";
 import {tryCatchNext} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
+import {Review} from "../lib/types";
 
 const looRouter = express.Router()
 
@@ -56,10 +57,24 @@ looRouter.put('/reviews/:id', async (req, res, next) => {
         const {loo_id, review, rating,} = req.body
         if (!loo_id || review || rating) return utils.clientError(res, 'Client Error: Please fill out all details')
         else {
-            const updatedReview = {id, loo_id, review, rating}
+            const updatedReview: Review = {id, loo_id, review, rating}
             await db.updateReview(updatedReview)
 
             return res.json({review: updatedReview})
+        }
+    }, next)
+})
+
+looRouter.post('/reviews', async (req, res, next) => {
+    await tryCatchNext(async () => {
+        const {loo_id, review, rating,} = req.body
+        if (!loo_id || review || rating) return utils.clientError(res, 'Client Error: Please fill out all details')
+
+        else {
+            const newReview: Review = {loo_id, review, rating}
+            const addedReview = await db.addReview(newReview)
+
+            return res.json({review: addedReview})
         }
     }, next)
 })

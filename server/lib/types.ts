@@ -1,5 +1,5 @@
 export interface Review {
-    id: number
+    id?: number
     loo_id: number
     rating: number
     review: string
