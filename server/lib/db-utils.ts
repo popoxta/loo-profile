@@ -16,16 +16,16 @@ const getLoo = (id: number) => {
     return connection('loos').where({id}).first()
 }
 
-const getReviews = (id: number) => {
-    return connection('reviews').select('*').where({loo_id: id})
+const getReview = (id: number) => {
+    return connection('reviews').where({id}).first()
 }
 
-const getReviewsAvg = (id: number) => {
-    return connection('reviews').avg('rating AS avg_rating').where({loo_id: id})
+const getReviews = (id: number) => {
+    return connection('reviews').select('*').where({loo_id: id})
 }
 
 // getLoosAndAvgRating
 // getLoosWithinDistance
 // lari, matija
 
-export default {getAllLoos, getLoo, getReviews, getReviewsAvg}
+export default {getAllLoos, getLoo, getReviews, getReview}
