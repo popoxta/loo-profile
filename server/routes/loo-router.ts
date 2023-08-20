@@ -2,7 +2,7 @@ import express from "express";
 import {tryCatchNext} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
-import {Loo, Review} from "../lib/types";
+import {Loo} from "../lib/types";
 
 const looRouter = express.Router()
 
