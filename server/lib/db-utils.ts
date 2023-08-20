@@ -1,4 +1,5 @@
 import connection from '../db/knex-db.js'
+import {Review} from "./types";
 
 const getAllLoos = () => {
     const subQuery = connection('reviews').select('loo_id')
@@ -24,8 +25,12 @@ const getReviews = (id: number) => {
     return connection('reviews').select('*').where({loo_id: id})
 }
 
+const updateReview = (review: Review) => {
+    return connection('reviews').update(review).where({id: review.id})
+}
+
 // getLoosAndAvgRating
 // getLoosWithinDistance
 // lari, matija
 
-export default {getAllLoos, getLoo, getReviews, getReview}
+export default {getAllLoos, getLoo, getReviews, getReview, updateReview}
