@@ -1,4 +1,4 @@
-import connection from './db/knex-db.js'
+import connection from '../db/knex-db.js'
 
 const getAllLoos = async () => {
     await connection('loos').select()
@@ -19,3 +19,4 @@ const getReviewsAvg = async (id: number) => {
 // getLoosAndAvgRating
 // getLoosWithinDistance
 
+// lari, matija

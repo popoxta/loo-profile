@@ -1,4 +1,5 @@
 import express from 'express'
+import looRouter from "./routes/loo-router";
 
 const port = process.env.PORT || 3000
 const app = express()
