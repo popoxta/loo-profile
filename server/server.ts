@@ -1,12 +1,14 @@
 import express from 'express'
 import looRouter from "./routes/loo-router";
+import reviewRouter from "./routes/review-router";
 
 const server = express()
 
 server.use(express.json())
 server.use(express.urlencoded({extended: true}))
 
-server.use('/loos',looRouter)
+server.use('/loos', looRouter)
+server.use('/reviews', reviewRouter)
 
 server.use((err, req, res, next) => {
     if (!err) return
