@@ -1,11 +1,19 @@
 import connection from '../db/knex-db.js'
 
 const getAllLoos = () => {
-    return connection('loos').select()
+    const subQuery = connection('reviews').select('loo_id')
+        .avg('rating AS avg_rating')
+        .groupBy('loo_id')
+        .as('r')
+
+    return connection('loos')
+        .select('l.*', 'r.avg_rating')
+        .from('loos as l')
+        .leftJoin(subQuery, 'l.id', '=', 'r.loo_id')
 }
 
 const getLoo = (id: number) => {
-    return connection('loos').select().where({id})
+    return connection('loos').where({id}).first()
 }
 
 const getReviews = (id: number) => {
