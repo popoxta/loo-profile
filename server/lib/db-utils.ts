@@ -22,7 +22,7 @@ const updateLoo = (loo: Loo) => {
 }
 
 const addLoo = (loo: Loo) => {
-    return connection('loos').insert(loo)
+    return connection('loos').insert(loo).returning('*')
 }
 
 const getReview = (id: number) => {
@@ -38,7 +38,7 @@ const updateReview = (review: Review) => {
 }
 
 const addReview = (review: Review) => {
-    return connection('reviews').insert(review)
+    return connection('reviews').insert(review).returning('*')
 }
 
 // getLoosAndAvgRating

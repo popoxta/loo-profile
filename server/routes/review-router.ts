@@ -15,7 +15,7 @@ reviewRouter.get('/:id', async (req, res, next) => {
         const review = await db.getReview(id)
         if (!review) return utils.notFoundError(res, `Client Error: Review ${id} does not exist.`)
 
-        res.json({review})
+        res.json(review)
     }, next)
 })
 
@@ -35,7 +35,7 @@ reviewRouter.put('/:id', async (req, res, next) => {
             const updatedReview: Review = {id, loo_id, review, rating}
             await db.updateReview(updatedReview)
 
-            return res.json({review: updatedReview})
+            return res.json(updatedReview)
         }
     }, next)
 })
@@ -49,7 +49,7 @@ reviewRouter.post('/new', async (req, res, next) => {
             const newReview: Review = {loo_id, review, rating}
             const addedReview = await db.addReview(newReview)
 
-            return res.json({review: addedReview})
+            return res.json(addedReview)
         }
     }, next)
 })

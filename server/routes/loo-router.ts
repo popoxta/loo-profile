@@ -10,7 +10,7 @@ looRouter.get('/all', async (req, res, next) => {
     await tryCatchNext(async () => {
         const loos = await db.getAllLoos()
 
-        res.json({loos})
+        res.json(loos)
     }, next)
 })
 
@@ -48,7 +48,7 @@ looRouter.put('/:id', async (req, res, next) => {
             const updatedLoo: Loo = {id, name, street, region, contact, lat, long}
             await db.updateLoo(updatedLoo)
 
-            return res.json({loo: updatedLoo})
+            return res.json(updatedLoo)
         }
     }, next)
 })
@@ -61,9 +61,9 @@ looRouter.post('/new', async (req, res, next) => {
 
         else {
             const newLoo: Loo = {name, street, region, contact, lat, long}
-            const addedLoo = await db.addLoo(newLoo)
+            const addedLoo = (await db.addLoo(newLoo))[0]
 
-            return res.json({review: addedLoo})
+            return res.json(addedLoo)
         }
     }, next)
 })
