@@ -1,5 +1,5 @@
 import express from "express";
-import {tryCatchNext} from "../lib/utils";
+import {tryCatchNext, validateId, validateLoo} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Loo} from "../lib/types";
@@ -17,12 +17,8 @@ looRouter.get('/all', async (req, res, next) => {
 looRouter.get('/:id', async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
-
-        const isValidId = !isNaN(id)
-        if (!isValidId) return utils.clientError(res, 'Client Error: Invalid ID')
-
-        const loo = await db.getLoo(id)
-        if (!loo) return utils.notFoundError(res, `Client Error: Loo ${id} does not exist.`)
+        const loo = await validateLoo(id, res, db)
+        if (res.headersSent) return
 
         const reviews = await db.getReviews(id)
 
@@ -34,11 +30,8 @@ looRouter.put('/:id', async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
 
-        const isValidId = !isNaN(id)
-        if (!isValidId) return utils.clientError(res, 'Client Error: Invalid ID')
-
-        const looExists = await db.getLoo(id)
-        if (!looExists) return utils.notFoundError(res, `Client Error: Loo ${id} does not exist.`)
+        await validateLoo(id, res, db)
+        if (res.headersSent) return
 
         const {name, street, region, contact, lat, long} = req.body
         if (!name || !street || !region || !contact || !lat || !long)
@@ -47,7 +40,6 @@ looRouter.put('/:id', async (req, res, next) => {
         else {
             const updatedLoo: Loo = {id, name, street, region, contact, lat, long}
             await db.updateLoo(updatedLoo)
-
             return res.json(updatedLoo)
         }
     }, next)

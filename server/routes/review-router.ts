@@ -1,5 +1,5 @@
 import express from "express";
-import {tryCatchNext} from "../lib/utils";
+import {tryCatchNext, validateId, validateReview} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Review} from "../lib/types";
@@ -8,12 +8,8 @@ const reviewRouter = express.Router()
 reviewRouter.get('/:id', async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
-
-        const isValidId = !isNaN(id)
-        if (!isValidId) return utils.clientError(res, 'Client Error: Invalid ID')
-
-        const review = await db.getReview(id)
-        if (!review) return utils.notFoundError(res, `Client Error: Review ${id} does not exist.`)
+        const review = validateReview(id, res, db)
+        if (res.headersSent) return
 
         res.json(review)
     }, next)
@@ -22,12 +18,8 @@ reviewRouter.get('/:id', async (req, res, next) => {
 reviewRouter.put('/:id', async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
-
-        const isValidId = !isNaN(id)
-        if (!isValidId) return utils.clientError(res, 'Client Error: Invalid ID')
-
-        const reviewExists = await db.getReview(id)
-        if (!reviewExists) return utils.notFoundError(res, `Client Error: Review ${id} does not exist.`)
+        await validateReview(id, res, db)
+        if (res.headersSent) return
 
         const {loo_id, review, rating,} = req.body
         if (!loo_id || !review || !rating) return utils.clientError(res, 'Client Error: Please fill out all details')
