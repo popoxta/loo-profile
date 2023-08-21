@@ -3,6 +3,8 @@
 import {Response} from "express";
 import utils from "./route-utils";
 import db from "./db-utils";
+import {getDistance} from "geolib";
+import {Loo} from "./types";
 
 async function tryCatchNext(cb, next) {
     try {
@@ -33,6 +35,13 @@ const validateLoo = async (id: number, res: Response, db) => {
     if (!loo) return utils.notFoundError(res, `Client Error: Loo ${id} does not exist.`)
 
     return loo
+}
+
+export function filterDistance(loos: Loo[], distance: number, lat: number, long: number) {
+    return loos.filter((loo) => {
+        return getDistance({latitude: loo.lat, longitude: loo.long},
+            {latitude: lat, longitude: long}) < (distance * 1000)
+    })
 }
 
 export {tryCatchNext, validateReview, validateId, validateLoo}
