@@ -8,7 +8,7 @@ const reviewRouter = express.Router()
 reviewRouter.get('/:id', async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
-        const review = validateReview(id, res, db)
+        const review = await validateReview(id, res, db)
         if (res.headersSent) return
 
         res.json(review)
@@ -39,7 +39,7 @@ reviewRouter.post('/new', async (req, res, next) => {
 
         else {
             const newReview: Review = {loo_id, review, rating}
-            const addedReview = await db.addReview(newReview)
+            const addedReview = (await db.addReview(newReview))[0]
 
             return res.json(addedReview)
         }

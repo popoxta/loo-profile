@@ -108,13 +108,13 @@ describe('PUT /:id', () => {
 
 describe('POST /new', () => {
     it('Should return a client error if information is missing on req.body', async () => {
-        const res = await request(app).put('/loos/5')
+        const res = await request(app).post('/loos/new')
             .send({name: 'Burn Dunker', street: 'Highway to Hell'}).expect(400)
         expect(JSON.parse(res.text).msg).toMatch(/Client Error/gi)
     })
 
     it('Should insert a loo with the correct information', async () => {
-        const newLoo = {
+        const newLoo: Loo = {
             name: 'Rocker Shocker',
             street: '6 TimeAgo Ln',
             region: 'Stages, TX',
@@ -129,7 +129,7 @@ describe('POST /new', () => {
     })
 
     it('Should return a JSON response containing the new loo', async () => {
-        const newLoo = {
+        const newLoo: Loo = {
             name: 'La Grange',
             street: '123 LaGrange Ln',
             region: 'Houston, TX',
