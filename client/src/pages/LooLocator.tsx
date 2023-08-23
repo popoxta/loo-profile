@@ -1,14 +1,14 @@
 import {Form} from "react-router-dom";
 import Map from "../components/Map.tsx";
-import {coord, Loo} from "../lib/types.ts";
+import {Coordinates, Loo} from "../lib/types.ts";
 import LooCard from "../components/LooCard.tsx";
 import {ChangeEvent, ReactElement, useEffect, useState} from "react";
 import {fakeLoos} from "../loo-data.ts";
 import {filterDistance, geoError, geoSuccess, getMarkers} from "../lib/geo-utils.ts";
 
 export default function LooLocator() {
-    const [location, setLocation] = useState<coord>([-36.848461, 174.763336])
-    const [view, setView] = useState<coord>([0, 0])
+    const [location, setLocation] = useState<Coordinates>([-36.848461, 174.763336])
+    const [view, setView] = useState<Coordinates>([0, 0])
     const [distance, setDistance] = useState(11)
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export default function LooLocator() {
 
     const success = (pos: GeolocationPosition) => geoSuccess(pos, setLocation, setView)
 
-    const selectView = (coords: coord) => setView(coords)
+    const selectView = (coords: Coordinates) => setView(coords)
 
     const handleSelectDistance = (e: ChangeEvent<HTMLSelectElement>) => setDistance(Number(e.target.value))
 

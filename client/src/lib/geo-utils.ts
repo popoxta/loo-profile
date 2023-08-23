@@ -1,7 +1,7 @@
-import {coord, Loo, Marker} from "./types.ts";
+import {Coordinates, Loo, Marker} from "./types.ts";
 import {getDistance} from "geolib";
 
-export function geoSuccess(pos: GeolocationPosition, ...setters: ((arg: coord) => void)[]) {
+export function geoSuccess(pos: GeolocationPosition, ...setters: ((arg: Coordinates) => void)[]) {
     const lat = pos.coords.latitude
     const long = pos.coords.longitude
     setters.forEach(setter => setter([lat, long]))
@@ -9,7 +9,7 @@ export function geoSuccess(pos: GeolocationPosition, ...setters: ((arg: coord) =
 
 export const geoError = () => alert('Could not read geolocation')
 
-export function filterDistance(loos: Loo[], distance: number, location: coord) {
+export function filterDistance(loos: Loo[], distance: number, location: Coordinates) {
     return loos.filter((loo: Loo): boolean => {
         return distance === 11
             ? true

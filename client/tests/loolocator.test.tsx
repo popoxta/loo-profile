@@ -3,7 +3,7 @@ import {describe, it, expect, beforeEach} from 'vitest'
 import {screen} from "@testing-library/react";
 import {renderApp, renderComponent} from "./testUtils";
 import LooCard from "../src/components/LooCard";
-import {coord} from "../src/lib/types";
+import {Coordinates} from "../src/lib/types";
 import './test-setup.ts'
 
 describe('Loos', () => {
@@ -30,7 +30,7 @@ describe('Loo card', () => {
         street: '123 Street',
         area: 'Wellington',
         phone: '1234567890',
-        coords: [5, 6] as coord,
+        coords: [5, 6] as Coordinates,
     }
 
     beforeEach(() => {

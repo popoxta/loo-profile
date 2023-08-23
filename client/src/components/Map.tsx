@@ -1,11 +1,11 @@
 import {MapContainer, Marker, TileLayer, Popup, useMap} from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
-import {coord, Marker as MarkerType} from "../lib/types.ts";
+import {Coordinates, Marker as MarkerType} from "../lib/types.ts";
 import {ReactElement, useEffect} from "react";
 
 
 
-const RecenterAutomatically = ({coords, zoom = 13}: { coords: coord, zoom: number }): null => {
+const RecenterAutomatically = ({coords, zoom = 13}: { coords: Coordinates, zoom: number }): null => {
     const map = useMap();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const RecenterAutomatically = ({coords, zoom = 13}: { coords: coord, zoom: numbe
 }
 
 interface Props {
-    center: coord,
+    center: Coordinates,
     markers?: MarkerType[]
 }
 

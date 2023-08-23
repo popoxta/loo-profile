@@ -1,10 +1,10 @@
 export interface Marker {
     id: number,
-    coords: coord,
+    coords: Coordinates,
     title: string,
 }
 
-export type coord = [number, number]
+export type Coordinates = [number, number]
 
 export interface Loo {
     id: number,
@@ -13,7 +13,7 @@ export interface Loo {
     street: string,
     area: string,
     phone: string,
-    coords: coord,
+    coords: Coordinates,
 }
 
 export interface User {
