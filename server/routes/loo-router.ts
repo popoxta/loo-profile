@@ -1,14 +1,23 @@
 import express from "express";
-import {tryCatchNext, validateId, validateLoo} from "../lib/utils";
+import {filterDistance, tryCatchNext, validateLoo} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Loo} from "../lib/types";
 
 const looRouter = express.Router()
 
+// query params e.g ?location=123,123&distance=5
 looRouter.get('/all', async (req, res, next) => {
     await tryCatchNext(async () => {
+        const {location, distance} = req.query
+
         const loos = await db.getAllLoos()
+
+        if (location && distance) {
+            const locationCoordinates = String(location).split(',').map(el => Number(el))
+            const mappedLoos = filterDistance(loos, Number(distance), locationCoordinates[0], locationCoordinates[1])
+            return res.json(mappedLoos)
+        }
 
         res.json(loos)
     }, next)
