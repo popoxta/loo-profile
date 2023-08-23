@@ -3,7 +3,7 @@ import Map from "../components/Map.tsx";
 import {coord, Loo} from "../lib/types.ts";
 import LooCard from "../components/LooCard.tsx";
 import {ChangeEvent, ReactElement, useEffect, useState} from "react";
-import {fakeLoos} from "../looData.ts";
+import {fakeLoos} from "../loo-data.ts";
 import {filterDistance, geoError, geoSuccess, getMarkers} from "../lib/geo-utils.ts";
 
 export default function LooLocator() {

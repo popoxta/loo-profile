@@ -1,5 +1,5 @@
 import {useParams} from "react-router-dom";
-import {fakeLoos} from "../looData.ts";
+import {fakeLoos} from "../loo-data.ts";
 import {Marker} from "../lib/types.ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar} from "@fortawesome/free-solid-svg-icons";
