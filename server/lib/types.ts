@@ -14,3 +14,5 @@ export interface Loo {
     lat: number
     long: number
 }
+
+export type Coordinates = [number, number]

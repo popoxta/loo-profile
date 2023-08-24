@@ -1,6 +1,7 @@
 import express from 'express'
 import looRouter from "./routes/loo-router";
 import reviewRouter from "./routes/review-router";
+import locationRouter from "./routes/location-router";
 
 const server = express()
 
@@ -9,6 +10,7 @@ server.use(express.urlencoded({extended: true}))
 
 server.use('/loos', looRouter)
 server.use('/reviews', reviewRouter)
+server.use('/location', locationRouter)
 
 server.use((err, req, res, next) => {
     if (!err) return
