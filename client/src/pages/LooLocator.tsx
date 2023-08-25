@@ -8,7 +8,7 @@ import {filterDistance, geoError, geoSuccess, getMarkers} from "../lib/geo-utils
 import {getLocation} from "../lib/api-client.ts";
 
 export default function LooLocator() {
-    const [searchParams] = useSearchParams()
+    const [searchParams, setSearchParams] = useSearchParams()
     const [locationQuery, setLocationQuery] = useState<string>(searchParams.get('location') ?? '')
     const [location, setLocation] = useState<Coordinates>([-36.848461, 174.763336])
     const [view, setView] = useState<Coordinates>([0, 0])
@@ -23,7 +23,11 @@ export default function LooLocator() {
 
     const selectView = (coords: Coordinates) => setView(coords)
 
-    const handleSelectDistance = (e: ChangeEvent<HTMLSelectElement>) => setDistance(Number(e.target.value))
+    const handleSelectDistance = (e: ChangeEvent<HTMLSelectElement>) => {
+        setDistance(Number(e.target.value))
+        searchParams.set('distance', e.target.value)
+        setSearchParams(searchParams)
+    }
 
     const handleLocationInput = (e: ChangeEvent<HTMLInputElement>) => setLocationQuery(e.target.value)
 
