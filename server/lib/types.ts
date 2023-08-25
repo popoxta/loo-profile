@@ -13,7 +13,7 @@ export interface Loo {
     contact: string
     lat: number
     long: number
-    avg_rating: number
+    avg_rating?: number
 }
 
 export type Coordinates = [number, number]
