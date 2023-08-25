@@ -2,8 +2,14 @@ import express from 'express'
 import looRouter from "./routes/loo-router";
 import reviewRouter from "./routes/review-router";
 import locationRouter from "./routes/location-router";
+import cors from 'cors'
 
 const server = express()
+
+server.use(cors({
+    origin: true,
+    credentials: true,
+}))
 
 server.use(express.json())
 server.use(express.urlencoded({extended: true}))
