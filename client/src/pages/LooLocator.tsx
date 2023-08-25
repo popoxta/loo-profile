@@ -3,27 +3,37 @@ import Map from "../components/Map.tsx";
 import {Coordinates, Loo} from "../lib/types.ts";
 import LooCard from "../components/LooCard.tsx";
 import {ChangeEvent, ReactElement, useEffect, useState} from "react";
-import {fakeLoos} from "../loo-data.ts";
-import {filterDistance, geoError, geoSuccess, getMarkers} from "../lib/geo-utils.ts";
+import {geoError, geoSuccess, getMarkers} from "../lib/geo-utils.ts";
 import {getLocation} from "../lib/api-client.ts";
+import {useLooQuery} from "../lib/useLooQuery.ts";
+
+const DEFAULT_COORDS: Coordinates = [-36.848461, 174.763336]
 
 export default function LooLocator() {
     const [searchParams, setSearchParams] = useSearchParams()
+    const queryDistance = Number(searchParams.get('distance'))
+
     const [locationQuery, setLocationQuery] = useState<string>(searchParams.get('location') ?? '')
-    const [location, setLocation] = useState<Coordinates>([-36.848461, 174.763336])
-    const [view, setView] = useState<Coordinates>([0, 0])
-    const [distance, setDistance] = useState<number>(Number(searchParams.get('distance')) ?? 11)
+    const [location, setLocation] = useState(DEFAULT_COORDS)
+    const [view, setView] = useState(DEFAULT_COORDS)
+    const [distance, setDistance] = useState<number>(queryDistance > 0 ? queryDistance : 25)
+
+    const {data} = useLooQuery(location, distance)
 
     useEffect(() => {
-        if (navigator.geolocation) navigator.geolocation.getCurrentPosition(
-            (pos: GeolocationPosition) => geoSuccess(pos, setLocation, setView),
-            geoError
-        )
+        if (locationQuery) {
+            void setNewLocation()
+
+        } else if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (pos: GeolocationPosition) => geoSuccess(pos, setLocation, setView),
+                geoError,
+                {enableHighAccuracy: false, timeout: 1000, maximumAge: Infinity}
+            )
+        }
     }, [])
 
-    const selectView = (coords: Coordinates) => setView(coords)
-
-    const handleSelectDistance = (e: ChangeEvent<HTMLSelectElement>) => {
+    function setDistanceFilter(e: ChangeEvent<HTMLSelectElement>) {
         setDistance(Number(e.target.value))
         searchParams.set('distance', e.target.value)
         setSearchParams(searchParams)
@@ -31,18 +41,17 @@ export default function LooLocator() {
 
     const handleLocationInput = (e: ChangeEvent<HTMLInputElement>) => setLocationQuery(e.target.value)
 
-    async function handleSubmitLocation () {
+    async function setNewLocation() {
         const location = await getLocation(locationQuery)
         setLocation(location)
         setView(location)
     }
 
-    const loos = filterDistance(fakeLoos, distance, location)
+    const looMarkers = data ? getMarkers(data) : undefined
 
-    const looMarkers = getMarkers(loos)
-
-    const looCards: ReactElement[] = loos.map((loo: Loo) => <LooCard onClick={() => selectView(loo.coords)}
-                                                                     key={loo.id + loo.name} loo={loo}/>)
+    // todo make this a component
+    const looCards: ReactElement[] | undefined = data?.map((loo: Loo) =>
+        <LooCard onClick={() => setView([loo.lat, loo.long])} key={loo.id + loo.name} loo={loo}/>)
 
     return (
         <main className={'mt-20 md:mt-24 px-5 mb-10'}>
@@ -50,7 +59,7 @@ export default function LooLocator() {
                 <h2 className={'text-5xl font-semibold font-spartan uppercase'}>Loocator</h2>
                 <div className={'font-open-sans flex place-items-center gap-10'}>
                     <Form
-                        onSubmit={handleSubmitLocation}
+                        onSubmit={setNewLocation}
                         className={'flex place-items-center gap-5'}>
                         <label className={'font-medium text-sm'}>
                             Enter a location
@@ -67,23 +76,23 @@ export default function LooLocator() {
                     <label className={'font-medium text-sm'}>
                         Distance
                         <select
-                            onChange={handleSelectDistance}
+                            onChange={setDistanceFilter}
                             defaultValue={distance}
                             className={'block px-2 py-[0.4rem] mt-1 bg-slate-200 rounded-md min-w-[6rem] font-normal'}
                             name={'distance'}>
                             <option value={1}>{'1km'}</option>
                             <option value={5}>{'5km'}</option>
                             <option value={10}>{'10km'}</option>
-                            <option value={11}>{'10km+'}</option>
+                            <option value={25}>{'25km'}</option>
                         </select>
                     </label>
                 </div>
                 <div className={'flex gap-10 h-[30rem]'}>
                     <div className={'w-full h-full'}>
-                        <Map center={view} markers={looMarkers}/>
+                       <Map center={view} markers={looMarkers}/>
                     </div>
                     <div className={'border-2 flex-grow border-slate-300 w-[30rem] rounded-lg overflow-y-scroll'}>
-                        {looCards}
+                        {data && looCards}
                     </div>
                 </div>
             </div>
