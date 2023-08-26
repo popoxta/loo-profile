@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Coordinates, Loo} from "./types.ts";
+import {Coordinates, Loo, Review} from "./types/types.ts";
 
 const URL = `http://localhost:3000`
 
@@ -11,4 +11,8 @@ async function getAllLoos(location: Coordinates = [0, 0], distance: number = 25)
     return (await axios.get(`${URL}/loos/all?location=${String(location)}&distance=${distance}`)).data
 }
 
-export {getLocation, getAllLoos}
+async function getLoo(id: number): Promise<{loo: Loo, review: Review}> {
+    return (await axios.get(`${URL}/loos/${id}`)).data
+}
+
+export {getLocation, getAllLoos, getLoo}

@@ -1,11 +1,11 @@
 import {Form, useSearchParams} from "react-router-dom";
 import Map from "../components/Map.tsx";
-import {Coordinates, Loo} from "../lib/types.ts";
+import {Coordinates, Loo} from "../lib/types/types.ts";
 import LooCard from "../components/LooCard.tsx";
 import {ChangeEvent, ReactElement, useEffect, useState} from "react";
 import {geoError, geoSuccess, getMarkers} from "../lib/geo-utils.ts";
 import {getLocation} from "../lib/api-client.ts";
-import {useLooQuery} from "../lib/useLooQuery.ts";
+import {useAllLoosQuery} from "../lib/hooks/useAllLoosQuery.ts";
 
 const DEFAULT_COORDS: Coordinates = [-36.848461, 174.763336]
 
@@ -18,7 +18,7 @@ export default function LooLocator() {
     const [view, setView] = useState(DEFAULT_COORDS)
     const [distance, setDistance] = useState<number>(queryDistance > 0 ? queryDistance : 25)
 
-    const {data} = useLooQuery(location, distance)
+    const {data} = useAllLoosQuery(location, distance)
 
     useEffect(() => {
         if (locationQuery) {
@@ -28,7 +28,7 @@ export default function LooLocator() {
             navigator.geolocation.getCurrentPosition(
                 (pos: GeolocationPosition) => geoSuccess(pos, setLocation, setView),
                 geoError,
-                {enableHighAccuracy: false, timeout: 1000, maximumAge: Infinity}
+                {enableHighAccuracy: false, timeout: 10000, maximumAge: Infinity}
             )
         }
     }, [])
@@ -49,7 +49,6 @@ export default function LooLocator() {
 
     const looMarkers = data ? getMarkers(data) : undefined
 
-    // todo make this a component
     const looCards: ReactElement[] | undefined = data?.map((loo: Loo) =>
         <LooCard onClick={() => setView([loo.lat, loo.long])} key={loo.id + loo.name} loo={loo}/>)
 
