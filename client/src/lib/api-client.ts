@@ -11,7 +11,7 @@ async function getAllLoos(location: Coordinates = [0, 0], distance: number = 25)
     return (await axios.get(`${URL}/loos/all?location=${String(location)}&distance=${distance}`)).data
 }
 
-async function getLoo(id: number): Promise<{loo: Loo, review: Review}> {
+async function getLoo(id: number): Promise<{loo: Loo, reviews: Review}> {
     return (await axios.get(`${URL}/loos/${id}`)).data
 }
 
