@@ -6,17 +6,18 @@ import Stars from "./Stars.tsx";
 
 interface Props {
     loo: Loo,
+    isLast: boolean
     onClick?: () => void
 }
 
 export default function LooCard(props: Props) {
-    const {loo} = props
+    const {loo, isLast} = props
 
 
     return (
         <div
             onClick={props?.onClick ? props.onClick : () => {}}
-            className={'flex w-full place-items-center py-5 pr-5 border-b-2 border-slate-200 text-slate-900 h-32 font-open-sans'}>
+            className={`flex w-full place-items-center py-5 pr-5 ${isLast ? '' : 'border-b-2' } border-slate-200 text-slate-900 h-32 font-open-sans`}>
             <FontAwesomeIcon className={'mx-6 text-slate-400'} size={'2xl'} icon={faToilet}/>
             <div className={'flex flex-col w-full h-full justify-between'}>
                 <div className={'flex justify-between place-items-center'}>

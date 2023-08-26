@@ -54,8 +54,8 @@ export default function LooLocator() {
 
     const looMarkers = data ? getMarkers(data) : undefined
 
-    const looCards: ReactElement[] | undefined = data?.map((loo: Loo) =>
-        <LooCard onClick={() => setView([loo.lat, loo.long])} key={loo.id + loo.name} loo={loo}/>)
+    const looCards: ReactElement[] | undefined = data?.map((loo: Loo, i) =>
+        <LooCard isLast={i === (data?.length - 1)} onClick={() => setView([loo.lat, loo.long])} key={loo.id + loo.name} loo={loo}/>)
 
     return (
         <main className={'mt-20 md:mt-24 px-5 mb-10'}>

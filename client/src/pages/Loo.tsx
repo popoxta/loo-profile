@@ -32,7 +32,7 @@ export default function Loo() {
 
     const marker = getMarkers([loo])
     const reviewElements = reviews?.map((el, i) =>
-        <ReviewCard key={`${el} ${i}`}/>)
+        <ReviewCard key={`${el} ${i}`} isLast={i === (reviews.length - 1)}/>)
 
     const toggleAddReview = () => setShowAddReview(!showAddReview)
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
