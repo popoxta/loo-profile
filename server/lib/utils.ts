@@ -28,7 +28,7 @@ const validateReview = async (id: number, res: Response, db) => {
     return review
 }
 
-const validateLoo = async (id: number, res: Response, db) => {
+const validateAndReturnLoo = async (id: number, res: Response, db) => {
     validateId(id, res)
     if (res.headersSent) return
     const loo = await db.getLoo(id)
@@ -44,4 +44,4 @@ export function filterDistance(loos: Loo[], distance: number, lat: number, long:
     })
 }
 
-export {tryCatchNext, validateReview, validateId, validateLoo}
+export {tryCatchNext, validateReview, validateId, validateAndReturnLoo}
