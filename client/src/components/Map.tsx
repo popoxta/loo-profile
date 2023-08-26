@@ -1,6 +1,6 @@
 import {MapContainer, Marker, TileLayer, Popup, useMap} from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
-import {Coordinates, Marker as MarkerType} from "../lib/types.ts";
+import {Coordinates, Marker as MarkerType} from "../lib/types/types.ts";
 import {ReactElement, useEffect} from "react";
 
 

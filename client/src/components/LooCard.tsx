@@ -1,5 +1,5 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faToilet, faStar, faStarHalf} from "@fortawesome/free-solid-svg-icons";
+import {faToilet} from "@fortawesome/free-solid-svg-icons";
 import {Loo} from "../lib/types/types.ts";
 import Button from "./Button.tsx";
 import Stars from "./Stars.tsx";
