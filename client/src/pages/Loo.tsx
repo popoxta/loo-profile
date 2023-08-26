@@ -1,7 +1,5 @@
 import {useParams} from "react-router-dom";
 import {Review, Loo as LooType} from "../lib/types/types.ts";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStar} from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Button.tsx";
 import Map from "../components/Map.tsx";
 import ReviewCard from "../components/ReviewCard.tsx";
@@ -11,6 +9,7 @@ import {useState} from "react";
 import {useLooQuery} from "../lib/hooks/useLooQuery.ts";
 import {getMarkers} from "../lib/geo-utils.ts";
 import Loading from "../components/Loading.tsx";
+import Stars from "../components/Stars.tsx";
 
 interface Data {
     loo: LooType
@@ -84,11 +83,7 @@ export default function Loo() {
                         <div className={'flex place-items-center gap-5 flex-col mb-5 sm:flex-row sm:mb-0'}>
                             <h4 className={'text-3xl font-semibold font-spartan'}>Reviews</h4>
                             <div className={'flex gap-0.5'}>
-                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
-                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
-                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
-                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
-                                <FontAwesomeIcon size={'lg'} className={'text-slate-400'} icon={faStar}/>
+                                <Stars rating={loo.avg_rating} size={'lg'}/>
                             </div>
                             <p className={'font-open-sans text-sm text-slate-500'}>{reviews.length} Reviews</p>
                         </div>
