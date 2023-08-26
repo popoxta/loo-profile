@@ -1,8 +1,6 @@
 import {useQuery} from "react-query";
-import {getAllLoos} from "../api-client.ts";
-import {Coordinates} from "../types/types.ts";
-
-export const useLooQuery = (location: Coordinates, distance: number) => useQuery({
-    queryKey: ['loos', location, distance],
-    queryFn: () => getAllLoos(location, distance)
+import {getLoo} from "../api-client.ts";
+export const useLooQuery = (id: number) => useQuery({
+    queryKey: ['loos', id],
+    queryFn: () => getLoo(id)
 })
