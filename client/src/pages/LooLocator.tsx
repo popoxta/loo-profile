@@ -6,6 +6,7 @@ import {ChangeEvent, ReactElement, useEffect, useState} from "react";
 import {geoError, geoSuccess, getMarkers} from "../lib/geo-utils.ts";
 import {getLocation} from "../lib/api-client.ts";
 import {useAllLoosQuery} from "../lib/hooks/useAllLoosQuery.ts";
+import Loading from "../components/Loading.tsx";
 
 const DEFAULT_COORDS: Coordinates = [-36.848461, 174.763336]
 
@@ -17,8 +18,9 @@ export default function LooLocator() {
     const [location, setLocation] = useState(DEFAULT_COORDS)
     const [view, setView] = useState(DEFAULT_COORDS)
     const [distance, setDistance] = useState<number>(queryDistance > 0 ? queryDistance : 25)
+    const [mapIsLoading, setMapIsLoading] = useState(!!navigator.geolocation && !locationQuery)
 
-    const {data} = useAllLoosQuery(location, distance)
+    const {data, isLoading} = useAllLoosQuery(location, distance)
 
     useEffect(() => {
         if (locationQuery) {
@@ -26,8 +28,8 @@ export default function LooLocator() {
 
         } else if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-                (pos: GeolocationPosition) => geoSuccess(pos, setLocation, setView),
-                geoError,
+                (pos: GeolocationPosition) => geoSuccess(pos, setLocation, setView, () => setMapIsLoading(false)),
+                () => geoError(() => setMapIsLoading(false)),
                 {enableHighAccuracy: false, timeout: 10000, maximumAge: Infinity}
             )
         }
@@ -42,9 +44,12 @@ export default function LooLocator() {
     const handleLocationInput = (e: ChangeEvent<HTMLInputElement>) => setLocationQuery(e.target.value)
 
     async function setNewLocation() {
+        if (!locationQuery) return
+        setMapIsLoading(true)
         const location = await getLocation(locationQuery)
         setLocation(location)
         setView(location)
+        setMapIsLoading(false)
     }
 
     const looMarkers = data ? getMarkers(data) : undefined
@@ -88,10 +93,13 @@ export default function LooLocator() {
                 </div>
                 <div className={'flex gap-10 h-[30rem]'}>
                     <div className={'w-full h-full'}>
-                       <Map center={view} markers={looMarkers}/>
+                        { isLoading || mapIsLoading
+                            ? <div className={'min-h-full flex justify-center place-items-center bg-slate-100'}><Loading/></div>
+                            : <Map center={view} markers={looMarkers}/>
+                        }
                     </div>
                     <div className={'border-2 flex-grow border-slate-300 w-[30rem] rounded-lg overflow-y-scroll'}>
-                        {data && looCards}
+                        {data && !mapIsLoading && looCards}
                     </div>
                 </div>
             </div>
