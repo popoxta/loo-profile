@@ -28,10 +28,11 @@ export default function Loo() {
         </div>
 
     const {reviews, loo} = data as Data
+    const averageRating = (reviews.reduce((acc, curr) => acc + curr.rating, 0) / reviews.length)
 
     const marker = getMarkers([loo])
-    const reviewElements = reviews?.map((el, i) =>
-        <ReviewCard key={`${el} ${i}`} isLast={i === (reviews.length - 1)}/>)
+    const reviewElements = reviews?.map((review, i) =>
+        <ReviewCard key={crypto.randomUUID()} review={review} isLast={i === (reviews.length - 1)}/>)
 
     const toggleAddReview = () => setShowAddReview(!showAddReview)
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
@@ -83,7 +84,7 @@ export default function Loo() {
                         <div className={'flex place-items-center gap-5 flex-col mb-5 sm:flex-row sm:mb-0'}>
                             <h4 className={'text-3xl font-semibold font-spartan'}>Reviews</h4>
                             <div className={'flex gap-0.5'}>
-                                <Stars rating={loo.avg_rating} size={'lg'}/>
+                                <Stars rating={averageRating} size={'lg'}/>
                             </div>
                             <p className={'font-open-sans text-sm text-slate-500'}>{reviews.length} Reviews</p>
                         </div>
