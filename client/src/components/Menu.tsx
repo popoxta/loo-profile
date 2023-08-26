@@ -1,6 +1,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import Cover from "./Cover.tsx";
+import {Link} from "react-router-dom";
 
 export default function Menu({show, toggle}: { show: boolean, toggle: () => void }) {
 
@@ -20,16 +21,16 @@ export default function Menu({show, toggle}: { show: boolean, toggle: () => void
                         </div>
                     </li>
                     <li className={'border-b-2 text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
-                        Dashboard
+                        <Link onClick={toggle} to={'/dashboard'}>Dashboard</Link>
                     </li>
                     <li className={'border-b-2 text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
-                        Locator
+                        <Link onClick={toggle} to={'/loos'}>Locator</Link>
                     </li>
                     <li className={'border-b-2 text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
-                        Saved
+                        <Link onClick={toggle} to={'/dashboard/saved'}>Saved</Link>
                     </li>
                     <li className={'text-slate-900 py-8 px-2 text-2xl font-medium mx-5 text-center'}>
-                        Account
+                        <Link onClick={toggle} to={'/account'}>Account</Link>
                     </li>
                 </ul>
             </nav>
