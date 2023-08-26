@@ -1,6 +1,6 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faToilet, faStar} from "@fortawesome/free-solid-svg-icons";
-import {Loo} from "../lib/types.ts";
+import {Loo} from "../lib/types/types.ts";
 import Button from "./Button.tsx";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 
 export default function LooCard(props: Props) {
     const {loo} = props
+
     return (
         <div
             onClick={props?.onClick ? props.onClick : () => {}}
@@ -28,10 +29,10 @@ export default function LooCard(props: Props) {
                 </div>
                 <div>
                     <p className={'text-xs'}>{loo.street}</p>
-                    <p className={'text-xs'}>{loo.area}</p>
+                    <p className={'text-xs'}>{loo.region}</p>
                 </div>
                 <div className={'flex place-items-center justify-between'}>
-                    <p className={'text-xs text-slate-500'}>{loo.phone}</p>
+                    <p className={'text-xs text-slate-500'}>{loo.contact}</p>
                     <Button size={'sm'} link={`/loos/${loo.id}`}>View</Button>
                 </div>
             </div>
