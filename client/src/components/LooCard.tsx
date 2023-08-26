@@ -1,7 +1,8 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faToilet, faStar} from "@fortawesome/free-solid-svg-icons";
+import {faToilet, faStar, faStarHalf} from "@fortawesome/free-solid-svg-icons";
 import {Loo} from "../lib/types/types.ts";
 import Button from "./Button.tsx";
+import Stars from "./Stars.tsx";
 
 interface Props {
     loo: Loo,
@@ -10,6 +11,7 @@ interface Props {
 
 export default function LooCard(props: Props) {
     const {loo} = props
+
 
     return (
         <div
@@ -20,11 +22,7 @@ export default function LooCard(props: Props) {
                 <div className={'flex justify-between place-items-center'}>
                     <h3 className={'text-sm font-semibold'}>{loo.name}</h3>
                     <div className={'flex gap-[0.1rem]'}>
-                        <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
-                        <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
-                        <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
-                        <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
-                        <FontAwesomeIcon size={'xs'} className={'text-slate-400'} icon={faStar}/>
+                        <Stars rating={loo.avg_rating} size={'xs'}/>
                     </div>
                 </div>
                 <div>
