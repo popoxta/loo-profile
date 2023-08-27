@@ -13,7 +13,6 @@ interface Props {
 export default function LooCard(props: Props) {
     const {loo, isLast} = props
 
-
     return (
         <div
             onClick={props?.onClick ? props.onClick : () => {}}
