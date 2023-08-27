@@ -8,9 +8,7 @@ export async function action({request}) {
 
     const auth = getAuth()
     const credentials = await signInWithEmailAndPassword(auth, email, password)
-    localStorage.setItem('token', credentials.user.accessToken)
-    console.log(auth.currentUser)
-    return null
+    return credentials
 }
 
 export default function Login() {

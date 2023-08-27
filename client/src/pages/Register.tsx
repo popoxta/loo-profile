@@ -8,8 +8,7 @@ export async function action({request}) {
 
     const auth = getAuth()
     const credentials = await createUserWithEmailAndPassword(auth, email, password)
-    console.log(credentials)
-    return null
+    return credentials
 }
 
 export default function Register() {
