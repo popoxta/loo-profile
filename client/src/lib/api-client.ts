@@ -24,4 +24,12 @@ async function getUser(): Promise<User | null> {
     })).data
 }
 
-export {getLocation, getAllLoos, getLoo, getUser}
+async function getAllUsernames(): Promise<{ username: string }[]> {
+    return (await axios.get(`${URL}/users/all`)).data
+}
+
+async function register(user: User): Promise<User> {
+    return (await axios.post(`${URL}/users/register`, user)).data[0]
+}
+
+export {getLocation, getAllLoos, getLoo, getUser, getAllUsernames, register}

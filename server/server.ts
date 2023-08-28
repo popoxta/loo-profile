@@ -22,7 +22,7 @@ server.use(express.urlencoded({extended: true}))
 server.use(logger)
 
 // todo remove this and put on specific routes that require it
-server.use(isAuthenticated)
+// server.use(isAuthenticated)
 
 server.use('/users', userRouter)
 server.use('/loos', looRouter)

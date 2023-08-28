@@ -18,10 +18,10 @@ userRouter.get('/me', async (req, res, next) => {
     }, next)
 })
 
-userRouter.post('/sign-up', async (req, res, next) => {
+userRouter.post('/register', async (req, res, next) => {
     await tryCatchNext(async () => {
-        const {uid, email, username} = req.body
-        const user = await db.addUser({username, email, firebase_uid: uid})
+        const {firebase_uid, email, username} = req.body
+        const user = await db.addUser({username, email, firebase_uid})
         if (user) res.json(user)
         else return utils.serverError(res, 'Server Error: User request could not be processed')
     }, next)
@@ -30,6 +30,7 @@ userRouter.post('/sign-up', async (req, res, next) => {
 userRouter.get('/all', async (req, res, next) => {
     await tryCatchNext(async () => {
         const usernames = await db.getAllUsernames()
+        console.log(usernames)
         res.json(usernames)
     }, next)
 })
