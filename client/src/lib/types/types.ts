@@ -25,7 +25,9 @@ export interface Loo {
 }
 
 export interface User {
-    id: number,
-    name: string,
+    id?: number
+    firebase_uid: string
+    username: string
+    email: string
 }
 

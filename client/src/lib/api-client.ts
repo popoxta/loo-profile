@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Coordinates, Loo, Review} from "./types/types.ts";
+import {Coordinates, Loo, Review, User} from "./types/types.ts";
 import {getAccessToken} from "./utils.ts";
 
 const URL = `http://localhost:3000`
@@ -12,11 +12,16 @@ async function getAllLoos(location: Coordinates = [0, 0], distance: number = 25)
     return (await axios.get(`${URL}/loos/all?location=${String(location)}&distance=${distance}`)).data
 }
 
-async function getLoo(id: number): Promise<{loo: Loo, reviews: Review[]}> {
+async function getLoo(id: number): Promise<{ loo: Loo, reviews: Review[] }> {
+    return (await axios.get(`${URL}/loos/${id}`)).data
+}
+
+async function getUser(): Promise<User | null> {
     const token = await getAccessToken()
-    return (await axios.get(`${URL}/loos/${id}`, {
+    if (!token) return null
+    return (await axios.get(`${URL}/users/me`, {
         headers: {token}
     })).data
 }
 
-export {getLocation, getAllLoos, getLoo}
+export {getLocation, getAllLoos, getLoo, getUser}
