@@ -1,6 +1,8 @@
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import {Form} from "react-router-dom";
 
+// login -> get token -> redirect to /dashboard
+// log any errors to the user, check inputs
 export async function action({request}: {request: Request}) {
     const data = await request.formData()
     const email = data.get('email')

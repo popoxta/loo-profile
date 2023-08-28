@@ -4,4 +4,6 @@ const notFoundError = (res, msg) => res.status(404).json({msg})
 
 const unauthorizedError = (res, msg) => res.status(401).json({msg})
 
-export default {clientError, notFoundError, unauthorizedError}
+const serverError = (res, msg) => res.status(500).json({msg})
+
+export default {clientError, notFoundError, unauthorizedError, serverError}

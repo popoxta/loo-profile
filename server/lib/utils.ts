@@ -19,7 +19,7 @@ const validateId = (id: number, res: Response) => {
     if (!isValidId) return utils.clientError(res, 'Client Error: Invalid ID')
 }
 
-const validateReview = async (id: number, res: Response, db) => {
+const validateAndReturnReview = async (id: number, res: Response, db) => {
     validateId(id, res)
     if (res.headersSent) return
     const review = await db.getReview(id)
@@ -44,4 +44,4 @@ export function filterDistance(loos: Loo[], distance: number, lat: number, long:
     })
 }
 
-export {tryCatchNext, validateReview, validateId, validateAndReturnLoo}
+export {tryCatchNext, validateAndReturnReview, validateId, validateAndReturnLoo}

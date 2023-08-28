@@ -1,5 +1,5 @@
 import express from "express";
-import {tryCatchNext, validateId, validateReview} from "../lib/utils";
+import {tryCatchNext, validateAndReturnReview} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Review} from "../lib/types";
@@ -8,7 +8,7 @@ const reviewRouter = express.Router()
 reviewRouter.get('/:id', async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
-        const review = await validateReview(id, res, db)
+        const review = await validateAndReturnReview(id, res, db)
         if (res.headersSent) return
 
         res.json(review)
@@ -18,7 +18,7 @@ reviewRouter.get('/:id', async (req, res, next) => {
 reviewRouter.put('/:id', async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
-        await validateReview(id, res, db)
+        await validateAndReturnReview(id, res, db)
         if (res.headersSent) return
 
         const {loo_id, review, rating,} = req.body

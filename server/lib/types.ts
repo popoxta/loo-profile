@@ -1,3 +1,5 @@
+// todo tidy types
+
 export interface Review {
     id?: number
     loo_id: number
@@ -14,6 +16,13 @@ export interface Loo {
     lat: number
     long: number
     avg_rating?: number
+}
+
+export interface User {
+    id?: number
+    firebase_uid: string
+    username: string
+    email: string
 }
 
 export type Coordinates = [number, number]
