@@ -1,29 +1,27 @@
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import {Form} from "react-router-dom";
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import {Form, redirect} from "react-router-dom";
 
-// login -> get token -> redirect to /dashboard
-// log any errors to the user, check inputs
 export async function action({request}: {request: Request}) {
-    const data = await request.formData()
-    const email = data.get('email')
-    const password = data.get('password')
+    try {
+        const data = await request.formData()
+        const email = data.get('email')
+        const password = data.get('password')
 
-    //todo try catch and check inputs
-    const auth = getAuth()
-    const credentials = await signInWithEmailAndPassword(auth, email, password)
-    return credentials
+        if (!email || email.length < 6) return {error: 'Invalid email address'}
+        if (!password) return {error: 'Invalid password'}
+
+        const auth = getAuth()
+        const credentials = await signInWithEmailAndPassword(auth, String(email), String(password))
+        if (credentials) return redirect('/dashboard')
+
+        else return {error: 'Login error, please try again later'}
+
+    } catch (e) {
+        return {error: 'Login error, please try again later'}
+    }
 }
 
 export default function Login() {
-    const auth = getAuth()
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-
-            console.log(user)
-            // ...
-        } else {
-
-        }})
 
         return (
         <Form method={'POST'}>

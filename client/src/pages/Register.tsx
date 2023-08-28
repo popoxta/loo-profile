@@ -1,9 +1,8 @@
 import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
-import {Form, useActionData, useNavigate} from "react-router-dom";
+import {Form, redirect, useActionData} from "react-router-dom";
 import {getAllUsernames, register} from "../lib/api-client.ts";
-import {User} from "../lib/types/types.ts";
 
-export async function action({request}: { request: Request }): Promise<User | { error: string }> {
+export async function action({request}: { request: Request }) {
     try {
         const allUsernames = await getAllUsernames()
 
@@ -27,8 +26,11 @@ export async function action({request}: { request: Request }): Promise<User | { 
             username: String(username),
             firebase_uid: credentials.user.uid
         }
-        if (credentials)
-            return await register(newUser)
+        if (credentials) {
+            await register(newUser)
+            return redirect('/dashboard')
+        }
+
         else return {error: 'Registration error, please try again later'}
 
     } catch (e) {
@@ -37,12 +39,7 @@ export async function action({request}: { request: Request }): Promise<User | { 
 }
 
 export default function Register() {
-    const navigate = useNavigate()
     const action = useActionData()
-
-    // @ts-ignore
-    const user = action?.username ? action : undefined
-    if (user) navigate('/dashboard')
 
     return (
         <>
