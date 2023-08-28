@@ -2,12 +2,12 @@ import express from 'express'
 import looRouter from "./routes/loo-router";
 import reviewRouter from "./routes/review-router";
 import locationRouter from "./routes/location-router";
-import {logger} from "./routes/middleware";
+import {isAuthenticated, logger} from "./routes/middleware";
 import cors from 'cors'
 import admin from 'firebase-admin'
 import serviceAccount from './secrets/firebase_key.js'
 
-admin.initializeApp({credential: admin.credential.cert(serviceAccount)})
+export const firebaseAdmin = admin.initializeApp({credential: admin.credential.cert(serviceAccount)})
 
 const server = express()
 
@@ -19,6 +19,9 @@ server.use(express.json())
 server.use(express.urlencoded({extended: true}))
 
 server.use(logger)
+
+//todo remove this
+server.use(isAuthenticated)
 
 server.use('/loos', looRouter)
 server.use('/reviews', reviewRouter)
