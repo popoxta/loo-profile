@@ -4,5 +4,9 @@ import {Coordinates} from "../types/types.ts";
 
 export const useAllLoosQuery = (location: Coordinates, distance: number) => useQuery({
     queryKey: ['loos', location, distance],
-    queryFn: () => getAllLoos(location, distance)
+    queryFn: () => {
+        console.log('calling', location, distance)
+        return getAllLoos(location, distance)
+    },
+    staleTime: 10000,
 })
