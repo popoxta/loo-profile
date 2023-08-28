@@ -46,7 +46,6 @@ export default function Register() {
 
     return (
         <>
-
             { // @ts-ignore
                 action?.error && <p>{action?.error}</p>}
             <Form method={'POST'}>
