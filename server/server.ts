@@ -4,6 +4,10 @@ import reviewRouter from "./routes/review-router";
 import locationRouter from "./routes/location-router";
 import {logger} from "./routes/middleware";
 import cors from 'cors'
+import admin from 'firebase-admin'
+import serviceAccount from './secrets/firebase_key.js'
+
+admin.initializeApp({credential: admin.credential.cert(serviceAccount)})
 
 const server = express()
 
