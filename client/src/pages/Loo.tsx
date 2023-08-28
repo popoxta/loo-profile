@@ -11,11 +11,6 @@ import {getMarkers} from "../lib/geo-utils.ts";
 import Loading from "../components/Loading.tsx";
 import Stars from "../components/Stars.tsx";
 
-interface Data {
-    loo: LooType
-    reviews: Review[]
-}
-
 export default function Loo() {
     const [showAddReview, setShowAddReview] = useState(false)
     const [showReviewThanks, setShowReviewThanks] = useState(false)
@@ -27,7 +22,7 @@ export default function Loo() {
             <Loading/>
         </div>
 
-    const {reviews, loo} = data as Data
+    const {reviews, loo} = data
     const averageRating = (reviews.reduce((acc, curr) => acc + curr.rating, 0) / reviews.length)
 
     const marker = getMarkers([loo])
