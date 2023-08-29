@@ -2,8 +2,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import Cover from "./Cover.tsx";
 import {Link} from "react-router-dom";
+import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
+
+const LIST_STYLE: string = 'text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'
 
 export default function Menu({show, toggle}: { show: boolean, toggle: () => void }) {
+    const {data: user} = useUserQuery()
 
     return (
         <>
@@ -13,25 +17,54 @@ export default function Menu({show, toggle}: { show: boolean, toggle: () => void
                 <FontAwesomeIcon icon={faXmark} size={'2xl'} title={'Close Menu'}
                                  className={'cursor-pointer absolute top-3 right-5 sm:right-12'} onClick={toggle}/>
                 <ul>
-                    <li className={'flex gap-5 border-b-2 border-slate-300 py-5 px-2 mb-2'}>
-                        <div className={'w-20 h-20 bg-slate-500 rounded-full'}></div>
-                        <div className={'flex flex-col justify-center'}>
-                            <p className={'font-bold text-2xl uppercase text-slate-900'}>Username</p>
-                            <p className={'text-slate-500'}>123 reviews | 34 saved</p>
-                        </div>
-                    </li>
-                    <li className={'border-b-2 text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
-                        <Link onClick={toggle} to={'/dashboard'}>Dashboard</Link>
-                    </li>
-                    <li className={'border-b-2 text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
-                        <Link onClick={toggle} to={'/loos'}>Locator</Link>
-                    </li>
-                    <li className={'border-b-2 text-slate-900 border-slate-200 py-8 px-2 mx-5 text-2xl font-medium text-center'}>
-                        <Link onClick={toggle} to={'/dashboard/saved'}>Saved</Link>
-                    </li>
-                    <li className={'text-slate-900 py-8 px-2 text-2xl font-medium mx-5 text-center'}>
-                        <Link onClick={toggle} to={'/account'}>Account</Link>
-                    </li>
+                    {user
+                        ? <>
+                            <li className={'flex gap-5 border-b-2 border-slate-300 py-5 px-2 mb-2'}>
+                                <div className={'w-20 h-20 bg-slate-500 rounded-full'}></div>
+                                <div className={'flex flex-col justify-center'}>
+                                    <p className={'font-bold text-2xl uppercase text-slate-900'}>{user?.username}</p>
+                                    <p className={'text-slate-500'}>123 reviews | 34 saved</p>
+                                </div>
+                            </li>
+                            <li className={`border-b-2 ${LIST_STYLE}`}>
+                                <Link onClick={toggle} to={'/loos'}>Locator</Link>
+                            </li>
+                            <li
+                                className={`border-b-2 ${LIST_STYLE}`}>
+                                <Link onClick={toggle} to={'/dashboard'}>Dashboard</Link>
+                            </li>
+                            <li
+                                className={`border-b-2 ${LIST_STYLE}`}>
+                                <Link onClick={toggle} to={'/dashboard/saved'}>Saved</Link>
+                            </li>
+                            <li className={`border-b-2 ${LIST_STYLE}`}>
+                                <Link onClick={toggle} to={'/account'}>Account</Link>
+                            </li>
+                            <li className={LIST_STYLE}>
+                                <Link onClick={toggle} to={'/logout'}>Log Out</Link>
+                            </li>
+                        </>
+                        :
+                        <>
+                            <li className={'flex gap-5 border-b-2 border-slate-300 py-5 px-2 mb-2'}>
+                                <div className={'h-20 flex place-items-center'}>
+                                    <p className={'font-bold uppercase text-slate-900 text-2xl md:text-3xl'}>
+                                        WELCOME TO LOO PROFILE
+                                    </p>
+                                </div>
+                            </li>
+                            <li className={`border-b-2 ${LIST_STYLE}`}>
+                                <Link onClick={toggle} to={'/loos'}>Locator</Link>
+                            </li>
+                            <li className={`border-b-2 ${LIST_STYLE}`}>
+                                <Link onClick={toggle} to={'/register'}>Register</Link>
+                            </li>
+                            <li className={LIST_STYLE}>
+                                <Link onClick={toggle} to={'/login'}>Login</Link>
+                            </li>
+                        </>
+                    }
+
                 </ul>
             </nav>
         </>
