@@ -16,7 +16,7 @@ export async function action({request}: { request: Request }) {
 
         if (!email || email.length < 6) return {error: 'Invalid email address'}
         if (!username || username.length < 4) return {error: 'Invalid username'}
-        if (username.length > 12) return {error: 'User must be less than 12 characters'}
+        if (username.length > 16) return {error: 'User must be less than 16 characters'}
         if (!password || !passwordConfirm || password !== passwordConfirm) return {error: 'Passwords must match'}
 
         if (allUsernames.find(user => user.username === username))
