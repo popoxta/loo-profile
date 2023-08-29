@@ -1,7 +1,8 @@
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
-import {Form, redirect} from "react-router-dom";
+import {Form, Navigate, redirect} from "react-router-dom";
+import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
 
-export async function action({request}: {request: Request}) {
+export async function action({request}: { request: Request }) {
     try {
         const data = await request.formData()
         const email = data.get('email')
@@ -22,18 +23,20 @@ export async function action({request}: {request: Request}) {
 }
 
 export default function Login() {
+    const {data: user} = useUserQuery()
+    if (user) return <Navigate to={'/dashboard'}/>
 
         return (
-        <Form method={'POST'}>
-            <label>
-                Email:
-                <input type="text" name={'email'} placeholder={'Username'}/>
-            </label>
-            <label>
-                Password:
-                <input type="text" name={'password'} placeholder={'Password'}/>
-            </label>
-            <button type={'submit'}>Log in</button>
-        </Form>
-    )
+            <Form method={'POST'}>
+                <label>
+                    Email:
+                    <input type="text" name={'email'} placeholder={'Username'}/>
+                </label>
+                <label>
+                    Password:
+                    <input type="text" name={'password'} placeholder={'Password'}/>
+                </label>
+                <button type={'submit'}>Log in</button>
+            </Form>
+        )
 }
