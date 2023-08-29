@@ -14,7 +14,7 @@ export default function ReviewCard(props: Props) {
             <div className={'w-12 h-12 bg-slate-500 rounded-full flex-shrink-0'}></div>
             <div>
                 <div className={'flex place-items-center gap-2.5'}>
-                    <p className={'font-bold'}>SOME PERSON</p>
+                    <p className={'font-bold uppercase'}>{props.review.username}</p>
                     <div className={'flex gap-0.5'}>
                         <Stars rating={review.rating} size={'xs'}/>
                     </div>

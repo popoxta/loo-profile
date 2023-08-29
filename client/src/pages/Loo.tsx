@@ -32,16 +32,15 @@ export default function Loo() {
         <ReviewCard key={crypto.randomUUID()} review={review} isLast={i === (reviews.length - 1)}/>)
 
     const toggleAddReview = () => setShowAddReview(!showAddReview)
+
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
 
     return (
         <main className={'relative mt-20 md:mt-24 px-5 mb-10'}>
-            {(showAddReview && user)
-                ? <AddReview toggle={toggleAddReview}/>
-                : <Alert title={'Error'} buttonText={'Log in'} toggle={toggleAddReview} link={'/login'}>
-                    Please login or register to write a review for {loo.name}
-                </Alert>
-            }
+            {showAddReview && user && <AddReview toggle={toggleAddReview}/>}
+            {showAddReview && !user && <Alert title={'Error'} buttonText={'Log in'} toggle={toggleAddReview} link={'/login'}>
+                Please login or register to write a review for {loo.name}
+            </Alert>}
             {showReviewThanks && <ReviewThanks toggle={toggleReviewThanks}/>}
             <div className={'max-w-6xl mx-auto text-slate-900'}>
                 <section

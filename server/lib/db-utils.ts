@@ -30,7 +30,9 @@ const getReview = (id: number) => {
 }
 
 const getReviews = (id: number) => {
-    return connection('reviews').select('*').where({loo_id: id})
+    return connection('reviews').select('reviews.*', 'users.username')
+        .where({loo_id: id})
+        .leftJoin('users', 'users.id', '=', 'reviews.user_id')
 }
 
 const updateReview = (review: Review) => {
