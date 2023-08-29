@@ -42,11 +42,11 @@ export default function Login() {
                 <Form method={'POST'} className={'flex flex-col gap-5 w-[26rem] bg-slate-100 p-10 rounded-lg border'}>
                     <label className={'flex flex-col gap-2 font-open-sans text-slate-900'}>
                         Email:
-                        <input className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} type="text" name={'email'} placeholder={'Email'}/>
+                        <input className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} type="text" required name={'email'} placeholder={'Email'}/>
                     </label>
                     <label className={'flex flex-col gap-2 font-open-sans text-slate-900'}>
                         Password:
-                        <input className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} type="text" name={'password'} placeholder={'Password'}/>
+                        <input className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} type="text" required name={'password'} placeholder={'Password'}/>
                     </label>
                     <Button className={'mt-3'} >Log In</Button>
                 </Form>

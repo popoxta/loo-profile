@@ -15,7 +15,8 @@ export async function action({request}: { request: Request }) {
         const passwordConfirm = data.get('confirmPassword')
 
         if (!email || email.length < 6) return {error: 'Invalid email address'}
-        if (!username || email.length < 4) return {error: 'Invalid username'}
+        if (!username || username.length < 4) return {error: 'Invalid username'}
+        if (username.length > 12) return {error: 'User must be less than 12 characters'}
         if (!password || !passwordConfirm || password !== passwordConfirm) return {error: 'Passwords must match'}
 
         if (allUsernames.find(user => user.username === username))
@@ -57,19 +58,19 @@ export default function Register() {
                 <Form method={'POST'} className={'flex flex-col gap-5 w-[26rem] bg-slate-100 p-10 rounded-lg border'}>
                     <label className={'flex flex-col gap-2 font-open-sans text-slate-900'}>
                         Username:
-                        <input type="text" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} name={'username'} placeholder={'Username'}/>
+                        <input type="text" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} required name={'username'} placeholder={'Username'}/>
                     </label>
                     <label className={'flex flex-col font-open-sans text-slate-900'}>
                         Email:
-                        <input type="text" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} name={'email'} placeholder={'Email'}/>
+                        <input type="text" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} required name={'email'} placeholder={'Email'}/>
                     </label>
                     <label className={'flex flex-col font-open-sans text-slate-900'}>
                         Password:
-                        <input type="password" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} name={'password'} placeholder={'Password'}/>
+                        <input type="password" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} required name={'password'} placeholder={'Password'}/>
                     </label>
                     <label className={'flex flex-col font-open-sans text-slate-900'}>
                         Confirm Password:
-                        <input type="password" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} name={'confirmPassword'} placeholder={'Confirm Password'}/>
+                        <input type="password" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} required name={'confirmPassword'} placeholder={'Confirm Password'}/>
                     </label>
                     <Button className={'mt-3'} >Register</Button>
                 </Form>
