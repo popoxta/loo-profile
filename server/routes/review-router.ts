@@ -2,7 +2,7 @@ import express from "express";
 import {tryCatchNext, validateAndReturnReview} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
-import {Review} from "../lib/types";
+import {Review} from "../lib/types/types";
 
 const reviewRouter = express.Router()
 reviewRouter.get('/:id', async (req, res, next) => {
@@ -21,10 +21,10 @@ reviewRouter.put('/:id', async (req, res, next) => {
         await validateAndReturnReview(id, res, db)
         if (res.headersSent) return
 
-        const {loo_id, review, rating,} = req.body
-        if (!loo_id || !review || !rating) return utils.clientError(res, 'Client Error: Please fill out all details')
+        const {loo_id, review, rating, user_id} = req.body
+        if (!loo_id || !review || !rating || !user_id) return utils.clientError(res, 'Client Error: Please fill out all details')
         else {
-            const updatedReview: Review = {id, loo_id, review, rating}
+            const updatedReview: Review = {id, user_id, loo_id, review, rating}
             await db.updateReview(updatedReview)
 
             return res.json(updatedReview)
@@ -34,11 +34,11 @@ reviewRouter.put('/:id', async (req, res, next) => {
 
 reviewRouter.post('/new', async (req, res, next) => {
     await tryCatchNext(async () => {
-        const {loo_id, review, rating,} = req.body
-        if (!loo_id || !review || !rating)  return utils.clientError(res, 'Client Error: Please fill out all details')
+        const {loo_id, review, rating, user_id} = req.body
+        if (!loo_id || !review || !rating || !user_id)  return utils.clientError(res, 'Client Error: Please fill out all details')
 
         else {
-            const newReview: Review = {loo_id, review, rating}
+            const newReview: Review = {loo_id, review, rating, user_id}
             const addedReview = (await db.addReview(newReview))[0]
 
             return res.json(addedReview)

@@ -1,5 +1,5 @@
 import connection from '../db/knex-db.js'
-import {Loo, Review, User} from "./types";
+import {Loo, Review, User} from './types/types'
 
 const getAllLoos = () => {
     const subQuery = connection('reviews').select('loo_id')

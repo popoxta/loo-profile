@@ -2,9 +2,8 @@
 // or calls next if an error is thrown
 import {Response} from "express";
 import utils from "./route-utils";
-import db from "./db-utils";
 import {getDistance} from "geolib";
-import {Loo} from "./types";
+import {Loo} from "./types/types";
 
 async function tryCatchNext(cb, next) {
     try {

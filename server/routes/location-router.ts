@@ -2,7 +2,7 @@ import express from "express";
 import utils from '../lib/route-utils'
 import {tryCatchNext} from "../lib/utils";
 import axios from "axios";
-import {Coordinates} from "../lib/types";
+import {Coordinates} from "../lib/types/types";
 
 const locationRouter = express.Router()
 

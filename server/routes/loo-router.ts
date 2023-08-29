@@ -2,7 +2,7 @@ import express from "express";
 import {filterDistance, tryCatchNext, validateAndReturnLoo} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
-import {Loo} from "../lib/types";
+import {Loo} from "../lib/types/types";
 
 const looRouter = express.Router()
 
@@ -42,12 +42,12 @@ looRouter.put('/:id', async (req, res, next) => {
         await validateAndReturnLoo(id, res, db)
         if (res.headersSent) return
 
-        const {name, street, region, contact, lat, long} = req.body
-        if (!name || !street || !region || !contact || !lat || !long)
+        const {name, street, region, contact, lat, long, user_id} = req.body
+        if (!name || !street || !region || !contact || !lat || !long || !user_id)
             return utils.clientError(res, 'Client Error: Please fill out all details')
 
         else {
-            const updatedLoo: Loo = {id, name, street, region, contact, lat, long}
+            const updatedLoo: Loo = {id, name, street, region, contact, lat, long, user_id}
             await db.updateLoo(updatedLoo)
             return res.json(updatedLoo)
         }
@@ -56,12 +56,12 @@ looRouter.put('/:id', async (req, res, next) => {
 
 looRouter.post('/new', async (req, res, next) => {
     await tryCatchNext(async () => {
-        const {name, street, region, contact, lat, long} = req.body
-        if (!name || !street || !region || !contact || !lat || !long)
+        const {name, street, region, contact, lat, long, user_id} = req.body
+        if (!name || !street || !region || !contact || !lat || !long || !user_id)
             return utils.clientError(res, 'Client Error: Please fill out all details')
 
         else {
-            const newLoo: Loo = {name, street, region, contact, lat, long}
+            const newLoo: Loo = {name, street, region, contact, lat, long, user_id}
             const addedLoo = (await db.addLoo(newLoo))[0]
 
             return res.json(addedLoo)
