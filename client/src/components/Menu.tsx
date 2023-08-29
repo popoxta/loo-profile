@@ -47,8 +47,8 @@ export default function Menu({show, toggle}: { show: boolean, toggle: () => void
                         :
                         <>
                             <li className={'flex gap-5 border-b-2 border-slate-300 py-5 px-2 mb-2'}>
-                                <div className={'h-20 flex place-items-center'}>
-                                    <p className={'font-bold uppercase text-slate-900 text-2xl md:text-3xl'}>
+                                <div className={'h-20 flex place-items-center justify-center w-full'}>
+                                    <p className={'font-bold uppercase text-slate-900 text-2xl text-center'}>
                                         WELCOME TO LOO PROFILE
                                     </p>
                                 </div>
