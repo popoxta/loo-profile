@@ -5,12 +5,14 @@ import Button from "./Button.tsx";
 
 interface Props {
     title: string
-    children: string
+    children: string | string[]
     buttonText: string
     toggle: () => void
+    buttonToggle?: () => void
+    link?: string
 }
 
-export default function Alert(props: Props){
+export default function Alert(props: Props) {
 
     return (
         <>
@@ -20,7 +22,8 @@ export default function Alert(props: Props){
                     className={'absolute mx-auto bg-white w-full flex flex-col min-h-[10rem] rounded-lg px-10 pt-14 pb-10 shadow font-open-sans md:w-[38rem]'}>
                     <FontAwesomeIcon icon={faXmark} size={'xl'}
                                      className={'cursor-pointer absolute right-5 top-3.5 text-slate-500'}
-                                     />
+                                     onClick={props.toggle}
+                    />
                     <div className={'w-full mx-auto text-center'}>
                         <h4 className={'uppercase font-spartan text-3xl font-semibold mb-2'}>{props.title}</h4>
                         <div className={'h-[2px] bg-slate-300 mx-auto'}></div>
@@ -30,7 +33,10 @@ export default function Alert(props: Props){
                             {props.children}
                         </p>
                     </div>
-                    <Button size={'md'} className={'mx-auto'} onClick={props.toggle} >{props.buttonText}</Button>
+                    <div className={'text-center mx-auto '}>
+                        <Button size={'md'} link={props?.link} className={'w-[10rem]'}
+                                onClick={props?.buttonToggle}>{props.buttonText}</Button>
+                    </div>
                 </div>
             </div>
         </>
