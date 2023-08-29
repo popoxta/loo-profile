@@ -6,7 +6,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "John Smith - 123-456-7890",
         "lat": -36.8485,
-        "long": 174.7633
+        "long": 174.7633,
+        "user_id": 2
     },
     {
         "id": 2,
@@ -15,7 +16,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Jane Doe - 987-654-3210",
         "lat": -41.2865,
-        "long": 174.7762
+        "long": 174.7762,
+        "user_id": 2
     },
     {
         "id": 3,
@@ -24,7 +26,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Michael Johnson - 555-123-4567",
         "lat": -43.5321,
-        "long": 172.6362
+        "long": 172.6362,
+        "user_id": 2
     },
     {
         "id": 4,
@@ -33,7 +36,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Samantha Lee - 111-222-3333",
         "lat": -36.8404,
-        "long": 174.7552
+        "long": 174.7552,
+        "user_id": 2
     },
     {
         "id": 5,
@@ -42,7 +46,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Robert White - 444-555-6666",
         "lat": -41.3095,
-        "long": 174.7822
+        "long": 174.7822,
+        "user_id": 2
     },
     {
         "id": 6,
@@ -51,7 +56,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Elizabeth Brown - 777-888-9999",
         "lat": -43.5328,
-        "long": 172.6354
+        "long": 172.6354,
+        "user_id": 2
     },
     {
         "id": 7,
@@ -60,7 +66,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "David Williams - 321-654-9876",
         "lat": -36.8037,
-        "long": 174.7549
+        "long": 174.7549,
+        "user_id": 2
     },
     {
         "id": 8,
@@ -69,7 +76,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Karen Martin - 789-654-3210",
         "lat": -41.2956,
-        "long": 174.7774
+        "long": 174.7774,
+        "user_id": 2
     },
     {
         "id": 9,
@@ -78,7 +86,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Richard Wilson - 123-987-4560",
         "lat": -43.5323,
-        "long": 172.6348
+        "long": 172.6348,
+        "user_id": 2
     },
     {
         "id": 10,
@@ -87,7 +96,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Lisa Turner - 777-555-1111",
         "lat": -36.7975,
-        "long": 174.7446
+        "long": 174.7446,
+        "user_id": 2
     },
     {
         "id": 11,
@@ -96,7 +106,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Daniel Walker - 555-111-7777",
         "lat": -36.8002,
-        "long": 174.7574
+        "long": 174.7574,
+        "user_id": 2
     },
     {
         "id": 12,
@@ -105,7 +116,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Maria Perez - 888-222-4444",
         "lat": -41.2968,
-        "long": 174.7791
+        "long": 174.7791,
+        "user_id": 2
     },
     {
         "id": 13,
@@ -114,7 +126,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "James Scott - 444-777-2222",
         "lat": -43.5296,
-        "long": 172.6341
+        "long": 172.6341,
+        "user_id": 2
     },
     {
         "id": 14,
@@ -123,7 +136,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Sophia Carter - 222-555-8888",
         "lat": -36.8014,
-        "long": 174.7437
+        "long": 174.7437,
+        "user_id": 2
     },
     {
         "id": 15,
@@ -132,7 +146,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "William Turner - 777-444-9999",
         "lat": -41.2937,
-        "long": 174.7836
+        "long": 174.7836,
+        "user_id": 2
     },
     {
         "id": 16,
@@ -141,7 +156,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Olivia Moore - 555-777-2222",
         "lat": -43.5293,
-        "long": 172.6327
+        "long": 172.6327,
+        "user_id": 2
     },
     {
         "id": 17,
@@ -150,7 +166,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Ethan Mitchell - 222-888-4444",
         "lat": -36.8383,
-        "long": 174.7528
+        "long": 174.7528,
+        "user_id": 2
     },
     {
         "id": 18,
@@ -159,7 +176,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Isabella Adams - 777-222-5555",
         "lat": -41.3107,
-        "long": 174.7761
+        "long": 174.7761,
+        "user_id": 2
     },
     {
         "id": 19,
@@ -168,7 +186,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Liam Stewart - 444-222-7777",
         "lat": -43.5269,
-        "long": 172.6335
+        "long": 172.6335,
+        "user_id": 2
     },
     {
         "id": 20,
@@ -177,7 +196,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Mia Gray - 555-777-4444",
         "lat": -36.7992,
-        "long": 174.7469
+        "long": 174.7469,
+        "user_id": 2
     },
     {
         "id": 21,
@@ -186,7 +206,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Noah Reed - 777-444-2222",
         "lat": -41.3081,
-        "long": 174.7810
+        "long": 174.7810,
+        "user_id": 2
     },
     {
         "id": 22,
@@ -195,7 +216,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Ava Turner - 555-777-4444",
         "lat": -43.5261,
-        "long": 172.6311
+        "long": 172.6311,
+        "user_id": 2
     },
     {
         "id": 23,
@@ -204,7 +226,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Jackson Foster - 777-222-5555",
         "lat": -36.7967,
-        "long": 174.7430
+        "long": 174.7430,
+        "user_id": 2
     },
     {
         "id": 24,
@@ -213,7 +236,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Emma Adams - 555-222-7777",
         "lat": -36.7981,
-        "long": 174.7605
+        "long": 174.7605,
+        "user_id": 2
     },
     {
         "id": 25,
@@ -222,7 +246,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Liam Gray - 777-222-4444",
         "lat": -41.3047,
-        "long": 174.7798
+        "long": 174.7798,
+        "user_id": 2
     },
     {
         "id": 26,
@@ -231,7 +256,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Olivia Smith - 555-222-7777",
         "lat": -43.5252,
-        "long": 172.6285
+        "long": 172.6285,
+        "user_id": 2
     },
     {
         "id": 27,
@@ -240,7 +266,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Liam Martin - 777-222-5555",
         "lat": -36.7941,
-        "long": 174.7422
+        "long": 174.7422,
+        "user_id": 2
     },
     {
         "id": 28,
@@ -249,7 +276,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Emma Turner - 555-777-2222",
         "lat": -41.2939,
-        "long": 174.7879
+        "long": 174.7879,
+        "user_id": 2
     },
     {
         "id": 29,
@@ -258,7 +286,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Noah Lee - 777-222-8888",
         "lat": -43.5226,
-        "long": 172.6294
+        "long": 172.6294,
+        "user_id": 2
     },
     {
         "id": 30,
@@ -267,7 +296,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Ava Taylor - 555-222-8888",
         "lat": -36.7955,
-        "long": 174.7476
+        "long": 174.7476,
+        "user_id": 1
     },
     {
         "id": 31,
@@ -276,7 +306,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Liam Turner - 777-222-3333",
         "lat": -41.3022,
-        "long": 174.7811
+        "long": 174.7811,
+        "user_id": 1
     },
     {
         "id": 32,
@@ -285,7 +316,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Emma Scott - 555-222-1111",
         "lat": -43.5234,
-        "long": 172.6263
+        "long": 172.6263,
+        "user_id": 1
     },
     {
         "id": 33,
@@ -294,7 +326,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Noah Turner - 777-222-9999",
         "lat": -36.8007,
-        "long": 174.7654
+        "long": 174.7654,
+        "user_id": 1
     },
     {
         "id": 34,
@@ -303,7 +336,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Ava Carter - 555-222-4444",
         "lat": -41.2945,
-        "long": 174.7750
+        "long": 174.7750,
+        "user_id": 1
     },
     {
         "id": 35,
@@ -312,7 +346,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Noah Walker - 777-222-6666",
         "lat": -43.5209,
-        "long": 172.6269
+        "long": 172.6269,
+        "user_id": 1
     },
     {
         "id": 36,
@@ -321,7 +356,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Emma Turner - 555-222-5555",
         "lat": -36.8040,
-        "long": 174.7408
+        "long": 174.7408,
+        "user_id": 1
     },
     {
         "id": 37,
@@ -330,7 +366,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Noah Foster - 777-222-2222",
         "lat": -41.2972,
-        "long": 174.7850
+        "long": 174.7850,
+        "user_id": 1
     },
     {
         "id": 38,
@@ -339,7 +376,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Ava Adams - 555-222-7777",
         "lat": -43.5205,
-        "long": 172.6245
+        "long": 172.6245,
+        "user_id": 1
     },
     {
         "id": 39,
@@ -348,7 +386,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Noah Turner - 777-222-3333",
         "lat": -36.8023,
-        "long": 174.7395
+        "long": 174.7395,
+        "user_id": 1
     },
     {
         "id": 40,
@@ -357,7 +396,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Emma Carter - 555-222-6666",
         "lat": -36.7956,
-        "long": 174.7621
+        "long": 174.7621,
+        "user_id": 1
     },
     {
         "id": 41,
@@ -366,7 +406,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Noah Walker - 777-222-7777",
         "lat": -41.2977,
-        "long": 174.7822
+        "long": 174.7822,
+        "user_id": 1
     },
     {
         "id": 42,
@@ -375,7 +416,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Ava Scott - 555-222-8888",
         "lat": -43.5187,
-        "long": 172.6230
+        "long": 172.6230,
+        "user_id": 1
     },
     {
         "id": 43,
@@ -384,7 +426,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Noah Adams - 777-222-9999",
         "lat": -36.8032,
-        "long": 174.7377
+        "long": 174.7377,
+        "user_id": 1
     },
     {
         "id": 44,
@@ -393,7 +436,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Emma Turner - 555-222-1111",
         "lat": -41.2999,
-        "long": 174.7908
+        "long": 174.7908,
+        "user_id": 1
     },
     {
         "id": 45,
@@ -402,7 +446,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Noah Lee - 777-222-4444",
         "lat": -43.5178,
-        "long": 172.6205
+        "long": 172.6205,
+        "user_id": 1
     },
     {
         "id": 46,
@@ -411,7 +456,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Ava Taylor - 555-222-7777",
         "lat": -36.7998,
-        "long": 174.7529
+        "long": 174.7529,
+        "user_id": 1
     },
     {
         "id": 47,
@@ -420,7 +466,8 @@ export const loos = [
         "region": "Wellington",
         "contact": "Noah Turner - 777-222-8888",
         "lat": -41.2996,
-        "long": 174.7862
+        "long": 174.7862,
+        "user_id": 1
     },
     {
         "id": 48,
@@ -429,7 +476,8 @@ export const loos = [
         "region": "Christchurch",
         "contact": "Emma Scott - 555-222-3333",
         "lat": -43.5159,
-        "long": 172.6172
+        "long": 172.6172,
+        "user_id": 1
     },
     {
         "id": 49,
@@ -438,7 +486,8 @@ export const loos = [
         "region": "Auckland",
         "contact": "Noah Turner - 777-222-5555",
         "lat": -36.8059,
-        "long": 174.7604
+        "long": 174.7604,
+        "user_id": 1
     },
     {
         "id": 50,
@@ -447,6 +496,7 @@ export const loos = [
         "region": "Wellington",
         "contact": "Ava Carter - 555-222-9999",
         "lat": -41.3037,
-        "long": 174.7745
+        "long": 174.7745,
+        "user_id": 1
     }
 ]
