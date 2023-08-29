@@ -11,6 +11,7 @@ export interface Review {
     loo_id: number
     rating: number
     review: string
+    user_id: number
 }
 
 export interface Loo {
@@ -22,6 +23,7 @@ export interface Loo {
     lat: number
     long: number
     avg_rating: number
+    user_id: number
 }
 
 export interface User {
