@@ -1,5 +1,4 @@
 import {useParams} from "react-router-dom";
-import {Review, Loo as LooType} from "../lib/types/types.ts";
 import Button from "../components/Button.tsx";
 import Map from "../components/Map.tsx";
 import ReviewCard from "../components/ReviewCard.tsx";
@@ -10,26 +9,31 @@ import {useLooQuery} from "../lib/hooks/useLooQuery.ts";
 import {getMarkers} from "../lib/geo-utils.ts";
 import Loading from "../components/Loading.tsx";
 import Stars from "../components/Stars.tsx";
+import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
 
 export default function Loo() {
     const [showAddReview, setShowAddReview] = useState(false)
     const [showReviewThanks, setShowReviewThanks] = useState(false)
     const id: string | undefined = useParams().id
-    const {data, isLoading} = useLooQuery(Number(id))
+    const {data: looData, isLoading} = useLooQuery(Number(id))
+    const {data: user} = useUserQuery()
 
-    if (isLoading || data === undefined)
+    if (isLoading || looData === undefined)
         return <div className={'min-h-full flex justify-center mt-24 md:mt-80'}>
             <Loading/>
         </div>
 
-    const {reviews, loo} = data
+    const {reviews, loo} = looData
     const averageRating = (reviews.reduce((acc, curr) => acc + curr.rating, 0) / reviews.length)
 
     const marker = getMarkers([loo])
     const reviewElements = reviews?.map((review, i) =>
         <ReviewCard key={crypto.randomUUID()} review={review} isLast={i === (reviews.length - 1)}/>)
 
-    const toggleAddReview = () => setShowAddReview(!showAddReview)
+    const toggleAddReview = () => {
+        if (!user) return
+        setShowAddReview(!showAddReview)
+    }
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
 
     return (

@@ -10,15 +10,15 @@ export default function AddReview({toggle}: { toggle: () => void }) {
             <Cover show={true} onClick={toggle}/>
             <div className={'absolute w-full z-50 left-0 top-0 flex justify-center'}>
                 <div
-                    className={'absolute mx-auto bg-white w-full  min-h-[40rem] rounded-lg p-10 shadow font-open-sans md:w-[38rem]'}>
+                    className={'absolute mx-auto bg-white w-full min-h-[36rem] rounded-lg px-10 pt-14 pb-10 shadow font-open-sans md:w-[38rem]'}>
                     <FontAwesomeIcon icon={faXmark} size={'xl'}
                                      className={'cursor-pointer absolute right-5 top-3.5 text-slate-500'}
                                      onClick={toggle}/>
                     <div className={'w-full mx-auto text-center'}>
-                        <h4 className={'uppercase font-spartan text-3xl font-semibold mb-2'}>Leave a review</h4>
-                        <div className={'w-[80%] h-[2px] bg-slate-300 mx-auto'}></div>
+                        <h4 className={'uppercase font-spartan text-3xl font-semibold mb-5'}>Leave a review</h4>
+                        <div className={'h-[2px] bg-slate-300 mx-auto'}></div>
                     </div>
-                    <Form className={'mx-auto px-[10%] flex flex-col gap-10 mt-10'}>
+                    <Form className={'mx-auto flex flex-col gap-10 mt-10'}>
                         <div>
                             <h5 className={'font-bold mb-2.5'}>Some title for a thing</h5>
                             <p className={'text-sm'}>
