@@ -9,9 +9,11 @@ import Register, {action as registerAction} from "./pages/Register.tsx";
 import Login, {action as loginAction} from "./pages/Login.tsx";
 import '../config/firebase-config.ts'
 import Logout from "./pages/Logout.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
 export const routes = createRoutesFromElements(
     <Route path={'/'} element={<MainLayout/>} id={'root'}>
+        <Route path={'*'} element={<NotFound/>}/>
         <Route index element={<Landing/>}/>
         <Route element={<Dashboard/>}/>
         <Route path={'/loos'}>
