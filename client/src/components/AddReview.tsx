@@ -67,9 +67,8 @@ export default function AddReview(props: Props) {
                         </div>
                         <div>
                             <div className={'flex gap-5'}>
-                                <h5 className={'font-bold mb-2.5'}>Review</h5>
+                                <label htmlFor={'review'} className={'font-bold mb-2.5'}>Review</label>
                                 {error && <p className={'font-open-sans mt-1 text-red-800 text-xs'}>*{error}</p>}
-
                             </div>
                             <textarea name={'review'} onChange={handleChange} value={review}
                                       className={'border-2 flex-grow border-slate-300 w-full min-h-[10rem] rounded-md overflow-y-scroll p-1'}/>

@@ -35,7 +35,6 @@ export default function Loo() {
 
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
 
-
     return (
         <main className={'relative mt-20 md:mt-24 px-5 mb-10'}>
             {showAddReview && user && <AddReview submitCb={[() => setShowAddReview(false), () => setShowReviewThanks(true)]} loo_id={Number(loo?.id)} toggle={toggleAddReview}/>}
