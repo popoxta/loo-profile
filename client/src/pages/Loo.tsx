@@ -27,7 +27,7 @@ export default function Loo() {
 
     const marker = getMarkers([loo])
     const reviewElements = reviews?.map((review, i) =>
-        <ReviewCard key={crypto.randomUUID()} review={review} isLast={i === (reviews.length - 1)}/>)
+        <ReviewCard loo_id={Number(loo?.id)} key={review.id} review={review} isLast={i === (reviews.length - 1)}/>)
 
     const toggleAddReview = () => setShowAddReview(!showAddReview)
 
@@ -35,7 +35,7 @@ export default function Loo() {
 
     return (
         <main className={'relative mt-20 md:mt-24 px-5 mb-10'}>
-            {showAddReview && user && <AddReview submitCb={[() => setShowAddReview(false), () => setShowReviewThanks(true)]} loo_id={Number(loo?.id)} toggle={toggleAddReview}/>}
+            {showAddReview && user && <AddReview submitCb={() => setShowReviewThanks(true)} loo_id={Number(loo?.id)} toggle={toggleAddReview}/>}
             {showAddReview && !user && <Alert title={'Error'} buttonText={'Log in'} toggle={toggleAddReview} link={'/login'}>
                 Please login or register to write a review for {loo.name}
             </Alert>}

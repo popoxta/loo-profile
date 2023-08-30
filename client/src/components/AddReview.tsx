@@ -6,18 +6,20 @@ import {ChangeEvent, FormEvent, useState} from "react";
 import {Rating} from "react-simple-star-rating";
 import {useLooQuery} from "../lib/hooks/useLooQuery.ts";
 import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
+import {Review} from "../lib/types/types.ts";
 
 interface Props {
     toggle: () => void
     loo_id: number
-    submitCb: (() => void)[]
+    submitCb: () => void
+    review?: Review
 }
 
 export default function AddReview(props: Props) {
-    const [review, setReview] = useState('')
-    const [rating, setRating] = useState(0)
+    const [review, setReview] = useState(props?.review?.review ?? '')
+    const [rating, setRating] = useState(props?.review?.rating ?? 0)
     const [error, setError] = useState('')
-    const {addReview} = useLooQuery(props.loo_id)
+    const {addReview, updateReview} = useLooQuery(props.loo_id)
     const {data: user} = useUserQuery()
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => setReview(e.target.value)
@@ -27,13 +29,16 @@ export default function AddReview(props: Props) {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         if (!review) setError('Review must contain a body')
-        else await addReview.mutate({
+        const newReview: Review = {
             user_id: user?.id,
             loo_id: props.loo_id,
             rating,
             review
-        })
-        props.submitCb.forEach(cb => cb())
+        }
+        if (props?.review) await updateReview.mutate({...newReview, id: props?.review?.id})
+        else await addReview.mutate(newReview)
+        props.toggle()
+        props.submitCb ? props.submitCb() : null
     }
 
     return (
@@ -61,7 +66,7 @@ export default function AddReview(props: Props) {
                         <div>
                             <h5 className={'font-bold mb-2.5'}>Rating</h5>
                             <div className={'w-full'}>
-                                <Rating allowFraction={true} size={32} emptyStyle={{display: "flex"}}
+                                <Rating allowFraction={true} initialValue={rating} size={32} emptyStyle={{display: "flex"}}
                                         fillStyle={{display: "-webkit-inline-box"}} onClick={handleRating}/>
                             </div>
                         </div>
