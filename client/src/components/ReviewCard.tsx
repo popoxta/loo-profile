@@ -4,6 +4,7 @@ import Button from "./Button.tsx";
 import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
 import AddReview from "./AddReview.tsx";
 import {useState} from "react";
+import DeleteReview from "./DeleteReview.tsx";
 
 interface Props {
     review: Review
@@ -14,14 +15,21 @@ interface Props {
 export default function ReviewCard(props: Props) {
     const {isLast, review} = props
     const [editing, setEditing] = useState(false)
+    const [showDelete, setShowDelete] = useState(false)
     const {data: user} = useUserQuery()
     const isEditable = user?.id === review.user_id
 
     const toggleEditing = () => setEditing(!editing)
 
+    const toggleDelete = () => setShowDelete(!showDelete)
+
     return (
         <>
-            {editing && <AddReview submitCb={() => setEditing(false)} review={props?.review} loo_id={props?.loo_id} toggle={toggleEditing}/>}
+            {showDelete &&
+                <DeleteReview review={review} toggle={toggleDelete} loo_id={props?.loo_id}>Are you sure you would like
+                    to delete this review?</DeleteReview>}
+            {editing && <AddReview submitCb={() => setEditing(false)} review={props?.review} loo_id={props?.loo_id}
+                                   toggle={toggleEditing}/>}
             <div
                 className={`w-full px-5 py-10 ${isLast ? '' : 'border-b-2'} border-slate-200 text-slate-900 place-items-center font-open-sans flex gap-5`}>
                 <div className={'w-12 h-12 bg-slate-500 rounded-full flex-shrink-0'}></div>
@@ -33,7 +41,11 @@ export default function ReviewCard(props: Props) {
                                 <Stars style={{marginTop: '-6px'}} rating={review.rating} size={20}/>
                             </div>
                         </div>
-                        {isEditable && <Button onClick={toggleEditing} className={''} size={'sm'}>Edit</Button>}
+                        {isEditable && <div className={'flex gap-5'}>
+                            <Button onClick={toggleEditing} className={''} size={'sm'}>Edit</Button>
+                            <Button onClick={toggleDelete} className={''} size={'sm'}>Delete</Button>
+                        </div>
+                        }
                     </div>
                     <p className={'text-sm mt-1 max-w-4xl'}>
                         {review.review}

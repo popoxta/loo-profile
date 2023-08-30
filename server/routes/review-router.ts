@@ -1,5 +1,5 @@
 import express from "express";
-import {tryCatchNext, validateAndReturnReview} from "../lib/utils";
+import {tryCatchNext, validateAndReturnLoo, validateAndReturnReview} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Review} from "../lib/types/types";
@@ -19,30 +19,53 @@ reviewRouter.get('/:id', async (req, res, next) => {
 reviewRouter.put('/:id', isAuthenticated, async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
-        await validateAndReturnReview(id, res, db)
+        const prevReview = await validateAndReturnReview(id, res, db)
         if (res.headersSent) return
+
+        const user = await db.getUser(req.body.token)
+        if (user.id !== prevReview.user_id) return utils.unauthorizedError(res, 'Client Error: Unauthorized')
 
         const {loo_id, review, rating, user_id} = req.body
         if (!loo_id || !review || !rating || !user_id) return utils.clientError(res, 'Client Error: Please fill out all details')
-        else {
-            const updatedReview: Review = {id, user_id, loo_id, review, rating}
-            await db.updateReview(updatedReview)
 
-            return res.json(updatedReview)
-        }
+        await validateAndReturnLoo(loo_id, res, db)
+        if (res.headersSent) return
+
+        const updatedReview: Review = {id, user_id, loo_id, review, rating}
+        await db.updateReview(updatedReview)
+
+        return res.json(updatedReview)
+
     }, next)
 })
 
 reviewRouter.post('/new', isAuthenticated, async (req, res, next) => {
     await tryCatchNext(async () => {
         const {loo_id, review, rating, user_id} = req.body
-        if (!loo_id || !review || !rating || !user_id)  return utils.clientError(res, 'Client Error: Please fill out all details')
-        else {
-            const newReview: Review = {loo_id, review, rating, user_id}
-            const addedReview = (await db.addReview(newReview))[0]
+        if (!loo_id || !review || !rating || !user_id) return utils.clientError(res, 'Client Error: Please fill out all details')
 
-            return res.json(addedReview)
-        }
+        await validateAndReturnLoo(loo_id, res, db)
+        if (res.headersSent) return
+
+        const newReview: Review = {loo_id, review, rating, user_id}
+        const addedReview = (await db.addReview(newReview))[0]
+
+        return res.json(addedReview)
+
+    }, next)
+})
+
+reviewRouter.delete('/:id', isAuthenticated, async (req, res, next) => {
+    await tryCatchNext(async () => {
+        const id = Number(req.params.id)
+        const prevReview = await validateAndReturnReview(id, res, db)
+        if (res.headersSent) return
+
+        const user = await db.getUser(req.body.token)
+        if (user.id !== prevReview.user_id) return utils.unauthorizedError(res, 'Client Error: Unauthorized')
+
+        await db.deleteReview(id)
+        return res.status(200)
     }, next)
 })
 

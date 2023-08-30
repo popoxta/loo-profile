@@ -43,6 +43,10 @@ const addReview = (review: Review) => {
     return connection('reviews').insert(review).returning('*')
 }
 
+const deleteReview = (id) => {
+    return connection('reviews').delete().where({id})
+}
+
 const addUser = (user: User) => {
     return connection('users').insert(user).returning('*')
 }
@@ -52,11 +56,25 @@ const getAllUsernames = () => {
 }
 
 const getUser = (uid: string) => {
-    return connection('users').where({firebase_uid : uid}).first()
+    return connection('users').where({firebase_uid: uid}).first()
 }
 
 const updateUser = (user: User) => {
     return connection('users').update(user).where({firebase_uid: user.firebase_uid}).returning('*')
 }
 
-export default {getAllLoos, getLoo, getReviews, getReview, updateReview, addReview, updateLoo, addLoo, addUser, getUser, getAllUsernames, updateUser}
+export default {
+    getAllLoos,
+    getLoo,
+    getReviews,
+    getReview,
+    updateReview,
+    addReview,
+    deleteReview,
+    updateLoo,
+    addLoo,
+    addUser,
+    getUser,
+    getAllUsernames,
+    updateUser
+}

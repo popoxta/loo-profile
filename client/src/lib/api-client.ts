@@ -36,6 +36,15 @@ async function addReview(review: Review) {
         .catch(rethrowError)
 }
 
+async function deleteReview(id: number) {
+    const token = await getAccessToken()
+    return request
+        .delete(`${URL}/reviews/${id}`)
+        .set('token', token ?? '')
+        .then(res => res.body)
+        .catch(rethrowError)
+}
+
 async function updateReview(review: Review) {
     const token = await getAccessToken()
     return request
@@ -76,4 +85,4 @@ function rethrowError(err: Error) {
     throw new Error(String(err))
 }
 
-export {getLocation, getAllLoos, getLoo, getUser, getAllUsernames, register, addReview, updateReview}
+export {getLocation, getAllLoos, getLoo, getUser, getAllUsernames, register, addReview, updateReview, deleteReview}
