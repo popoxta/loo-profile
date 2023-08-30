@@ -22,7 +22,7 @@ export default function LooCard(props: Props) {
                 <div className={'flex justify-between place-items-center'}>
                     <h3 className={'text-sm font-semibold'}>{loo.name}</h3>
                     <div className={'flex gap-[0.1rem]'}>
-                        <Stars rating={loo.avg_rating} size={15}/>
+                        <Stars rating={loo.avg_rating ?? 0} size={15}/>
                     </div>
                 </div>
                 <div>
