@@ -1,8 +1,7 @@
 import {MutationFunction, useMutation, useQuery, useQueryClient} from "react-query";
-import {addReview, getLoo} from "../api-client.ts";
+import {addReview, getLoo, updateReview} from "../api-client.ts";
 
 export function useLooQuery(id: number) {
-    // const queryClient = useQueryClient()
 
     const query =  useQuery({
         queryKey: ['loos', id],
@@ -12,7 +11,8 @@ export function useLooQuery(id: number) {
 
     return {
         ...query,
-        addReview: useAddReview(id)
+        addReview: useAddReview(id),
+        updateReview: useUpdateReview(id)
     }
 }
 
@@ -26,3 +26,5 @@ export function useLooMutation<TData = unknown, TVariables = unknown>
 }
 
 export const useAddReview = (looId: number) => useLooMutation(addReview, looId)
+
+export const useUpdateReview = (looId: number) => useLooMutation(updateReview, looId)

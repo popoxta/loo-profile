@@ -16,7 +16,7 @@ reviewRouter.get('/:id', async (req, res, next) => {
     }, next)
 })
 
-reviewRouter.put('/:id', async (req, res, next) => {
+reviewRouter.put('/:id', isAuthenticated, async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
         await validateAndReturnReview(id, res, db)
