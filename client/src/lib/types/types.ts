@@ -11,7 +11,8 @@ export interface Review {
     loo_id: number
     rating: number
     review: string
-    username: number
+    username?: string
+    user_id?: number
 }
 
 export interface Loo {

@@ -1,35 +1,69 @@
-import axios from "axios";
+import request from "superagent";
 import {Coordinates, Loo, Review, User} from "./types/types.ts";
 import {getAccessToken} from "./utils.ts";
 
 const URL = `http://localhost:3000`
 
-async function getLocation(address: string): Promise<Coordinates> {
-    return (await axios.get(`${URL}/location?address=${address}`)).data
+function getLocation(address: string): Promise<Coordinates> {
+    return request
+        .get(`${URL}/location?address=${address}`)
+        .then(res => res.body)
+        .catch(rethrowError)
 }
 
-async function getAllLoos(location: Coordinates = [0, 0], distance: number = 25): Promise<Loo[]> {
-    return (await axios.get(`${URL}/loos/all?location=${String(location)}&distance=${distance}`)).data
+function getAllLoos(location: Coordinates = [0, 0], distance: number = 25): Promise<Loo[]> {
+    return request
+        .get(`${URL}/loos/all?location=${String(location)}&distance=${distance}`)
+        .then(res => res.body)
+        .catch(rethrowError)
+
 }
 
-async function getLoo(id: number): Promise<{ loo: Loo, reviews: Review[] }> {
-    return (await axios.get(`${URL}/loos/${id}`)).data
+function getLoo(id: number): Promise<{ loo: Loo, reviews: Review[] }> {
+    return request
+        .get(`${URL}/loos/${id}`)
+        .then(res => res.body)
+        .catch(rethrowError)
+}
+
+async function addReview(review: Review) {
+    const token = await getAccessToken()
+    return request
+        .post(`${URL}/reviews/new`)
+        .set('token', token ?? '')
+        .send(review)
+        .then(res => res.body)
+        .catch(rethrowError)
 }
 
 async function getUser(): Promise<User | null> {
     const token = await getAccessToken()
-    if (!token) return null
-    return (await axios.get(`${URL}/users/me`, {
-        headers: {token}
-    })).data
+    return request
+        .get(`${URL}/users/me`)
+        .set('token', token ?? '')
+        .then(res => res.body)
+        .catch(rethrowError)
 }
 
-async function getAllUsernames(): Promise<{ username: string }[]> {
-    return (await axios.get(`${URL}/users/all`)).data
+function getAllUsernames(): Promise<{ username: string }[]> {
+    return  request
+        .get(`${URL}/users/all`)
+        .then(res => res.body)
+        .catch(rethrowError)
 }
 
 async function register(user: User): Promise<User> {
-    return (await axios.post(`${URL}/users/register`, user)).data[0]
+    return request
+        .post(`${URL}/users/register`)
+        .send(user)
+        .then(res => res.body)
+        .catch(rethrowError)
 }
 
-export {getLocation, getAllLoos, getLoo, getUser, getAllUsernames, register}
+//todo add better error handling
+function rethrowError(err: Error) {
+    console.log(`Error: ${err.message}`)
+    throw new Error(String(err))
+}
+
+export {getLocation, getAllLoos, getLoo, getUser, getAllUsernames, register, addReview}

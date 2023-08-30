@@ -37,7 +37,7 @@ export default function Loo() {
 
     return (
         <main className={'relative mt-20 md:mt-24 px-5 mb-10'}>
-            {showAddReview && user && <AddReview toggle={toggleAddReview}/>}
+            {showAddReview && user && <AddReview submitCb={[() => setShowAddReview(false), () => setShowReviewThanks(true)]} loo_id={Number(loo?.id)} toggle={toggleAddReview}/>}
             {showAddReview && !user && <Alert title={'Error'} buttonText={'Log in'} toggle={toggleAddReview} link={'/login'}>
                 Please login or register to write a review for {loo.name}
             </Alert>}
@@ -85,7 +85,7 @@ export default function Loo() {
                         <div className={'flex place-items-center gap-5 flex-col mb-5 sm:flex-row sm:mb-0'}>
                             <h4 className={'text-3xl font-semibold font-spartan'}>Reviews</h4>
                             <div className={'flex gap-0.5'}>
-                                <Stars rating={averageRating} size={'lg'}/>
+                                <Stars style={{marginTop: '-6px'}}  rating={averageRating} size={25}/>
                             </div>
                             <p className={'font-open-sans text-sm text-slate-500'}>{reviews.length} Reviews</p>
                         </div>
