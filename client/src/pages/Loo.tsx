@@ -20,9 +20,7 @@ export default function Loo() {
     const {data: user} = useUserQuery()
 
     if (isLoading || looData === undefined)
-        return <div className={'min-h-full flex justify-center mt-24 md:mt-80'}>
-            <Loading/>
-        </div>
+        return <div className={'min-h-full flex justify-center mt-24 md:mt-80'}><Loading/></div>
 
     const {reviews, loo} = looData
     const averageRating = reviews.length ? (reviews.reduce((acc, curr) => acc + curr.rating, 0) / reviews.length) : 0

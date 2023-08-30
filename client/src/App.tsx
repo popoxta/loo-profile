@@ -23,6 +23,9 @@ export const routes = createRoutesFromElements(
         <Route path={'/register'} element={<Register/>} action={registerAction}/>
         <Route path={'/login'} element={<Login/>} action={loginAction}/>
         <Route path={'/logout'} element={<Logout/>}/>
+        <Route path={'/dashboard'}>
+            <Route index element={<Dashboard/>}/>
+        </Route>
     </Route>
 )
 
