@@ -3,7 +3,7 @@ import {addReview, deleteReview, getLoo, updateReview} from "../api-client.ts";
 
 export function useLooQuery(id: number) {
 
-    const query =  useQuery({
+    const query = useQuery({
         queryKey: ['loos', id],
         queryFn: () => getLoo(id),
         staleTime: 10000,
@@ -23,7 +23,7 @@ export function useLooMutation<TData = unknown, TVariables = unknown>
 
     return useMutation({
         mutationFn: fn,
-        onSuccess: () => queryClient.invalidateQueries(['loos', id])
+        onSuccess: () => queryClient.invalidateQueries(['loos', id]),
     })
 }
 

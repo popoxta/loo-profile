@@ -81,8 +81,10 @@ async function register(user: User): Promise<User> {
 
 //todo add better error handling
 function rethrowError(err: Error) {
-    console.log(`Error: ${err.message}`)
-    throw new Error(String(err))
+    // @ts-ignore
+    const errMsg = err?.response.text ?? err.message
+    console.log(errMsg)
+    throw new Error(String(errMsg))
 }
 
 export {getLocation, getAllLoos, getLoo, getUser, getAllUsernames, register, addReview, updateReview, deleteReview}

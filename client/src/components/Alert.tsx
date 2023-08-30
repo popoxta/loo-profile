@@ -10,6 +10,7 @@ interface Props {
     toggle: () => void
     buttonToggle?: () => void
     link?: string
+    error?: string
 }
 
 export default function Alert(props: Props) {
@@ -29,6 +30,7 @@ export default function Alert(props: Props) {
                         <div className={'h-[2px] bg-slate-300 mx-auto'}></div>
                     </div>
                     <div className={'mx-auto px-[10%] mt-5 mb-10'}>
+                        {props?.error && <p className={'font-open-sans mt-1 text-red-800 text-xs'}>*{props?.error}</p>}
                         <p className={'text-sm text-center'}>
                             {props.children}
                         </p>

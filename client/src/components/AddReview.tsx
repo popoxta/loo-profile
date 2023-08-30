@@ -19,26 +19,45 @@ export default function AddReview(props: Props) {
     const [review, setReview] = useState(props?.review?.review ?? '')
     const [rating, setRating] = useState(props?.review?.rating ?? 0)
     const [error, setError] = useState('')
-    const {addReview, updateReview} = useLooQuery(props.loo_id)
-    const {data: user} = useUserQuery()
+    const loo = useLooQuery(props.loo_id)
+    const user = useUserQuery()
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => setReview(e.target.value)
 
     const handleRating = (rate: number) => setRating(rate)
 
+    const mutationOptions = {
+        onSuccess: () => {
+            props.toggle()
+            props.submitCb ? props.submitCb() : null
+        },
+        onError: (error: unknown) => {
+            error instanceof Error
+                ? setError(error.message)
+                : setError('Unknown error')
+
+        }
+    }
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-        if (!review) setError('Review must contain a body')
+        if (!review) {
+            setError('Review must contain a body')
+            return
+        } else if (!rating) {
+            setError('Review must contain a rating')
+            return
+        }
+
         const newReview: Review = {
-            user_id: user?.id,
+            user_id: user?.data?.id,
             loo_id: props.loo_id,
             rating,
             review
         }
-        if (props?.review) await updateReview.mutate({...newReview, id: props?.review?.id})
-        else await addReview.mutate(newReview)
-        props.toggle()
-        props.submitCb ? props.submitCb() : null
+
+        if (props?.review) await loo.updateReview.mutate({...newReview, id: props?.review?.id}, mutationOptions)
+        else await loo.addReview.mutate(newReview, mutationOptions)
     }
 
     return (
@@ -66,7 +85,8 @@ export default function AddReview(props: Props) {
                         <div>
                             <h5 className={'font-bold mb-2.5'}>Rating</h5>
                             <div className={'w-full'}>
-                                <Rating allowFraction={true} initialValue={rating} size={32} emptyStyle={{display: "flex"}}
+                                <Rating allowFraction={true} initialValue={rating} size={32}
+                                        emptyStyle={{display: "flex"}}
                                         fillStyle={{display: "-webkit-inline-box"}} onClick={handleRating}/>
                             </div>
                         </div>
