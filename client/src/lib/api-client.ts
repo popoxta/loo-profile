@@ -55,8 +55,9 @@ async function updateReview(review: Review) {
         .catch(rethrowError)
 }
 
-async function getUser(): Promise<User> {
+async function getUser(): Promise<User | null> {
     const token = await getAccessToken()
+    if (!token) return null
     return request
         .get(`${URL}/users/me`)
         .set('token', token ?? '')
