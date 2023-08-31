@@ -75,7 +75,7 @@ export default function Loo() {
                             </p>
                         </div>
                     </div>
-                    <div className={'h-[22rem] shrink-0 w-full sm:w-[32rem]'}>
+                    <div className={'h-[18rem] shrink-0 w-full sm:w-[32rem]'}>
                         <Map center={[loo?.lat, loo?.long]} markers={marker}/>
                     </div>
                 </section>
