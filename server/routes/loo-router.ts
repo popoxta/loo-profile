@@ -1,8 +1,9 @@
 import express from "express";
-import {filterDistance, tryCatchNext, validateAndReturnLoo} from "../lib/utils";
+import {filterDistance, tryCatchNext, validateAndReturnLoo, validateAndReturnReview} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Loo} from "../lib/types/types";
+import {isAuthenticated} from "./middleware";
 
 const looRouter = express.Router()
 
@@ -20,6 +21,14 @@ looRouter.get('/all', async (req, res, next) => {
         }
 
         res.json(loos)
+    }, next)
+})
+
+looRouter.get('/all/:id', isAuthenticated, async (req, res, next) => {
+    await tryCatchNext(async () => {
+        const user = req.body.token
+        console.log(user)
+
     }, next)
 })
 

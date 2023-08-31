@@ -26,6 +26,15 @@ function getLoo(id: number): Promise<{ loo: Loo, reviews: Review[] }> {
         .catch(rethrowError)
 }
 
+async function getLoosByUser(id: number): Promise<Loo[]> {
+    const token = await getAccessToken()
+    return request
+        .get(`${URL}/loos/all/${id}`)
+        .set('token', token ?? '')
+        .then(res => res.body)
+        .catch(rethrowError)
+}
+
 async function addReview(review: Review) {
     const token = await getAccessToken()
     return request
@@ -88,4 +97,4 @@ function rethrowError(err: Error) {
     throw new Error(String(errMsg))
 }
 
-export {getLocation, getAllLoos, getLoo, getUser, getAllUsernames, register, addReview, updateReview, deleteReview}
+export {getLocation, getAllLoos, getLoo, getLoosByUser, getUser, getAllUsernames, register, addReview, updateReview, deleteReview}

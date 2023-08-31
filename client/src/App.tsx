@@ -10,6 +10,7 @@ import Login, {action as loginAction} from "./pages/user/Login.tsx";
 import '../config/firebase-config.ts'
 import Logout from "./pages/user/Logout.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import UserLoos from "./pages/user/UserLoos.tsx";
 
 export const routes = createRoutesFromElements(
     <Route path={'/'} element={<MainLayout/>} id={'root'}>
@@ -25,6 +26,7 @@ export const routes = createRoutesFromElements(
         <Route path={'/logout'} element={<Logout/>}/>
         <Route path={'/dashboard'}>
             <Route index element={<Dashboard/>}/>
+            <Route path={'loos'} element={<UserLoos/>}/>
         </Route>
     </Route>
 )

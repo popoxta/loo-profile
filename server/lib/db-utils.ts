@@ -17,6 +17,10 @@ const getLoo = (id: number) => {
     return connection('loos').where({id}).first()
 }
 
+const getLooByUser = (id: number) => {
+    return connection('loos').where({user_id: id})
+}
+
 const updateLoo = (loo: Loo) => {
     return connection('loos').update(loo).where({id: loo.id})
 }
