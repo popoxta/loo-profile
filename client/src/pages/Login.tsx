@@ -2,6 +2,7 @@ import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import {Form, Link, Navigate, redirect, useActionData} from "react-router-dom";
 import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
 import Button from "../components/Button.tsx";
+import styles from '../lib/style-presets.ts'
 
 export async function action({request}: { request: Request }) {
     try {
@@ -29,30 +30,36 @@ export default function Login() {
     if (user) return <Navigate to={'/dashboard'}/>
 
     return (
-        <main className={'flex justify-center px-5 h-full'}>
-            <div className={'flex place-items-center flex-col mt-20 lg:mt-32 gap-5'}>
+        <main className={styles.screenContainer}>
+            <div className={`${styles.flexCol5} place-items-center`}>
                 <div className={'text-center'}>
-                    <h1 className={'font-bold font-spartan uppercase text-slate-900 mb-2 text-4xl'}>
+                    <h1 className={`${styles.looHeading} mb-2`}>
                         Log In
                     </h1>
-                    <p className={'font-spartan text-slate-500'}>Welcome back, we are happy to see you again!</p>
+                    <p className={styles.subText}>Welcome back, we are happy to see you
+                        again!</p>
                 </div>
                 { // @ts-ignore
-                    action?.error && <p className={'font-open-sans text-red-800 text-xs'}>{action?.error}</p>}
-                <Form method={'POST'} className={'flex flex-col gap-5 w-[26rem] bg-slate-100 p-10 rounded-lg border'}>
-                    <label className={'flex flex-col gap-2 font-open-sans text-slate-900'}>
+                    action?.error && <p className={styles.errorText}>{action?.error}</p>}
+                <Form method={'POST'}
+                      className={`${styles.flexCol5} w-[26rem] ${styles.formBorder}`}>
+                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Email:
-                        <input className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} type="text" required name={'email'} placeholder={'Email'}/>
+                        <input className={styles.inputField} type="text" required
+                               name={'email'} placeholder={'Email'}/>
                     </label>
-                    <label className={'flex flex-col gap-2 font-open-sans text-slate-900'}>
+                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Password:
-                        <input className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} type="text" required name={'password'} placeholder={'Password'}/>
+                        <input className={styles.inputField} type="text" required
+                               name={'password'} placeholder={'Password'}/>
                     </label>
-                    <Button className={'mt-3'} >Log In</Button>
+                    <Button className={'mt-3'}>Log In</Button>
                 </Form>
-                <div className={'font-open-sans text-xs self-end text-right'}>
-                    <p>New? <span className={'text-cyan-600 font-medium'}><Link to={'/register'}>Create an account</Link></span></p>
+                <div className={`${styles.tinyText} self-end text-right`}>
+                    <p>New? <span className={'text-cyan-600 font-medium'}><Link
+                        to={'/register'}>Create an account</Link></span></p>
                 </div>
+
             </div>
         </main>
     )

@@ -83,7 +83,6 @@ async function register(user: User): Promise<User> {
 function rethrowError(err: Error) {
     // @ts-ignore
     const errMsg = err?.response.text ?? err.message
-    console.log(errMsg)
     throw new Error(String(errMsg))
 }
 

@@ -1,11 +1,13 @@
+import styles from '../lib/style-presets.ts'
+
 export default function About() {
     return (
-        <article className={'flex justify-center mb-72 px-5'}>
-            <div className={'flex max-w-5xl gap-8 flex-col text-center md:text-left'}>
+        <article className={styles.screenContainer}>
+            <div className={'flex min-h-fit max-w-5xl gap-8 flex-col text-center md:text-left'}>
                 <div className={'flex gap-5 flex-col-reverse place-items-center md:place-items-start md:flex-row'}>
-                    <div className={'flex flex-col gap-8'}>
-                        <h2 className={'font-medium uppercase text-5xl text-slate-900'}>Why this cool witty thing?</h2>
-                        <div className={'flex flex-col gap-5'}>
+                    <div className={styles.flexCol5}>
+                        <h2 className={styles.headingTwo}>Why this cool witty thing?</h2>
+                        <div className={styles.flexCol5}>
                             <p className={'text-slate-500'}>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit
                                 pretium
@@ -32,7 +34,7 @@ export default function About() {
                         className={'w-[24rem] h-[24rem] object-cover rounded-2xl'}
                     />
                 </div>
-                <h3 className={'font-medium uppercase text-5xl text-slate-900 self-end'}>A witty line, trust me, it's great</h3>
+                <h2 className={styles.headingTwo}>A witty line, trust me, it's great</h2>
             </div>
         </article>
     )

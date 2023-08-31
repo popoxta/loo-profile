@@ -3,6 +3,7 @@ import {Form, Link, Navigate, redirect, useActionData} from "react-router-dom";
 import {getAllUsernames, register} from "../lib/api-client.ts";
 import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
 import Button from "../components/Button.tsx";
+import styles from '../lib/style-presets.ts'
 
 export async function action({request}: { request: Request }) {
     try {
@@ -45,36 +46,36 @@ export default function Register() {
     if (user) return <Navigate to={'/dashboard'}/>
 
     return (
-        <main className={'flex justify-center px-5 h-full'}>
-            <div className={'flex place-items-center flex-col mt-20 lg:mt-32 gap-5'}>
+        <main className={styles.screenContainer}>
+            <div className={`place-items-center ${styles.flexCol5}`}>
                 <div className={'text-center'}>
-                    <h1 className={'font-bold font-spartan uppercase text-slate-900 mb-2 text-4xl'}>
+                    <h1 className={`${styles.looHeading} mb-2`}>
                         Register
                     </h1>
-                    <p className={'font-spartan text-slate-500'}>Join us to gain access to 100's of loos near you!</p>
+                    <p className={styles.subText}>Join us to gain access to 100's of loos near you!</p>
                 </div>
                 { // @ts-ignore
-                    action?.error && <p className={'font-open-sans text-red-800 text-xs'}>{action?.error}</p>}
-                <Form method={'POST'} className={'flex flex-col gap-5 w-[26rem] bg-slate-100 p-10 rounded-lg border'}>
-                    <label className={'flex flex-col gap-2 font-open-sans text-slate-900'}>
+                    action?.error && <p className={styles.errorText}>{action?.error}</p>}
+                <Form method={'POST'} className={`${styles.flexCol5} w-[26rem] ${styles.formBorder}`}>
+                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Username:
-                        <input type="text" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} required name={'username'} placeholder={'Username'}/>
+                        <input type="text" className={styles.inputField} required name={'username'} placeholder={'Username'}/>
                     </label>
-                    <label className={'flex flex-col font-open-sans text-slate-900'}>
+                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Email:
-                        <input type="text" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} required name={'email'} placeholder={'Email'}/>
+                        <input type="text" className={styles.inputField} required name={'email'} placeholder={'Email'}/>
                     </label>
-                    <label className={'flex flex-col font-open-sans text-slate-900'}>
+                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Password:
-                        <input type="password" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} required name={'password'} placeholder={'Password'}/>
+                        <input type="password" className={styles.inputField} required name={'password'} placeholder={'Password'}/>
                     </label>
-                    <label className={'flex flex-col font-open-sans text-slate-900'}>
+                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Confirm Password:
-                        <input type="password" className={'bg-white h-[2.2rem] rounded-md px-2.5 border'} required name={'confirmPassword'} placeholder={'Confirm Password'}/>
+                        <input type="password" className={styles.inputField} required name={'confirmPassword'} placeholder={'Confirm Password'}/>
                     </label>
                     <Button className={'mt-3'} >Register</Button>
                 </Form>
-                <div className={'font-open-sans text-xs self-end text-right'}>
+                <div className={`${styles.tinyText} self-end text-right`}>
                     <p>Already have an account?</p>
                     <p className={'text-cyan-600 font-medium'}><Link to={'/login'}>Log in</Link></p>
                 </div>

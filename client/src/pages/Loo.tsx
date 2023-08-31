@@ -11,6 +11,7 @@ import Loading from "../components/Loading.tsx";
 import Stars from "../components/Stars.tsx";
 import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
 import Alert from "../components/Alert.tsx";
+import styles from '../lib/style-presets.ts'
 
 export default function Loo() {
     const [showAddReview, setShowAddReview] = useState(false)
@@ -20,7 +21,7 @@ export default function Loo() {
     const {data: user} = useUserQuery()
 
     if (isLoading || looData === undefined)
-        return <div className={'min-h-full flex justify-center mt-24 md:mt-80'}><Loading/></div>
+        return <div className={styles.screenContainer}><Loading/></div>
 
     const {reviews, loo} = looData
     const averageRating = reviews.length ? (reviews.reduce((acc, curr) => acc + curr.rating, 0) / reviews.length) : 0
@@ -34,7 +35,7 @@ export default function Loo() {
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
 
     return (
-        <main className={'relative mt-20 md:mt-24 px-5 mb-10'}>
+        <main className={styles.screenContainer}>
             {showAddReview && user && <AddReview submitCb={() => setShowReviewThanks(true)} loo_id={Number(loo?.id)} toggle={toggleAddReview}/>}
             {showAddReview && !user && <Alert title={'Error'} buttonText={'Log in'} toggle={toggleAddReview} link={'/login'}>
                 Please login or register to write a review for {loo.name}
@@ -42,31 +43,31 @@ export default function Loo() {
             {showReviewThanks && <ReviewThanks toggle={toggleReviewThanks}/>}
             <div className={'max-w-6xl mx-auto text-slate-900'}>
                 <section
-                    className={'flex flex-col gap-10 justify-between place-items-center mb-10 lg:flex-row lg:place-items-start'}>
+                    className={`${styles.flexCol10} justify-between place-items-center mb-10 lg:flex-row lg:place-items-start`}>
                     <div className={'flex flex-col font-open-sans max-w-xl'}>
-                        <h2 className={'text-4xl mb-10 font-semibold font-spartan uppercase text-center lg:text-left'}>
+                        <h2 className={`${styles.looHeading} mb-10 text-center lg:text-left`}>
                             {loo.name}
                         </h2>
-                        <div className={'flex justify-between mb-5 flex-col gap-5 sm:gap-0 sm:flex-row'}>
-                            <address className={'not-italic flex flex-col gap-2'}>
-                                <div className={'font-bold'}>
+                        <div className={`justify-between mb-5 ${styles.flexCol5} sm:gap-0 sm:flex-row text-center md:text-left`}>
+                            <address className={`not-italic ${styles.flexCol2}`}>
+                                <div className={styles.subBold}>
                                     <p>{loo.street}</p>
                                     <p>{loo.region}</p>
                                 </div>
-                                <p className={'text-slate-500 text-sm'}>{loo.contact}</p>
+                                <p className={styles.smallText}>{loo.contact}</p>
                             </address>
                             <div>
-                                <h3 className={'font-bold mb-2'}>Opening Hours</h3>
-                                <div className={'text-sm flex flex-col gap-2 text-slate-500'}>
+                                <h3 className={`${styles.subBold} mb-2`}>Opening Hours</h3>
+                                <div className={`${styles.flexCol2} ${styles.smallText}`}>
                                     <p>0900 - 1200 mon</p>
                                     <p>0900 - 1200 tue</p>
                                     <p>0900 - 1200 wed</p>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <h3 className={'font-bold mb-2'}>About</h3>
-                            <p className={'text-sm'}>
+                        <div className={'text-center md:text-left'}>
+                            <h3 className={`${styles.subBold} mb-2`}>About</h3>
+                            <p className={styles.paragraphText}>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit
                                 pretium
                                 imperdiet. Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros
@@ -79,18 +80,18 @@ export default function Loo() {
                     </div>
                 </section>
                 <section>
-                    <div className={'flex place-items-center justify-between mb-5 flex-col sm:flex-row'}>
-                        <div className={'flex place-items-center gap-5 flex-col mb-5 sm:flex-row sm:mb-0'}>
-                            <h4 className={'text-3xl font-semibold font-spartan'}>Reviews</h4>
+                    <div className={`${styles.flexDirection} justify-between`}>
+                        <div className={`${styles.flexDirection} sm:mb-0`}>
+                            <h4 className={styles.headingFourBold}>Reviews</h4>
                             <div className={'flex gap-0.5'}>
                                 <Stars style={{marginTop: '-6px'}} rating={averageRating ?? 5} size={25}/>
                             </div>
-                            <p className={'font-open-sans text-sm text-slate-500'}>{reviews.length} Reviews</p>
+                            <p className={styles.smallText}>{reviews.length} Reviews</p>
                         </div>
                         <Button title={'Write a review'} size={'md'} onClick={toggleAddReview}>Write a review</Button>
                     </div>
                     <div
-                        className={'border-2 flex-grow border-slate-300 w-full min-h-[10rem] rounded-lg overflow-y-scroll'}>
+                        className={`${styles.borderSlate} max-h-[20rem] flex-grow w-full min-h-[10rem] overflow-y-scroll`}>
                         {reviewElements}
                     </div>
                 </section>

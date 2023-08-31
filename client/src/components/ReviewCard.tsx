@@ -5,6 +5,7 @@ import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
 import AddReview from "./AddReview.tsx";
 import {useState} from "react";
 import DeleteReview from "./DeleteReview.tsx";
+import styles from "../lib/style-presets.ts";
 
 interface Props {
     review: Review
@@ -36,9 +37,9 @@ export default function ReviewCard(props: Props) {
                 <div className={'w-full'}>
                     <div className={'w-full flex place-items-center justify-between'}>
                         <div className={'flex place-items-center gap-2.5'}>
-                            <p className={'font-bold uppercase'}>{props.review.username}</p>
+                            <p className={styles.subBold}>{props.review.username}</p>
                             <div className={'flex place-content-center gap-0.5'}>
-                                <Stars style={{marginTop: '-6px'}} rating={review.rating} size={20}/>
+                                <Stars style={{marginTop: '-4px'}} rating={review.rating} size={15}/>
                             </div>
                         </div>
                         {isEditable && <div className={'flex gap-5'}>
@@ -47,7 +48,7 @@ export default function ReviewCard(props: Props) {
                         </div>
                         }
                     </div>
-                    <p className={'text-sm mt-1 max-w-4xl'}>
+                    <p className={`${styles.paragraphText} mt-1 max-w-4xl`}>
                         {review.review}
                     </p>
                 </div>
