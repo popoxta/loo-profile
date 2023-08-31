@@ -1,6 +1,6 @@
 import Alert from "./Alert.tsx";
 import {Loo, Review} from "../lib/types/types.ts";
-import {useLooQuery} from "../lib/hooks/useLooQuery.ts";
+import {useDeleteReview} from "../lib/hooks/useLooQuery.ts";
 import {useQueryClient} from "react-query";
 import {useState} from "react";
 
@@ -13,7 +13,7 @@ interface Props {
 
 export default function DeleteReview(props: Props) {
     const queryClient = useQueryClient()
-    const {deleteReview} = useLooQuery(props?.loo_id)
+    const {mutate, status} = useDeleteReview(props.loo_id)
     const [error, setError] = useState('')
 
     const mutationOptions = {
@@ -23,6 +23,7 @@ export default function DeleteReview(props: Props) {
                 const reviews = looData.reviews.filter((review: Review) => review.id !== props.review.id)
                 queryClient.setQueryData(['loos', props.loo_id], {...looData, reviews})
             }
+            console.log('donezo')
             setError('')
             props.toggle()
         },
@@ -34,8 +35,10 @@ export default function DeleteReview(props: Props) {
     }
 
     const handleDeleteReview = async () => {
-        await deleteReview.mutate(Number(props.review.id), mutationOptions)
+        await mutate(Number(props.review.id), mutationOptions)
     }
+
+    console.log(status)
 
     return (
         <Alert title={'Delete Review'} error={error ? error : undefined} buttonText={'Confirm'} toggle={props.toggle} buttonToggle={handleDeleteReview}>

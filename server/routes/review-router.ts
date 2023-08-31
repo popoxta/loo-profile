@@ -65,7 +65,7 @@ reviewRouter.delete('/:id', isAuthenticated, async (req, res, next) => {
         if (user.id !== prevReview.user_id) return utils.unauthorizedError(res, 'Client Error: Unauthorized')
 
         await db.deleteReview(id)
-        return res.status(200)
+        return res.status(200).end()
     }, next)
 })
 

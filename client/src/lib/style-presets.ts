@@ -22,7 +22,7 @@ export default {
     labelText: 'font-medium font-open-sans text-sm text-slate-900 ',
     errorText: 'font-open-sans text-red-800 text-xs',
     screenContainer: 'flex justify-center place-items-center min-h-screen px-5 pt-16 pb-4',
-    modalContainer: 'absolute w-full z-50 flex justify-center place-items-center -mt-32',
+    modalContainer: 'absolute w-full h-full top-0 left-0 z-50 flex justify-center place-items-center',
     modalContentContainer: 'fixed mx-auto bg-white w-full flex flex-col min-h-[10rem] rounded-lg px-10 pt-14 pb-10 shadow font-open-sans md:w-[38rem]',
     flexCol10: 'flex flex-col gap-10',
     flexCol5: 'flex flex-col gap-5',

@@ -35,7 +35,7 @@ export default function Loo() {
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
 
     return (
-        <main className={styles.screenContainer}>
+        <main className={`${styles.screenContainer} mt-16`}>
             {showAddReview && user && <AddReview submitCb={() => setShowReviewThanks(true)} loo_id={Number(loo?.id)} toggle={toggleAddReview}/>}
             {showAddReview && !user && <Alert title={'Error'} buttonText={'Log in'} toggle={toggleAddReview} link={'/login'}>
                 Please login or register to write a review for {loo.name}
@@ -91,7 +91,7 @@ export default function Loo() {
                         <Button title={'Write a review'} size={'md'} onClick={toggleAddReview}>Write a review</Button>
                     </div>
                     <div
-                        className={`${styles.borderSlate} max-h-[20rem] flex-grow w-full min-h-[10rem] overflow-y-scroll`}>
+                        className={`${styles.borderSlate} w-full min-h-[10rem] overflow-y-scroll`}>
                         {reviewElements}
                     </div>
                 </section>
