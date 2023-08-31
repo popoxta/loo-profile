@@ -1,13 +1,13 @@
 import {Form, useSearchParams} from "react-router-dom";
-import Map from "../components/Map.tsx";
-import {Coordinates, Loo} from "../lib/types/types.ts";
-import LooCard from "../components/LooCard.tsx";
+import Map from "../../components/Map.tsx";
+import {Coordinates, Loo} from "../../lib/types/types.ts";
+import LooCard from "../../components/loos/LooCard.tsx";
 import {ChangeEvent, ReactElement, useEffect, useState} from "react";
-import {geoError, geoSuccess, getMarkers} from "../lib/geo-utils.ts";
-import {getLocation} from "../lib/api-client.ts";
-import {useAllLoosQuery} from "../lib/hooks/useAllLoosQuery.ts";
-import Loading from "../components/Loading.tsx";
-import styles from '../lib/style-presets.ts'
+import {geoError, geoSuccess, getMarkers} from "../../lib/geo-utils.ts";
+import {getLocation} from "../../lib/api-client.ts";
+import {useAllLoosQuery} from "../../lib/hooks/useAllLoosQuery.ts";
+import Loading from "../../components/Loading.tsx";
+import styles from '../../lib/style-presets.ts'
 
 const DEFAULT_COORDS: Coordinates = [-36.848461, 174.763336]
 

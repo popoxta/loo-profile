@@ -1,6 +1,6 @@
-import Alert from "./Alert.tsx";
-import {Loo, Review} from "../lib/types/types.ts";
-import {useDeleteReview} from "../lib/hooks/useLooQuery.ts";
+import Alert from "../Alert.tsx";
+import {Loo, Review} from "../../lib/types/types.ts";
+import {useDeleteReview} from "../../lib/hooks/useLooQuery.ts";
 import {useQueryClient} from "react-query";
 import {useState} from "react";
 

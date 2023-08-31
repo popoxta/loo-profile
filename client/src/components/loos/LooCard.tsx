@@ -1,9 +1,9 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faToilet} from "@fortawesome/free-solid-svg-icons";
-import {Loo} from "../lib/types/types.ts";
-import Button from "./Button.tsx";
-import Stars from "./Stars.tsx";
-import styles from '../lib/style-presets.ts'
+import {Loo} from "../../lib/types/types.ts";
+import Button from "../Button.tsx";
+import Stars from "../Stars.tsx";
+import styles from '../../lib/style-presets.ts'
 
 interface Props {
     loo: Loo,

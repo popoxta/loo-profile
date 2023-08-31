@@ -1,11 +1,11 @@
 import {getAuth, signOut} from "firebase/auth";
 import {Navigate, useNavigate} from "react-router-dom";
 import {useQueryClient} from "react-query";
-import Button from "../components/Button.tsx";
-import styles from '../lib/style-presets.ts'
-import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
+import Button from "../../components/Button.tsx";
+import styles from '../../lib/style-presets.ts'
+import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import {useState} from "react";
-import Loading from "../components/Loading.tsx";
+import Loading from "../../components/Loading.tsx";
 
 export default function Logout() {
     const navigate = useNavigate()

@@ -1,9 +1,9 @@
 import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
 import {Form, Link, Navigate, redirect, useActionData} from "react-router-dom";
-import {getAllUsernames, register} from "../lib/api-client.ts";
-import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
-import Button from "../components/Button.tsx";
-import styles from '../lib/style-presets.ts'
+import {getAllUsernames, register} from "../../lib/api-client.ts";
+import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
+import Button from "../../components/Button.tsx";
+import styles from '../../lib/style-presets.ts'
 
 export async function action({request}: { request: Request }) {
     try {

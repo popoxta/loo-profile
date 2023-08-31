@@ -1,7 +1,7 @@
-import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
+import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import {Link, Navigate} from "react-router-dom";
-import styles from '../lib/style-presets.ts'
-import Loading from "../components/Loading.tsx";
+import styles from '../../lib/style-presets.ts'
+import Loading from "../../components/Loading.tsx";
 
 export default function Dashboard() {
     const {data: user, isLoading} = useUserQuery()

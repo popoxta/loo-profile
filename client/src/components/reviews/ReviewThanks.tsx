@@ -1,4 +1,4 @@
-import Alert from "./Alert.tsx";
+import Alert from "../Alert.tsx";
 
 export default function ReviewThanks({toggle}: { toggle: () => void }) {
     return (

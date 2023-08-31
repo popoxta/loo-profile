@@ -1,17 +1,17 @@
 import {useParams} from "react-router-dom";
-import Button from "../components/Button.tsx";
-import Map from "../components/Map.tsx";
-import ReviewCard from "../components/ReviewCard.tsx";
-import AddReview from "../components/AddReview.tsx";
-import ReviewThanks from "../components/ReviewThanks.tsx";
+import Button from "../../components/Button.tsx";
+import Map from "../../components/Map.tsx";
+import ReviewCard from "../../components/reviews/ReviewCard.tsx";
+import AddReview from "../../components/reviews/AddReview.tsx";
+import ReviewThanks from "../../components/reviews/ReviewThanks.tsx";
 import {useState} from "react";
-import {useLooQuery} from "../lib/hooks/useLooQuery.ts";
-import {getMarkers} from "../lib/geo-utils.ts";
-import Loading from "../components/Loading.tsx";
-import Stars from "../components/Stars.tsx";
-import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
-import Alert from "../components/Alert.tsx";
-import styles from '../lib/style-presets.ts'
+import {useLooQuery} from "../../lib/hooks/useLooQuery.ts";
+import {getMarkers} from "../../lib/geo-utils.ts";
+import Loading from "../../components/Loading.tsx";
+import Stars from "../../components/Stars.tsx";
+import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
+import Alert from "../../components/Alert.tsx";
+import styles from '../../lib/style-presets.ts'
 
 export default function Loo() {
     const [showAddReview, setShowAddReview] = useState(false)

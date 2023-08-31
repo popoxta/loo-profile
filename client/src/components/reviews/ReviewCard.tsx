@@ -1,12 +1,12 @@
-import {Review} from "../lib/types/types.ts";
-import Stars from "./Stars.tsx";
-import Button from "./Button.tsx";
-import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
+import {Review} from "../../lib/types/types.ts";
+import Stars from "../Stars.tsx";
+import Button from "../Button.tsx";
+import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import AddReview from "./AddReview.tsx";
 import {useState} from "react";
 import DeleteReview from "./DeleteReview.tsx";
-import styles from "../lib/style-presets.ts";
-import {getFormattedDate} from "../lib/utils.ts";
+import styles from "../../lib/style-presets.ts";
+import {getFormattedDate} from "../../lib/utils.ts";
 
 interface Props {
     review: Review

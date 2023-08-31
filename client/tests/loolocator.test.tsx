@@ -2,7 +2,7 @@
 import {describe, it, expect, beforeEach} from 'vitest'
 import {screen} from "@testing-library/react";
 import {renderApp, renderComponent} from "./testUtils";
-import LooCard from "../src/components/LooCard";
+import LooCard from "../src/components/loos/LooCard";
 import {Coordinates} from "../src/lib/types";
 import './test-setup.ts'
 

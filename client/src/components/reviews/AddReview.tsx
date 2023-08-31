@@ -1,13 +1,13 @@
-import Cover from "./Cover.tsx";
+import Cover from "../Cover.tsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
-import Button from "./Button.tsx";
+import Button from "../Button.tsx";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {Rating} from "react-simple-star-rating";
-import {useLooQuery} from "../lib/hooks/useLooQuery.ts";
-import {useUserQuery} from "../lib/hooks/useUserQuery.ts";
-import {Review} from "../lib/types/types.ts";
-import styles from '../lib/style-presets.ts'
+import {useLooQuery} from "../../lib/hooks/useLooQuery.ts";
+import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
+import {Review} from "../../lib/types/types.ts";
+import styles from '../../lib/style-presets.ts'
 
 interface Props {
     toggle: () => void

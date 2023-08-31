@@ -2,13 +2,13 @@ import {Router} from '@remix-run/router'
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import MainLayout from "./layouts/MainLayout.tsx";
 import Landing from "./pages/Landing.tsx";
-import Dashboard from "./pages/Dashboard.tsx";
-import LooLocator from "./pages/LooLocator.tsx";
-import Loo from "./pages/Loo.tsx";
-import Register, {action as registerAction} from "./pages/Register.tsx";
-import Login, {action as loginAction} from "./pages/Login.tsx";
+import Dashboard from "./pages/user/Dashboard.tsx";
+import LooLocator from "./pages/loos/LooLocator.tsx";
+import Loo from "./pages/loos/Loo.tsx";
+import Register, {action as registerAction} from "./pages/user/Register.tsx";
+import Login, {action as loginAction} from "./pages/user/Login.tsx";
 import '../config/firebase-config.ts'
-import Logout from "./pages/Logout.tsx";
+import Logout from "./pages/user/Logout.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 export const routes = createRoutesFromElements(
