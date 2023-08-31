@@ -47,7 +47,7 @@ reviewRouter.post('/new', isAuthenticated, async (req, res, next) => {
         await validateAndReturnLoo(loo_id, res, db)
         if (res.headersSent) return
 
-        const newReview: Review = {loo_id, review, rating, user_id}
+        const newReview: Review = {loo_id, review, rating, user_id, timestamp: Date.now()}
         const addedReview = (await db.addReview(newReview))[0]
 
         return res.json(addedReview)

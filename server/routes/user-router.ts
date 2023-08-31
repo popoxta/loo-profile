@@ -30,7 +30,6 @@ userRouter.post('/register', async (req, res, next) => {
 userRouter.get('/all', async (req, res, next) => {
     await tryCatchNext(async () => {
         const usernames = await db.getAllUsernames()
-        console.log(usernames)
         res.json(usernames)
     }, next)
 })

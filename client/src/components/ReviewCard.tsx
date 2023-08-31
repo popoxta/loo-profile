@@ -6,6 +6,7 @@ import AddReview from "./AddReview.tsx";
 import {useState} from "react";
 import DeleteReview from "./DeleteReview.tsx";
 import styles from "../lib/style-presets.ts";
+import {getFormattedDate} from "../lib/utils.ts";
 
 interface Props {
     review: Review
@@ -19,6 +20,8 @@ export default function ReviewCard(props: Props) {
     const [showDelete, setShowDelete] = useState(false)
     const {data: user} = useUserQuery()
     const isEditable = user?.id === review.user_id
+
+    const date = getFormattedDate(Number(review.timestamp))
 
     const toggleEditing = () => setEditing(!editing)
 
@@ -41,6 +44,7 @@ export default function ReviewCard(props: Props) {
                             <div className={'flex place-content-center gap-0.5'}>
                                 <Stars style={{marginTop: '-4px'}} rating={review.rating} size={15}/>
                             </div>
+                            <p className={styles.looCardSmallText}>{date.day} {date.hour}</p>
                         </div>
                         {isEditable && <div className={'flex gap-5'}>
                             <Button onClick={toggleEditing} className={''} size={'sm'}>Edit</Button>

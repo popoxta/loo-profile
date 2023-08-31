@@ -6,7 +6,7 @@ const getFirebaseUser = async (): Promise<User | null> => {
 
     return new Promise<User | null>((resolve) => {
         onAuthStateChanged(auth, (user) => {
-           resolve(user)
+            resolve(user)
         })
     })
 }
@@ -17,4 +17,11 @@ const getAccessToken = async (): Promise<string | undefined> => {
     return user?.accessToken as string | undefined
 }
 
-export {getFirebaseUser, getAccessToken}
+const getFormattedDate = (timestamp: number) => {
+    const date = new Date(timestamp)
+    const day = date.toLocaleDateString("en-US")
+    const hour = date.toLocaleTimeString("en-NZ", {hour: 'numeric', hour12: true}).split(' ').join('')
+    return {day, hour}
+}
+
+export {getFirebaseUser, getAccessToken, getFormattedDate}

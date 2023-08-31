@@ -13,6 +13,7 @@ export interface Review {
     review: string
     username?: string
     user_id?: number
+    timestamp?: number
 }
 
 export interface Loo {

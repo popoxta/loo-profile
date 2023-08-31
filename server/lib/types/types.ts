@@ -6,6 +6,7 @@ export interface Review {
     rating: number
     review: string
     user_id: number
+    timestamp?: number
 }
 
 export interface Loo {
