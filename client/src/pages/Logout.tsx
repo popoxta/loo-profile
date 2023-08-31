@@ -12,6 +12,8 @@ export default function Logout() {
     const queryClient = useQueryClient()
     const {data: user} = useUserQuery()
     const [isLoading, setIsLoading] = useState(false)
+
+    // todo check w alex for a better way to do this w/o errors
     if (!user) return <Navigate to={'/login'}/>
 
     const handleGoBack = () => navigate('/')
@@ -20,6 +22,8 @@ export default function Logout() {
         setIsLoading(true)
         const auth = getAuth()
         await signOut(auth)
+
+        // todo investigate why this doesnt refresh menu - also slow op
         await queryClient.invalidateQueries(['user'])
         setIsLoading(false)
         navigate('/')

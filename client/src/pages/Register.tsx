@@ -43,6 +43,8 @@ export async function action({request}: { request: Request }) {
 export default function Register() {
     const action = useActionData()
     const {data: user} = useUserQuery()
+
+    // todo check w alex for a better way to do this w/o errors
     if (user) return <Navigate to={'/dashboard'}/>
 
     return (
