@@ -35,7 +35,7 @@ export default function Loo() {
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
 
     return (
-        <main className={`${styles.screenContainer} mt-16`}>
+        <main className={`${styles.screenContainer}`}>
             {showAddReview && user && <AddReview submitCb={() => setShowReviewThanks(true)} loo_id={Number(loo?.id)} toggle={toggleAddReview}/>}
             {showAddReview && !user && <Alert title={'Error'} buttonText={'Log in'} toggle={toggleAddReview} link={'/login'}>
                 Please login or register to write a review for {loo.name}
@@ -43,7 +43,7 @@ export default function Loo() {
             {showReviewThanks && <ReviewThanks toggle={toggleReviewThanks}/>}
             <div className={'max-w-6xl mx-auto text-slate-900'}>
                 <section
-                    className={`${styles.flexCol10} justify-between place-items-center mb-10 lg:flex-row lg:place-items-start`}>
+                    className={`${styles.flexCol10} justify-between place-items-center max-h-[80%] mb-10 lg:flex-row lg:place-items-start`}>
                     <div className={'flex flex-col font-open-sans max-w-xl'}>
                         <h2 className={`${styles.looHeading} mb-10 text-center lg:text-left`}>
                             {loo.name}

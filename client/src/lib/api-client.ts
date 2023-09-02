@@ -26,10 +26,11 @@ function getLoo(id: number): Promise<{ loo: Loo, reviews: Review[] }> {
         .catch(rethrowError)
 }
 
-async function getLoosByUser(id: number): Promise<Loo[]> {
+async function getLoosByUser(): Promise<Loo[]> {
     const token = await getAccessToken()
+    console.log('REQUEST')
     return request
-        .get(`${URL}/loos/all/${id}`)
+        .get(`${URL}/users/me/loos`)
         .set('token', token ?? '')
         .then(res => res.body)
         .catch(rethrowError)

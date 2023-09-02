@@ -17,8 +17,8 @@ const getLoo = (id: number) => {
     return connection('loos').where({id}).first()
 }
 
-const getLooByUser = (id: number) => {
-    return connection('loos').where({user_id: id})
+const getLoosByUser = (id: number) => {
+    return connection('loos').select().where({user_id: id})
 }
 
 const updateLoo = (loo: Loo) => {
@@ -70,6 +70,7 @@ const updateUser = (user: User) => {
 export default {
     getAllLoos,
     getLoo,
+    getLoosByUser,
     getReviews,
     getReview,
     updateReview,

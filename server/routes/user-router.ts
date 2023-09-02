@@ -2,7 +2,9 @@ import express from "express";
 import {verifyUserToken} from "../lib/auth-utils";
 import db from '../lib/db-utils'
 import utils from '../lib/route-utils'
-import {tryCatchNext} from "../lib/utils";
+import {tryCatchNext, validateId} from "../lib/utils";
+import {isAuthenticated} from "./middleware";
+import looRouter from "./loo-router";
 
 const userRouter = express.Router()
 
@@ -15,6 +17,15 @@ userRouter.get('/me', async (req, res, next) => {
         if (!user) return utils.notFoundError(res, 'Not Found Error: User could not be retrieved')
 
         res.json(user)
+    }, next)
+})
+
+userRouter.get('/me/loos', isAuthenticated, async (req, res, next) => {
+    await tryCatchNext(async () => {
+        const id = req.body.token
+        const userInfo = await db.getUser(id)
+        const loos = await db.getLoosByUser(userInfo.id)
+        return res.json(loos)
     }, next)
 })
 

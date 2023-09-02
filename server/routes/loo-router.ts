@@ -1,5 +1,5 @@
 import express from "express";
-import {filterDistance, tryCatchNext, validateAndReturnLoo, validateAndReturnReview} from "../lib/utils";
+import {filterDistance, tryCatchNext, validateAndReturnLoo, validateAndReturnReview, validateId} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Loo} from "../lib/types/types";
@@ -24,14 +24,6 @@ looRouter.get('/all', async (req, res, next) => {
     }, next)
 })
 
-looRouter.get('/all/:id', isAuthenticated, async (req, res, next) => {
-    await tryCatchNext(async () => {
-        const user = req.body.token
-        console.log(user)
-
-    }, next)
-})
-
 looRouter.get('/:id', async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
@@ -40,7 +32,7 @@ looRouter.get('/:id', async (req, res, next) => {
 
         const reviews = await db.getReviews(id)
 
-        res.json({loo, reviews})
+        return res.json({loo, reviews})
     }, next)
 })
 
