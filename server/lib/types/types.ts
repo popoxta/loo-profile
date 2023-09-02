@@ -19,6 +19,9 @@ export interface Loo {
     long: number
     avg_rating?: number
     user_id: number
+    weekday: string
+    weekend: string
+    fee: string
 }
 
 export interface User {
