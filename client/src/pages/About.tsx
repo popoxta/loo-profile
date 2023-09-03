@@ -3,7 +3,7 @@ import styles from '../lib/style-presets.ts'
 export default function About() {
     return (
         <article className={styles.screenContainer}>
-            <div className={'flex min-h-fit max-w-5xl gap-8 flex-col text-center md:text-left'}>
+            <div className={'flex max-w-5xl gap-5 flex-col text-center md:text-left min-h-[30rem]'}>
                 <div className={'flex gap-5 flex-col-reverse place-items-center md:place-items-start md:flex-row'}>
                     <div className={styles.flexCol5}>
                         <h2 className={styles.headingTwo}>Why this cool witty thing?</h2>
@@ -34,7 +34,7 @@ export default function About() {
                         className={'w-[24rem] h-[24rem] object-cover rounded-2xl'}
                     />
                 </div>
-                <h2 className={styles.headingTwo}>A witty line, trust me, it's great</h2>
+                <h2 className={`${styles.headingTwo} text-right`}>A witty line, trust me, it's great</h2>
             </div>
         </article>
     )
