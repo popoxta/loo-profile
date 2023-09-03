@@ -7,6 +7,8 @@ import {isAuthenticated} from "./middleware";
 
 const looRouter = express.Router()
 
+const LOO_PROPERTIES = ['name', 'street', 'region', 'contact', 'lat', 'long', 'user_id', 'weekday', 'weekend', 'fee']
+
 // query params e.g ?location=123,123&distance=5
 looRouter.get('/all', async (req, res, next) => {
     await tryCatchNext(async () => {
@@ -43,26 +45,26 @@ looRouter.put('/:id', async (req, res, next) => {
         await validateAndReturnLoo(id, res, db)
         if (res.headersSent) return
 
-        const {name, street, region, contact, lat, long, user_id} = req.body
-        if (!name || !street || !region || !contact || !lat || !long || !user_id)
+        const {name, street, region, contact, lat, long, user_id, weekday, weekend, fee} = req.body
+        if (LOO_PROPERTIES.some(prop => req.body[prop] === undefined))
             return utils.clientError(res, 'Client Error: Please fill out all details')
 
         else {
-            const updatedLoo: Loo = {id, name, street, region, contact, lat, long, user_id}
+            const updatedLoo: Loo = {id, name, street, region, contact, lat, long, user_id, weekday, weekend, fee}
             await db.updateLoo(updatedLoo)
             return res.json(updatedLoo)
         }
     }, next)
 })
 
-looRouter.post('/new', async (req, res, next) => {
+looRouter.post('/new', isAuthenticated, async (req, res, next) => {
     await tryCatchNext(async () => {
-        const {name, street, region, contact, lat, long, user_id} = req.body
-        if (!name || !street || !region || !contact || !lat || !long || !user_id)
+        const {name, street, region, contact, lat, long, user_id, weekday, weekend, fee} = req.body
+        if (LOO_PROPERTIES.some(prop => req.body[prop] === undefined))
             return utils.clientError(res, 'Client Error: Please fill out all details')
 
         else {
-            const newLoo: Loo = {name, street, region, contact, lat, long, user_id}
+            const newLoo: Loo = {name, street, region, contact, lat, long, user_id, weekend, weekday, fee}
             const addedLoo = (await db.addLoo(newLoo))[0]
 
             return res.json(addedLoo)
