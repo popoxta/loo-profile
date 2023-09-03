@@ -73,8 +73,6 @@ export default function LooForm(props: Props) {
         else await props.submitFn(looData)
     }
 
-    console.log(looData)
-
     return (
         <form>
             {page === 1
@@ -84,32 +82,38 @@ export default function LooForm(props: Props) {
                         {error && <p className={styles.errorText}>{error}</p>}
                         <label className={`${styles.flexCol2} ${styles.labelText}`}>
                             Name
-                            <input className={styles.inputField} value={looData.name} onChange={handleChange} type="text" name={'name'}
+                            <input className={styles.inputField} value={looData.name} onChange={handleChange}
+                                   type="text" name={'name'}
                                    placeholder={'Loo name'}/>
                         </label>
                         <label className={`${styles.flexCol2} ${styles.labelText}`}>
                             Contact
-                            <input className={styles.inputField} value={looData.contact} onChange={handleChange} type="text" name={'contact'}
+                            <input className={styles.inputField} value={looData.contact} onChange={handleChange}
+                                   type="text" name={'contact'}
                                    placeholder={'Contact details'}/>
                         </label>
                         <label className={`${styles.flexCol2} ${styles.labelText}`}>
                             Opening Hours, Mon-Fri
-                            <input className={styles.inputField} value={looData.weekday} onChange={handleChange} type="text" name={'weekday'}
+                            <input className={styles.inputField} value={looData.weekday} onChange={handleChange}
+                                   type="text" name={'weekday'}
                                    placeholder={'E.g 09.00am - 2.00pm'}/>
                         </label>
                         <label className={`${styles.flexCol2} ${styles.labelText}`}>
                             Opening Hours, Sat-Sun
-                            <input className={styles.inputField} value={looData.weekend} onChange={handleChange} type="text" name={'weekend'}
+                            <input className={styles.inputField} value={looData.weekend} onChange={handleChange}
+                                   type="text" name={'weekend'}
                                    placeholder={'E.g 09.00am - 2.00pm'}/>
                         </label>
                         <label className={`${styles.flexCol2} ${styles.labelText}`}>
                             Usage Fees
-                            <input className={styles.inputField} value={looData.fee} onChange={handleChange} type="text" name={'fee'}
+                            <input className={styles.inputField} value={looData.fee} onChange={handleChange} type="text"
+                                   name={'fee'}
                                    placeholder={'Fee'}/>
                         </label>
                         <label className={`${styles.flexCol2} ${styles.labelText}`}>
                             About
-                            <textarea className={`min-h-[5rem] ${styles.inputField}`} value={looData.about} onChange={handleChange} name={'about'}
+                            <textarea className={`min-h-[5rem] ${styles.inputField}`} value={looData.about}
+                                      onChange={handleChange} name={'about'}
                                       placeholder={'Description of your Loo'}/>
                         </label>
                         <Button className={'mt-3'} onClick={changePage}>Next</Button>
@@ -122,7 +126,8 @@ export default function LooForm(props: Props) {
                         <label className={`${styles.flexCol2} ${styles.labelText}`}>
                             Search Location
                             <div className={'flex'}>
-                                <input className={`${styles.inputField} flex-grow`} value={locationQuery} onChange={handleLocationInput}
+                                <input className={`${styles.inputField} flex-grow`} value={locationQuery}
+                                       onChange={handleLocationInput}
                                        type="text"
                                        name={'location'}
                                        placeholder={'Location search'}/>

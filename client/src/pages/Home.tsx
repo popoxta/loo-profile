@@ -12,7 +12,8 @@ export default function Home() {
                 />
                 <div className={'max-w-lg text-center md:text-left'}>
                     <h1 className={styles.headingOneBold}>Loo Profile</h1>
-                    <p className={styles.subHeading}>Slightly less witty subtitle that describes what this is, probably.</p>
+                    <p className={styles.subHeading}>Slightly less witty subtitle that describes what this is,
+                        probably.</p>
                     <Button size={'lg'} link={'/loos'}>Get started</Button>
                 </div>
             </div>

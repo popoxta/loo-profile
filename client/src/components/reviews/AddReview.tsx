@@ -66,7 +66,7 @@ export default function AddReview(props: Props) {
         <>
             <Cover show={true} onClick={props.toggle}/>
             <div className={styles.modalContainer}>
-                    <div
+                <div
                     className={styles.modalContentContainer}>
                     <FontAwesomeIcon icon={faXmark} size={'xl'}
                                      className={'cursor-pointer absolute right-5 top-3.5 text-slate-500'}

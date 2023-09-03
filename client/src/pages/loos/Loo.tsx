@@ -36,10 +36,12 @@ export default function Loo() {
 
     return (
         <main className={`${styles.screenContainer}`}>
-            {showAddReview && user && <AddReview submitCb={() => setShowReviewThanks(true)} loo_id={Number(loo?.id)} toggle={toggleAddReview}/>}
-            {showAddReview && !user && <Alert title={'Error'} buttonText={'Log in'} toggle={toggleAddReview} link={'/login'}>
-                Please login or register to write a review for {loo.name}
-            </Alert>}
+            {showAddReview && user && <AddReview submitCb={() => setShowReviewThanks(true)} loo_id={Number(loo?.id)}
+                                                 toggle={toggleAddReview}/>}
+            {showAddReview && !user &&
+                <Alert title={'Error'} buttonText={'Log in'} toggle={toggleAddReview} link={'/login'}>
+                    Please login or register to write a review for {loo.name}
+                </Alert>}
             {showReviewThanks && <ReviewThanks toggle={toggleReviewThanks}/>}
             <div className={'max-w-6xl mx-auto text-slate-900'}>
                 <section
@@ -48,7 +50,8 @@ export default function Loo() {
                         <h2 className={`${styles.looHeading} mb-10 text-center lg:text-left`}>
                             {loo.name}
                         </h2>
-                        <div className={`justify-between mb-5 ${styles.flexCol5} sm:gap-0 sm:flex-row text-center md:text-left`}>
+                        <div
+                            className={`justify-between mb-5 ${styles.flexCol5} sm:gap-0 sm:flex-row text-center md:text-left`}>
                             <address className={`not-italic ${styles.flexCol2}`}>
                                 <div className={styles.subBold}>
                                     <p>{loo.street}</p>

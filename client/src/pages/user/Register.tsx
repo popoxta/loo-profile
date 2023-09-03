@@ -61,7 +61,8 @@ export default function Register() {
                 <Form method={'POST'} className={`${styles.flexCol5} w-[26rem] ${styles.formBorder}`}>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Username:
-                        <input type="text" className={styles.inputField} required name={'username'} placeholder={'Username'}/>
+                        <input type="text" className={styles.inputField} required name={'username'}
+                               placeholder={'Username'}/>
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Email:
@@ -69,13 +70,15 @@ export default function Register() {
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Password:
-                        <input type="password" className={styles.inputField} required name={'password'} placeholder={'Password'}/>
+                        <input type="password" className={styles.inputField} required name={'password'}
+                               placeholder={'Password'}/>
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Confirm Password:
-                        <input type="password" className={styles.inputField} required name={'confirmPassword'} placeholder={'Confirm Password'}/>
+                        <input type="password" className={styles.inputField} required name={'confirmPassword'}
+                               placeholder={'Confirm Password'}/>
                     </label>
-                    <Button className={'mt-3'} >Register</Button>
+                    <Button className={'mt-3'}>Register</Button>
                 </Form>
                 <div className={`${styles.tinyText} self-end text-right`}>
                     <p>Already have an account?</p>

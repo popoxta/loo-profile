@@ -16,8 +16,9 @@ export default function LooCard(props: Props) {
 
     return (
         <div
-            onClick={props?.onClick ? props.onClick : () => {}}
-            className={`flex w-full place-items-center py-5 pr-5 ${isLast ? '' : 'border-b-2' } border-slate-200 h-32`}>
+            onClick={props?.onClick ? props.onClick : () => {
+            }}
+            className={`flex w-full place-items-center py-5 pr-5 ${isLast ? '' : 'border-b-2'} border-slate-200 h-32`}>
             <FontAwesomeIcon className={'mx-6 text-slate-400'} size={'2xl'} icon={faToilet}/>
             <div className={'flex flex-col w-full h-full justify-between'}>
                 <div className={'flex justify-between place-items-center'}>

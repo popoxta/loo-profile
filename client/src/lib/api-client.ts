@@ -28,7 +28,7 @@ function getLoo(id: number): Promise<{ loo: Loo, reviews: Review[] }> {
 
 async function getLoosByUser(): Promise<Loo[]> {
     const token = await getAccessToken()
-    return request
+    return await request
         .get(`${URL}/users/me/loos`)
         .set('token', token ?? '')
         .then(res => res.body)
