@@ -31,13 +31,13 @@ export default function Logout() {
 
     return (
         <main className={styles.screenContainer}>
-            <div className={'flex place-items-center flex-col'}>
+            <div className={'flex place-items-center flex-col min-h-[20rem]'}>
                 {isLoading
                     ? <Loading/>
                     : <>
-                        <h2 className={styles.looHeading}>
+                        <h1 className={`${styles.looHeading} mb-5`}>
                             Are you sure you want to log out?
-                        </h2>
+                        </h1>
                         <div className={'flex gap-10'}>
                             <Button size={'md'} className={'w-[10rem]'} onClick={handleLogout}>Logout</Button>
                             <Button size={'md'} className={'w-[10rem]'} onClick={handleGoBack}>Wait, take me

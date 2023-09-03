@@ -11,7 +11,7 @@ export default function Dashboard() {
         <main className={styles.screenContainer}>
             {isLoading
                 ? <Loading/>
-                : <div className={`${styles.flexCol5} place-items-center mx-auto max-w-6xl`}>
+                : <div className={`${styles.flexCol5} place-items-center mx-auto max-w-6xl min-h-[25rem]`}>
                     <div className={'text-center'}>
                         <h2 className={styles.headingTwo}>Welcome, {user?.username}!</h2>
                         <div className={styles.divider}></div>

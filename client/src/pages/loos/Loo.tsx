@@ -43,13 +43,13 @@ export default function Loo() {
                     Please login or register to write a review for {loo.name}
                 </Alert>}
             {showReviewThanks && <ReviewThanks toggle={toggleReviewThanks}/>}
-            <div className={'max-w-6xl mx-auto text-slate-900'}>
+            <div className={'max-w-6xl mx-auto text-slate-900 min-h-[35rem]'}>
                 <section
                     className={`${styles.flexCol10} justify-between place-items-center max-h-[80%] mb-10 lg:flex-row lg:place-items-start`}>
                     <div className={'flex flex-col font-open-sans max-w-xl'}>
-                        <h2 className={`${styles.looHeading} mb-10 text-center lg:text-left`}>
+                        <h1 className={`${styles.looHeading} mb-10 text-center lg:text-left`}>
                             {loo.name}
-                        </h2>
+                        </h1>
                         <div
                             className={`justify-between mb-5 ${styles.flexCol5} sm:gap-0 sm:flex-row text-center md:text-left`}>
                             <address className={`not-italic ${styles.flexCol2}`}>
@@ -60,7 +60,7 @@ export default function Loo() {
                                 <p className={styles.smallText}>{loo.contact}</p>
                             </address>
                             <div>
-                                <h3 className={`${styles.subBold} mb-2`}>Opening Hours</h3>
+                                <h2 className={`${styles.subBold} mb-2`}>Opening Hours</h2>
                                 <div className={`${styles.flexCol2} ${styles.smallText}`}>
                                     <p>{loo.weekday} Mon-Fri</p>
                                     <p>{loo.weekend} Sat-Sun</p>
@@ -68,7 +68,7 @@ export default function Loo() {
                             </div>
                         </div>
                         <div className={'text-center md:text-left'}>
-                            <h3 className={`${styles.subBold} mb-2`}>About</h3>
+                            <h2 className={`${styles.subBold} mb-2`}>About</h2>
                             <p className={styles.paragraphText}>
                                 {loo.about}
                             </p>
@@ -81,7 +81,7 @@ export default function Loo() {
                 <section>
                     <div className={`${styles.flexDirection} justify-between`}>
                         <div className={`${styles.flexDirection} sm:mb-0`}>
-                            <h4 className={styles.headingFourBold}>Reviews</h4>
+                            <h2 className={styles.headingFourBold}>Reviews</h2>
                             <div className={'flex gap-0.5'}>
                                 <Stars style={{marginTop: '-6px'}} rating={averageRating ?? 5} size={25}/>
                             </div>
@@ -90,9 +90,13 @@ export default function Loo() {
                         <Button title={'Write a review'} size={'md'} onClick={toggleAddReview}>Write a review</Button>
                     </div>
                     <div
-                        className={`${styles.borderSlate} w-full min-h-[10rem] overflow-y-scroll`}>
-                        {reviewElements}
+                        className={`${styles.borderSlate} w-full min-h-[8rem] flex-col flex justify-center overflow-y-scroll`}>
+                        {reviews.length > 0
+                            ? reviewElements
+                            : <h3 className={`text-center ${styles.subHeading} mb-0 md:mb-0`}>No reviews yet!</h3>
+                        }
                     </div>
+
                 </section>
             </div>
         </main>
