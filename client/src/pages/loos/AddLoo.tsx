@@ -13,7 +13,7 @@ export default function AddLoo() {
     const loos = useAllLoosQuery()
     const {data: user, isLoading} = useUserQuery()
 
-    if (!user) return <Navigate to={'/login'}/>
+    if (!user && !isLoading) return <Navigate to={'/login'}/>
 
     const handleSubmit = async (loo: Loo) => {
         const newLoo: Loo = {...loo, user_id: user?.id}
