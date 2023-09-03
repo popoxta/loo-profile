@@ -58,7 +58,7 @@ export default function Loo() {
                 <section
                     className={`${styles.flexCol10} justify-between place-items-center max-h-[80%] mb-10 lg:flex-row lg:place-items-start`}>
                     <div className={'flex flex-col font-open-sans max-w-xl'}>
-                        <h1 className={`${styles.looHeading} mb-10 text-center lg:text-left`}>
+                        <h1 className={`${styles.looHeading} mb-5 text-center lg:text-left`}>
                             {loo.name}
                         </h1>
                         <div
@@ -72,7 +72,7 @@ export default function Loo() {
                             </address>
                             <div>
                                 <h2 className={`${styles.subBold} mb-2`}>Opening Hours</h2>
-                                <div className={`${styles.flexCol2} ${styles.smallText}`}>
+                                <div className={`${styles.flexCol2} ${styles.smallText} text-right`}>
                                     <p>{loo.weekday} Mon-Fri</p>
                                     <p>{loo.weekend} Sat-Sun</p>
                                 </div>
@@ -85,7 +85,7 @@ export default function Loo() {
                             </p>
                         </div>
                     </div>
-                    <div className={'h-[18rem] shrink-0 w-full sm:w-[32rem]'}>
+                    <div className={'h-[20rem] shrink-0 w-full sm:w-[32rem]'}>
                         <Map center={[loo?.lat, loo?.long]} markers={marker}/>
                     </div>
                 </section>
