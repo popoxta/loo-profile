@@ -50,9 +50,22 @@ looRouter.put('/:id', async (req, res, next) => {
             return utils.clientError(res, 'Client Error: Please fill out all details')
 
         else {
-            const updatedLoo: Loo = {id, name, street, region, contact, lat, long, user_id, weekday, weekend, fee, about}
-            await db.updateLoo(updatedLoo)
-            res.json(updatedLoo)
+            const updatedLoo: Loo = {
+                id,
+                name,
+                street,
+                region,
+                contact,
+                lat,
+                long,
+                user_id,
+                weekday,
+                weekend,
+                fee,
+                about
+            }
+            const response = (await db.updateLoo(updatedLoo))[0]
+            res.json(response)
         }
     }, next)
 })

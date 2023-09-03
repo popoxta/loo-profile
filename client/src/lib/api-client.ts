@@ -45,6 +45,16 @@ async function addLoo(loo: Loo): Promise<Loo> {
         .catch(rethrowError)
 }
 
+async function updateLoo(loo: Loo): Promise<Loo> {
+    const token = await getAccessToken()
+    return request
+        .put(`${URL}/loos/${loo.id}`)
+        .set('token', token ?? '')
+        .send(loo)
+        .then(res => res.body)
+        .catch(rethrowError)
+}
+
 async function addReview(review: Review): Promise<Review> {
     const token = await getAccessToken()
     return request
@@ -118,5 +128,6 @@ export {
     addReview,
     updateReview,
     deleteReview,
-    addLoo
+    addLoo,
+    updateLoo
 }

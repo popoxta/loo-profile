@@ -12,6 +12,7 @@ import Logout from "./pages/user/Logout.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import UserLoos from "./pages/user/UserLoos.tsx";
 import AddLoo from "./pages/loos/AddLoo.tsx";
+import EditLoo from "./pages/loos/EditLoo.tsx";
 
 export const routes = createRoutesFromElements(
     <Route path={'/'} element={<MainLayout/>} id={'root'}>
@@ -22,7 +23,7 @@ export const routes = createRoutesFromElements(
             <Route index element={<LooLocator/>}/>
             <Route path={':id'}>
                 <Route index element={<Loo/>}/>
-                {/*<Route path={'edit'} element={<EditLoo/>}/>*/}
+                <Route path={'edit'} element={<EditLoo/>}/>
             </Route>
             <Route path={'new'} element={<AddLoo/>}/>
         </Route>
