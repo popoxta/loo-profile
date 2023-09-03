@@ -34,7 +34,7 @@ looRouter.get('/:id', async (req, res, next) => {
 
         const reviews = await db.getReviews(id)
 
-        return res.json({loo, reviews})
+        res.json({loo, reviews})
     }, next)
 })
 
@@ -52,7 +52,7 @@ looRouter.put('/:id', async (req, res, next) => {
         else {
             const updatedLoo: Loo = {id, name, street, region, contact, lat, long, user_id, weekday, weekend, fee}
             await db.updateLoo(updatedLoo)
-            return res.json(updatedLoo)
+            res.json(updatedLoo)
         }
     }, next)
 })
@@ -66,8 +66,9 @@ looRouter.post('/new', isAuthenticated, async (req, res, next) => {
         else {
             const newLoo: Loo = {name, street, region, contact, lat, long, user_id, weekend, weekday, fee}
             const addedLoo = (await db.addLoo(newLoo))[0]
+            console.log(addedLoo)
 
-            return res.json(addedLoo)
+            res.json(addedLoo)
         }
     }, next)
 })

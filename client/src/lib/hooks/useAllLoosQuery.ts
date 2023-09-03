@@ -1,9 +1,31 @@
-import {useQuery} from "react-query";
-import {getAllLoos} from "../api-client.ts";
+import {MutationFunction, useMutation, useQuery, useQueryClient} from "react-query";
+import {addLoo, getAllLoos} from "../api-client.ts";
 import {Coordinates} from "../types/types.ts";
 
-export const useAllLoosQuery = (location: Coordinates, distance: number) => useQuery({
-    queryKey: ['loos', location, distance],
-    queryFn: () => getAllLoos(location, distance),
-    staleTime: 10000,
-})
+export function useAllLoosQuery(location?: Coordinates, distance?: number) {
+
+    // todo check if dis ok lol
+    const query = useQuery({
+        queryKey: location && distance ? ['loos', location, distance] : ['loos'],
+        queryFn: () => getAllLoos(location, distance),
+        staleTime: 10000,
+    })
+
+    return {
+        ...query,
+        addLoo: useAddLoo()
+    }
+}
+
+export function useLoosMutation<TData = unknown, TVariables = unknown>
+(fn: MutationFunction<TData, TVariables>) {
+    const queryClient = useQueryClient()
+
+    return useMutation({
+        mutationFn: fn,
+        onSuccess: () => queryClient.invalidateQueries(['loos']),
+    })
+}
+
+export const useAddLoo = () => useLoosMutation(addLoo)
+

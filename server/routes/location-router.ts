@@ -12,6 +12,7 @@ locationRouter.get('/', async (req, res, next) => {
         if (!address) return utils.clientError(res, 'Client Error: Address query must be provided.')
 
         const foundAddress = await axios.get(`https://nominatim.openstreetmap.org/search?q=${address}&format=json&limit=1`)
+        if (!foundAddress?.data.length) return utils.notFoundError(res, 'Error: Address could not be found')
         const {lat, lon} = foundAddress.data[0]
         const value = foundAddress.data[0].display_name.split(', ')
         const street = value.splice(0, 3).join(' ')

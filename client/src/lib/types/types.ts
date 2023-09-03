@@ -28,6 +28,7 @@ export interface Loo {
     weekend: string
     fee: string
     avg_rating?: number
+    user_id?: number
 }
 
 export interface User {

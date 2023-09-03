@@ -28,7 +28,7 @@ export default function UserLoos() {
                 <p className={`${styles.paragraphText} max-w-lg text-center`}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet.
                 </p>
-                <Button size={'md'} className={'w-[10rem] mt-2.5 '} onClick={() => navigate('/new')}>Add a Loo</Button>
+                <Button size={'md'} className={'w-[10rem] mt-2.5 '} onClick={() => navigate('/loos/new')}>Add a Loo</Button>
             </div>
         </main>
     )

@@ -35,7 +35,7 @@ async function getLoosByUser(): Promise<Loo[]> {
         .catch(rethrowError)
 }
 
-async function addLoo(loo: Loo) {
+async function addLoo(loo: Loo): Promise<Loo> {
     const token = await getAccessToken()
     return request
         .post(`${URL}/loos/new`)
@@ -45,7 +45,7 @@ async function addLoo(loo: Loo) {
         .catch(rethrowError)
 }
 
-async function addReview(review: Review) {
+async function addReview(review: Review): Promise<Review> {
     const token = await getAccessToken()
     return request
         .post(`${URL}/reviews/new`)
@@ -101,7 +101,7 @@ async function register(user: User): Promise<User> {
 
 //todo add better error handling
 function rethrowError(err: Error) {
-    console.log(err)
+    console.log('from rethrow -> ', err)
     // @ts-ignore
     const errMsg = err?.response.text ?? err.message
     throw new Error(String(errMsg))

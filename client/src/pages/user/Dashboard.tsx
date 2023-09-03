@@ -13,7 +13,7 @@ export default function Dashboard() {
                 ? <Loading/>
                 : <div className={`${styles.flexCol5} place-items-center mx-auto max-w-6xl`}>
                     <div className={'text-center'}>
-                        <h2 className={styles.headingTwo}>Welcome, {user.username}!</h2>
+                        <h2 className={styles.headingTwo}>Welcome, {user?.username}!</h2>
                         <div className={styles.divider}></div>
                         <div className={`flex px-5 ${styles.dashboardText} justify-between`}>
                             <Link to={'./loos'} className={styles.textHover}>My Loos</Link>
