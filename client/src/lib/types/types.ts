@@ -29,6 +29,7 @@ export interface Loo {
     fee: string
     avg_rating?: number
     user_id?: number
+    about: string
 }
 
 export interface User {

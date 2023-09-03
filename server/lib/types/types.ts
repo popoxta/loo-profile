@@ -22,6 +22,7 @@ export interface Loo {
     weekday: string
     weekend: string
     fee: string
+    about: string
 }
 
 export interface User {

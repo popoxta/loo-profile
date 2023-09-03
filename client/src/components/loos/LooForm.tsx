@@ -24,6 +24,7 @@ const defaultValues = {
     weekday: '',
     weekend: '',
     fee: '',
+    about: '',
 }
 
 export default function LooForm(props: Props) {
@@ -52,7 +53,7 @@ export default function LooForm(props: Props) {
 
     const handleLocationInput = (e: ChangeEvent<HTMLInputElement>) => setLocationQuery(e.target.value)
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setLooData(prev => ({...prev, [e.target.name]: e.target.value}))
     }
 
@@ -105,6 +106,11 @@ export default function LooForm(props: Props) {
                             Usage Fees
                             <input className={styles.inputField} value={looData.fee} onChange={handleChange} type="text" name={'fee'}
                                    placeholder={'Fee'}/>
+                        </label>
+                        <label className={`${styles.flexCol2} ${styles.labelText}`}>
+                            About
+                            <textarea className={`min-h-[5rem] ${styles.inputField}`} value={looData.about} onChange={handleChange} name={'about'}
+                                      placeholder={'Description of your Loo'}/>
                         </label>
                         <Button className={'mt-3'} onClick={changePage}>Next</Button>
                     </div>

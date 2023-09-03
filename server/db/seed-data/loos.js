@@ -15,6 +15,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 2,
@@ -28,6 +31,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 3,
@@ -51,6 +57,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 5,
@@ -64,6 +73,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 6,
@@ -77,6 +89,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 7,
@@ -90,6 +105,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 8,
@@ -103,6 +121,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 9,
@@ -116,6 +137,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 10,
@@ -129,6 +153,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 11,
@@ -142,6 +169,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 12,
@@ -155,6 +185,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 13,
@@ -168,6 +201,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 14,
@@ -181,6 +217,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 15,
@@ -194,6 +233,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 16,
@@ -207,6 +249,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 17,
@@ -220,6 +265,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 18,
@@ -233,6 +281,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 19,
@@ -246,6 +297,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 20,
@@ -259,6 +313,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 21,
@@ -272,6 +329,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 22,
@@ -285,6 +345,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 23,
@@ -298,6 +361,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 24,
@@ -311,6 +377,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 25,
@@ -324,6 +393,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 26,
@@ -337,6 +409,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 27,
@@ -350,6 +425,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 28,
@@ -363,6 +441,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 29,
@@ -376,6 +457,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 30,
@@ -389,6 +473,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 31,
@@ -402,6 +489,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 32,
@@ -415,6 +505,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 33,
@@ -428,6 +521,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 34,
@@ -441,6 +537,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 35,
@@ -454,6 +553,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 36,
@@ -467,6 +569,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 37,
@@ -480,6 +585,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 38,
@@ -493,6 +601,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 39,
@@ -506,6 +617,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 40,
@@ -519,6 +633,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 41,
@@ -532,6 +649,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 42,
@@ -545,6 +665,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 43,
@@ -558,6 +681,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 44,
@@ -571,6 +697,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 45,
@@ -584,6 +713,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 46,
@@ -597,6 +729,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 47,
@@ -610,6 +745,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 48,
@@ -623,6 +761,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 49,
@@ -636,6 +777,9 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     },
     {
         "id": 50,
@@ -649,5 +793,8 @@ export const loos = [
         "weekday": '9am - 2pm',
         "weekend": '10pm - 2pm',
         "fee": '2 dollars',
+        "about": 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit pretium imperdiet. ' +
+            'Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros malesuada. Praesent aliquet' +
+            ' elit at nisl porta, vel lobortis dolor auctor.',
     }
 ]

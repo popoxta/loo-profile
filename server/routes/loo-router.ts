@@ -1,5 +1,5 @@
 import express from "express";
-import {filterDistance, tryCatchNext, validateAndReturnLoo, validateAndReturnReview, validateId} from "../lib/utils";
+import {filterDistance, tryCatchNext, validateAndReturnLoo} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Loo} from "../lib/types/types";
@@ -7,7 +7,7 @@ import {isAuthenticated} from "./middleware";
 
 const looRouter = express.Router()
 
-const LOO_PROPERTIES = ['name', 'street', 'region', 'contact', 'lat', 'long', 'user_id', 'weekday', 'weekend', 'fee']
+const LOO_PROPERTIES = ['name', 'street', 'region', 'contact', 'lat', 'long', 'user_id', 'weekday', 'weekend', 'fee', 'about']
 
 // query params e.g ?location=123,123&distance=5
 looRouter.get('/all', async (req, res, next) => {
@@ -45,12 +45,12 @@ looRouter.put('/:id', async (req, res, next) => {
         await validateAndReturnLoo(id, res, db)
         if (res.headersSent) return
 
-        const {name, street, region, contact, lat, long, user_id, weekday, weekend, fee} = req.body
+        const {name, street, region, contact, lat, long, user_id, weekday, weekend, fee, about} = req.body
         if (LOO_PROPERTIES.some(prop => req.body[prop] === undefined))
             return utils.clientError(res, 'Client Error: Please fill out all details')
 
         else {
-            const updatedLoo: Loo = {id, name, street, region, contact, lat, long, user_id, weekday, weekend, fee}
+            const updatedLoo: Loo = {id, name, street, region, contact, lat, long, user_id, weekday, weekend, fee, about}
             await db.updateLoo(updatedLoo)
             res.json(updatedLoo)
         }
@@ -59,14 +59,13 @@ looRouter.put('/:id', async (req, res, next) => {
 
 looRouter.post('/new', isAuthenticated, async (req, res, next) => {
     await tryCatchNext(async () => {
-        const {name, street, region, contact, lat, long, user_id, weekday, weekend, fee} = req.body
+        const {name, street, region, contact, lat, long, user_id, weekday, weekend, fee, about} = req.body
         if (LOO_PROPERTIES.some(prop => req.body[prop] === undefined))
             return utils.clientError(res, 'Client Error: Please fill out all details')
 
         else {
-            const newLoo: Loo = {name, street, region, contact, lat, long, user_id, weekend, weekday, fee}
+            const newLoo: Loo = {name, street, region, contact, lat, long, user_id, weekend, weekday, fee, about}
             const addedLoo = (await db.addLoo(newLoo))[0]
-            console.log(addedLoo)
 
             res.json(addedLoo)
         }

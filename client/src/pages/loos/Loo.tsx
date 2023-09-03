@@ -59,19 +59,15 @@ export default function Loo() {
                             <div>
                                 <h3 className={`${styles.subBold} mb-2`}>Opening Hours</h3>
                                 <div className={`${styles.flexCol2} ${styles.smallText}`}>
-                                    <p>0900 - 1200 mon</p>
-                                    <p>0900 - 1200 tue</p>
-                                    <p>0900 - 1200 wed</p>
+                                    <p>{loo.weekday} Mon-Fri</p>
+                                    <p>{loo.weekend} Sat-Sun</p>
                                 </div>
                             </div>
                         </div>
                         <div className={'text-center md:text-left'}>
                             <h3 className={`${styles.subBold} mb-2`}>About</h3>
                             <p className={styles.paragraphText}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit
-                                pretium
-                                imperdiet. Nullam in tristique justo. In suscipit metus et nunc ornare, nec blandit eros
-                                malesuada. Praesent aliquet elit at nisl porta, vel lobortis dolor auctor.
+                                {loo.about}
                             </p>
                         </div>
                     </div>
