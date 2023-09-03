@@ -24,8 +24,10 @@ export interface Loo {
     contact: string
     lat: number
     long: number
-    avg_rating: number
-    username: number
+    weekday: string
+    weekend: string
+    fee: string
+    avg_rating?: number
 }
 
 export interface User {

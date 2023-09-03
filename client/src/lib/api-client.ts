@@ -4,7 +4,7 @@ import {getAccessToken} from "./utils.ts";
 
 const URL = `http://localhost:3000`
 
-function getLocation(address: string): Promise<Coordinates> {
+function getLocation(address: string): Promise<{ coordinates: Coordinates, street: string, region: string }> {
     return request
         .get(`${URL}/location?address=${address}`)
         .then(res => res.body)
@@ -28,10 +28,19 @@ function getLoo(id: number): Promise<{ loo: Loo, reviews: Review[] }> {
 
 async function getLoosByUser(): Promise<Loo[]> {
     const token = await getAccessToken()
-    console.log('REQUEST')
     return request
         .get(`${URL}/users/me/loos`)
         .set('token', token ?? '')
+        .then(res => res.body)
+        .catch(rethrowError)
+}
+
+async function addLoo(loo: Loo) {
+    const token = await getAccessToken()
+    return request
+        .post(`${URL}/loos/new`)
+        .set('token', token ?? '')
+        .send(loo)
         .then(res => res.body)
         .catch(rethrowError)
 }
@@ -76,7 +85,7 @@ async function getUser(): Promise<User | null> {
 }
 
 function getAllUsernames(): Promise<{ username: string }[]> {
-    return  request
+    return request
         .get(`${URL}/users/all`)
         .then(res => res.body)
         .catch(rethrowError)
@@ -98,4 +107,16 @@ function rethrowError(err: Error) {
     throw new Error(String(errMsg))
 }
 
-export {getLocation, getAllLoos, getLoo, getLoosByUser, getUser, getAllUsernames, register, addReview, updateReview, deleteReview}
+export {
+    getLocation,
+    getAllLoos,
+    getLoo,
+    getLoosByUser,
+    getUser,
+    getAllUsernames,
+    register,
+    addReview,
+    updateReview,
+    deleteReview,
+    addLoo
+}

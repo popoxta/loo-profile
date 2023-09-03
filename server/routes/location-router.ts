@@ -13,8 +13,11 @@ locationRouter.get('/', async (req, res, next) => {
 
         const foundAddress = await axios.get(`https://nominatim.openstreetmap.org/search?q=${address}&format=json&limit=1`)
         const {lat, lon} = foundAddress.data[0]
+        const value = foundAddress.data[0].display_name.split(', ')
+        const street = value.splice(0, 3).join(' ')
+        const region = value.splice(3, 6).join(' ')
 
-        res.send([Number(lat), Number(lon)])
+        res.send({coordinates: [Number(lat), Number(lon)], street, region})
     }, next)
 })
 

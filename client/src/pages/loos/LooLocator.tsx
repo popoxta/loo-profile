@@ -47,16 +47,17 @@ export default function LooLocator() {
     async function setNewLocation() {
         if (!locationQuery) return
         setMapIsLoading(true)
-        const location = await getLocation(locationQuery)
-        setLocation(location)
-        setView(location)
+        const {coordinates} = await getLocation(locationQuery)
+        setLocation(coordinates)
+        setView(coordinates)
         setMapIsLoading(false)
     }
 
     const looMarkers = data ? getMarkers(data) : undefined
 
     const looCards: ReactElement[] | undefined = data?.map((loo: Loo, i) =>
-        <LooCard isLast={i === (data?.length - 1)} onClick={() => setView([loo.lat, loo.long])} key={loo.id + loo.name} loo={loo}/>)
+        <LooCard isLast={i === (data?.length - 1)} onClick={() => setView([loo.lat, loo.long])} key={loo.id + loo.name}
+                 loo={loo}/>)
 
     return (
         <main className={styles.screenContainer}>
@@ -92,10 +93,13 @@ export default function LooLocator() {
                         </select>
                     </label>
                 </div>
-                <div className={`${styles.flexCol5} min-w-full md:min-w-[35rem] h-[40rem] md:h-[30rem] flex-col md:gap-10 md:flex-row`}>
+                <div
+                    className={`${styles.flexCol5} min-w-full md:min-w-[35rem] h-[40rem] md:h-[30rem] flex-col md:gap-10 md:flex-row`}>
                     <div className={'w-full h-full min-h-[20rem]'}>
-                        { isLoading || mapIsLoading
-                            ? <div className={'min-h-full flex justify-center place-items-center bg-slate-100'}><Loading/></div>
+                        {isLoading || mapIsLoading
+                            ?
+                            <div className={'min-h-full flex justify-center place-items-center bg-slate-100'}><Loading/>
+                            </div>
                             : <Map center={view} markers={looMarkers}/>
                         }
                     </div>
