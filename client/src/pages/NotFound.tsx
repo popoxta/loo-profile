@@ -1,8 +1,13 @@
 import Button from "../components/Button.tsx";
 import {useNavigate} from "react-router-dom";
 import styles from '../lib/style-presets.ts'
+import {ReactElement} from "react";
 
-export default function NotFound() {
+interface Props {
+    children?: string | ReactElement | ReactElement[]
+}
+
+export default function NotFound(props: Props) {
     const navigate = useNavigate()
 
     const handleGoBack = () => navigate('/')
@@ -15,8 +20,13 @@ export default function NotFound() {
                         Oops...
                     </h1>
                     <div className={styles.subText}>
-                        <p>Looks like what you're looking for isn't here or has been removed!</p>
-                        <p>We apologize for any inconvenience</p>
+                        {props?.children
+                            ? props?.children
+                            : <>
+                                <p>Looks like what you're looking for isn't here or has been removed!</p>
+                                <p>We apologize for any inconvenience</p>
+                            </>
+                        }
                     </div>
                     <Button size={'md'} className={'w-[10rem] mt-5'} onClick={handleGoBack}>Go Home</Button>
                 </div>

@@ -20,7 +20,10 @@ export const routes = createRoutesFromElements(
         <Route element={<Dashboard/>}/>
         <Route path={'/loos'}>
             <Route index element={<LooLocator/>}/>
-            <Route path={':id'} element={<Loo/>}/>
+            <Route path={':id'}>
+                <Route index element={<Loo/>}/>
+                {/*<Route path={'edit'} element={<EditLoo/>}/>*/}
+            </Route>
             <Route path={'new'} element={<AddLoo/>}/>
         </Route>
         <Route path={'/register'} element={<Register/>} action={registerAction}/>

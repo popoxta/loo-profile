@@ -12,13 +12,24 @@ import Stars from "../../components/Stars.tsx";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import Alert from "../../components/Alert.tsx";
 import styles from '../../lib/style-presets.ts'
+import NotFound from "../NotFound.tsx";
 
 export default function Loo() {
     const [showAddReview, setShowAddReview] = useState(false)
     const [showReviewThanks, setShowReviewThanks] = useState(false)
     const id: string | undefined = useParams().id
-    const {data: looData, isLoading} = useLooQuery(Number(id))
+    const {data: looData, isLoading, isError} = useLooQuery(Number(id))
     const {data: user} = useUserQuery()
+
+    if (isError) return <NotFound>
+        {id
+            ? <>
+                <p>Loo {id} is not currently accessible or may be permanently removed!</p>
+                <p>Please try again later.</p>
+            </>
+            : <p>Sorry, we can't find that page!</p>
+        }
+    </NotFound>
 
     if (isLoading || looData === undefined)
         return <div className={styles.screenContainer}><Loading/></div>

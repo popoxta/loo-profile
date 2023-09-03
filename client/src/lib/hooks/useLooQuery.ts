@@ -7,6 +7,7 @@ export function useLooQuery(id: number) {
         queryKey: ['loos', id],
         queryFn: () => getLoo(id),
         staleTime: 10000,
+        retry: 2
     })
 
     return {
