@@ -61,6 +61,7 @@ export default function AddReview(props: Props) {
         else await loo.addReview.mutate(newReview, mutationOptions)
     }
 
+    // todo add placeholders
     return (
         <>
             <Cover show={true} onClick={props.toggle}/>
