@@ -104,7 +104,7 @@ export default function Loo() {
                         className={`${styles.borderSlate} w-full min-h-[8rem] flex-col flex justify-center overflow-y-scroll`}>
                         {reviews.length > 0
                             ? reviewElements
-                            : <h3 className={`text-center ${styles.subHeading} mb-0 md:mb-0`}>No reviews yet!</h3>
+                            : <h3 className={`text-center text-slate-500 text-lg md:text-xl mb-0 md:mb-0`}>No reviews yet!</h3>
                         }
                     </div>
 

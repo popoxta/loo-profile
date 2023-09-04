@@ -55,6 +55,15 @@ async function updateLoo(loo: Loo): Promise<Loo> {
         .catch(rethrowError)
 }
 
+async function deleteLoo(id: number): Promise<void> {
+    const token = await getAccessToken()
+    return request
+        .delete(`${URL}/loos/${id}`)
+        .set('token', token ?? '')
+        .then(res => res.body)
+        .catch(rethrowError)
+}
+
 async function addReview(review: Review): Promise<Review> {
     const token = await getAccessToken()
     return request
@@ -129,5 +138,6 @@ export {
     updateReview,
     deleteReview,
     addLoo,
-    updateLoo
+    updateLoo,
+    deleteLoo
 }

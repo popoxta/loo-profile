@@ -16,7 +16,8 @@ export default function UserLoos() {
     if (!user && !isLoadingUser) return <Navigate to={'/login'}/>
 
     const looCards = loos
-        ? loos?.map((loo: Loo, i: number) => <LooCardLarge isLast={i === loos.length - 1} key={loo.id} loo={loo}/>)
+        // @ts-ignore
+        ? loos?.map((loo: Loo, i: number) => <LooCardLarge user={user} isLast={i === loos.length - 1} key={loo.id} loo={loo}/>)
         : undefined
 
     // @ts-ignore

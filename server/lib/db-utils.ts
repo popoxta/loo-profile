@@ -29,6 +29,14 @@ const addLoo = (loo: Loo) => {
     return connection('loos').insert(loo).returning('*')
 }
 
+const deleteLooReviews = (id) => {
+    return connection('reviews').delete().where({loo_id: id})
+}
+
+const deleteLoo = (id) => {
+    return connection('loos').delete().where({id})
+}
+
 const getReview = (id: number) => {
     return connection('reviews').where({id}).first()
 }
@@ -81,5 +89,7 @@ export default {
     addUser,
     getUser,
     getAllUsernames,
-    updateUser
+    updateUser,
+    deleteLooReviews,
+    deleteLoo
 }
