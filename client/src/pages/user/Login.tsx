@@ -52,7 +52,7 @@ export default function Login() {
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Password:
-                        <input className={styles.inputField} type="text" required
+                        <input className={styles.inputField} type="password" required
                                name={'password'} placeholder={'Password'}/>
                     </label>
                     <Button className={'mt-3'}>Log In</Button>
