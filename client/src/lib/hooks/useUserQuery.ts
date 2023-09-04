@@ -5,7 +5,6 @@ import {getUser} from "../api-client.ts";
 export const useUserQuery = () => {
     return useQuery({
         queryKey: ['user'],
-        queryFn: () => getUser(),
-        staleTime: 10000,
+        queryFn: () => getUser()
     })
 }

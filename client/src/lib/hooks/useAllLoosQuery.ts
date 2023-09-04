@@ -18,7 +18,7 @@ export function useAllLoosQuery(location?: Coordinates, distance?: number) {
 }
 
 export function useLoosMutation<TData = unknown, TVariables = unknown>
-(fn: MutationFunction<TData, TVariables>, looId: number) {
+(fn: MutationFunction<TData, TVariables>) {
     const queryClient = useQueryClient()
 
     return useMutation({
@@ -27,5 +27,5 @@ export function useLoosMutation<TData = unknown, TVariables = unknown>
     })
 }
 
-export const useAddLoo = () => useLoosMutation(addLoo, looId)
+export const useAddLoo = () => useLoosMutation(addLoo)
 
