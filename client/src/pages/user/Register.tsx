@@ -1,56 +1,51 @@
-import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
-import {Form, Link, Navigate, redirect, useActionData} from "react-router-dom";
-import {getAllUsernames, register} from "../../lib/api-client.ts";
-import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
+import {Link, Navigate, redirect} from "react-router-dom";
+import {getAllUsernames} from "../../lib/api-client.ts";
+import {useRegisterUser, useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import Button from "../../components/Button.tsx";
 import styles from '../../lib/style-presets.ts'
-import {ChangeEvent, useState} from "react";
-
-export async function action({request}: { request: Request }) {
-    try {
-        const allUsernames = await getAllUsernames()
-
-        const data = await request.formData()
-        const email = data.get('email')
-        const username = data.get('username')
-        const password = data.get('password')
-        const passwordConfirm = data.get('confirmPassword')
-
-        if (!email || email.length < 6) return {error: 'Invalid email address'}
-        if (!username || username.length < 4) return {error: 'Invalid username'}
-        if (username.length > 16) return {error: 'User must be less than 16 characters'}
-        if (!password || !passwordConfirm || password !== passwordConfirm) return {error: 'Passwords must match'}
-
-        if (allUsernames.find(user => user.username === username))
-            return {error: 'Username is taken'}
-
-        const auth = getAuth()
-        const credentials = await createUserWithEmailAndPassword(auth, String(email), String(password))
-        const newUser = {
-            email: String(email),
-            username: String(username),
-            firebase_uid: credentials.user.uid
-        }
-        if (credentials) {
-            await register(newUser)
-            return redirect('/dashboard')
-        } else return {error: 'Registration error, please try again later'}
-
-    } catch (e) {
-        return {error: 'Registration error, please try again later'}
-    }
-}
+import {ChangeEvent, FormEvent, useState} from "react";
+import Loading from "../../components/Loading.tsx";
 
 export default function Register() {
     const [loginData, setLoginData] = useState({email: '', username: '', password: '', confirmPassword: ''})
+    const [errorMessage, setErrorMessage] = useState('')
 
-    const action = useActionData()
     const {data: user} = useUserQuery()
+    const {mutate, isError, error, isLoading} = useRegisterUser()
 
     // todo check w alex for a better way to do this w/o errors
     if (user) return <Navigate to={'/dashboard'}/>
+    if (isLoading) return <main className={styles.screenContainer}><Loading/></main>
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => setLoginData(prev => ({...prev, [e.target.name] : e.target.value}))
+    const createUser = async (e: FormEvent) => {
+        e.preventDefault()
+        try {
+            const {email, username, password, confirmPassword} = loginData
+            const allUsernames = await getAllUsernames()
+            let errorMsg = ''
+
+            if (!email || email.length < 6) errorMsg = 'Invalid email address'
+            if (!username || username.length < 4) errorMsg = 'Invalid username'
+            if (username.length > 16) errorMsg = 'User must be less than 16 characters'
+            if (password.length < 6) errorMsg = 'Password must be at least 6 characters'
+            if (!password || !confirmPassword || password !== confirmPassword) errorMsg = 'Passwords must match'
+            if (allUsernames.find(user => user.username === username)) errorMsg = 'Username is taken'
+
+            setErrorMessage(errorMsg)
+            if (errorMessage) return
+
+            else await mutate(loginData)
+            if (!isError || !errorMessage) return redirect('/dashboard')
+
+        } catch (e) {
+            setErrorMessage('Registration error, please try again later')
+        }
+    }
+
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => setLoginData(prev => ({
+        ...prev,
+        [e.target.name]: e.target.value
+    }))
 
     return (
         <main className={styles.screenContainer}>
@@ -62,8 +57,8 @@ export default function Register() {
                     <p className={styles.subText}>Join us to gain access to 100's of loos near you!</p>
                 </div>
                 { // @ts-ignore
-                    action?.error && <p className={styles.errorText}>{action?.error}</p>}
-                <Form method={'POST'} className={`${styles.flexCol5} w-[26rem] ${styles.formBorder}`}>
+                    (errorMessage || isError) && <p className={styles.errorText}>{errorMessage || error}</p>}
+                <form onSubmit={createUser} className={`${styles.flexCol5} w-[26rem] ${styles.formBorder}`}>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Username:
                         <input onChange={handleInputChange} value={loginData.username} type="text"
@@ -88,7 +83,7 @@ export default function Register() {
                                placeholder={'Confirm Password'}/>
                     </label>
                     <Button className={'mt-3'}>Register</Button>
-                </Form>
+                </form>
                 <div className={`${styles.tinyText} self-end text-right`}>
                     <p>Already have an account?</p>
                     <p className={'text-cyan-600 font-medium'}><Link to={'/login'}>Log in</Link></p>

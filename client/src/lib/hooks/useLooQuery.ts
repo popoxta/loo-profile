@@ -39,4 +39,5 @@ export const useDeleteReview = (looId: number) => useLooMutation(deleteReview, l
 
 export const useUpdateLoo = (looId: number) => useLooMutation(updateLoo, looId)
 
+//@ts-ignore
 export const useDeleteLoo = (looId: number) => useLoosMutation(deleteLoo, looId)
