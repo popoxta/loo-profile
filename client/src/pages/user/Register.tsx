@@ -4,6 +4,7 @@ import {getAllUsernames, register} from "../../lib/api-client.ts";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import Button from "../../components/Button.tsx";
 import styles from '../../lib/style-presets.ts'
+import {ChangeEvent, useState} from "react";
 
 export async function action({request}: { request: Request }) {
     try {
@@ -41,11 +42,15 @@ export async function action({request}: { request: Request }) {
 }
 
 export default function Register() {
+    const [loginData, setLoginData] = useState({email: '', username: '', password: '', confirmPassword: ''})
+
     const action = useActionData()
     const {data: user} = useUserQuery()
 
     // todo check w alex for a better way to do this w/o errors
     if (user) return <Navigate to={'/dashboard'}/>
+
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => setLoginData(prev => ({...prev, [e.target.name] : e.target.value}))
 
     return (
         <main className={styles.screenContainer}>
@@ -61,21 +66,25 @@ export default function Register() {
                 <Form method={'POST'} className={`${styles.flexCol5} w-[26rem] ${styles.formBorder}`}>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Username:
-                        <input type="text" className={styles.inputField} required name={'username'}
+                        <input onChange={handleInputChange} value={loginData.username} type="text"
+                               className={styles.inputField} required name={'username'}
                                placeholder={'Username'}/>
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Email:
-                        <input type="text" className={styles.inputField} required name={'email'} placeholder={'Email'}/>
+                        <input onChange={handleInputChange} value={loginData.email} type="text"
+                               className={styles.inputField} required name={'email'} placeholder={'Email'}/>
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Password:
-                        <input type="password" className={styles.inputField} required name={'password'}
+                        <input onChange={handleInputChange} value={loginData.password} type="password"
+                               className={styles.inputField} required name={'password'}
                                placeholder={'Password'}/>
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Confirm Password:
-                        <input type="password" className={styles.inputField} required name={'confirmPassword'}
+                        <input onChange={handleInputChange} value={loginData.confirmPassword} type="password"
+                               className={styles.inputField} required name={'confirmPassword'}
                                placeholder={'Confirm Password'}/>
                     </label>
                     <Button className={'mt-3'}>Register</Button>

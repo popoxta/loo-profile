@@ -3,6 +3,7 @@ import {Form, Link, Navigate, redirect, useActionData} from "react-router-dom";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import Button from "../../components/Button.tsx";
 import styles from '../../lib/style-presets.ts'
+import {ChangeEvent, useState} from "react";
 
 export async function action({request}: { request: Request }) {
     try {
@@ -25,11 +26,14 @@ export async function action({request}: { request: Request }) {
 }
 
 export default function Login() {
+    const [loginData, setLoginData] = useState({email: '', password: ''})
     const action = useActionData()
     const {data: user} = useUserQuery()
 
     // todo check w alex for a better way to do this w/o errors
     if (user) return <Navigate to={'/dashboard'}/>
+
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => setLoginData(prev => ({...prev, [e.target.name] : e.target.value}))
 
     return (
         <main className={styles.screenContainer}>
@@ -47,12 +51,12 @@ export default function Login() {
                       className={`${styles.flexCol5} w-[26rem] ${styles.formBorder}`}>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Email:
-                        <input className={styles.inputField} type="text" required
+                        <input onChange={handleInputChange} value={loginData.email} className={styles.inputField} type="text" required
                                name={'email'} placeholder={'Email'}/>
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Password:
-                        <input className={styles.inputField} type="password" required
+                        <input onChange={handleInputChange} value={loginData.password} className={styles.inputField} type="password" required
                                name={'password'} placeholder={'Password'}/>
                     </label>
                     <Button className={'mt-3'}>Log In</Button>
