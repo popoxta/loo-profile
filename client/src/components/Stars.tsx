@@ -7,6 +7,6 @@ interface Props {
 }
 
 export default function Stars(props: Props) {
-    return <Rating size={props.size} style={props.style} emptyStyle={{ display: "flex" }} fillStyle={{ display: "-webkit-inline-box" }} readonly={true} initialValue={props.rating}/>
+    return <Rating size={props.size} style={props.style} allowFraction={true} emptyStyle={{ display: "flex" }} fillStyle={{ display: "-webkit-inline-box" }} readonly={true} initialValue={props.rating}/>
 
 }
