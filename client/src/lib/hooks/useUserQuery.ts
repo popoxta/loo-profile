@@ -1,7 +1,7 @@
 import {MutationFunction, useMutation, useQuery, useQueryClient} from "react-query";
 import {getUser, register} from "../api-client.ts";
-import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
-import {NewUser, User} from "../types/types.ts";
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import {NewUser, User, UserLogin} from "../types/types.ts";
 
 //todo add logout mutation?
 export const useUserQuery = () => {
@@ -12,7 +12,8 @@ export const useUserQuery = () => {
 
     return {
         ...query,
-        register: useRegisterUser()
+        register: registerUser(),
+        login: loginUser()
     }
 }
 
@@ -26,7 +27,7 @@ export function useUserMutation<TData = unknown, TVariables = unknown>
     })
 }
 
-export const useRegisterUser = () => useUserMutation(async (user: NewUser) => {
+export const registerUser = () => useUserMutation(async (user: NewUser) => {
     const {email, username, password} = user
 
     const auth = getAuth()
@@ -39,4 +40,10 @@ export const useRegisterUser = () => useUserMutation(async (user: NewUser) => {
     if (credentials) {
         await register(newUser)
     } else return new Error('Registration could not be completed. Please try again later')
+})
+
+export const loginUser = () => useUserMutation(async (user: UserLogin) => {
+    const {email, password} = user
+    const auth = getAuth()
+    await signInWithEmailAndPassword(auth, String(email), String(password))
 })

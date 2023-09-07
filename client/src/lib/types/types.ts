@@ -32,16 +32,18 @@ export interface Loo {
     about: string
 }
 
-export interface User extends UserLogin {
+export interface User {
     id?: number
     firebase_uid: string
-}
-
-export interface UserLogin {
-    username: string,
+    username: string
     email: string,
 }
 
-export interface NewUser extends UserLogin{
-    password: string
+export interface UserLogin {
+    password: string,
+    email: string,
+}
+
+export interface NewUser extends UserLogin {
+    username: string
 }

@@ -1,17 +1,17 @@
 import {Link, Navigate, redirect} from "react-router-dom";
 import {getAllUsernames} from "../../lib/api-client.ts";
-import {useRegisterUser, useUserQuery} from "../../lib/hooks/useUserQuery.ts";
+import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import Button from "../../components/Button.tsx";
 import styles from '../../lib/style-presets.ts'
 import {ChangeEvent, FormEvent, useState} from "react";
 import Loading from "../../components/Loading.tsx";
 
 export default function Register() {
-    const [loginData, setLoginData] = useState({email: '', username: '', password: '', confirmPassword: ''})
+    const [userData, setUserData] = useState({email: '', username: '', password: '', confirmPassword: ''})
     const [errorMessage, setErrorMessage] = useState('')
 
-    const {data: user} = useUserQuery()
-    const {mutate, isError, error, isLoading} = useRegisterUser()
+    const {data: user, register} = useUserQuery()
+    const {isError, error, isLoading} = register
 
     // todo check w alex for a better way to do this w/o errors
     if (user) return <Navigate to={'/dashboard'}/>
@@ -20,7 +20,7 @@ export default function Register() {
     const createUser = async (e: FormEvent) => {
         e.preventDefault()
         try {
-            const {email, username, password, confirmPassword} = loginData
+            const {email, username, password, confirmPassword} = userData
             const allUsernames = await getAllUsernames()
             let errorMsg = ''
 
@@ -34,7 +34,7 @@ export default function Register() {
             setErrorMessage(errorMsg)
             if (errorMessage) return
 
-            else await mutate(loginData)
+            else await register.mutate(userData)
             if (!isError || !errorMessage) return redirect('/dashboard')
 
         } catch (e) {
@@ -42,7 +42,7 @@ export default function Register() {
         }
     }
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => setLoginData(prev => ({
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => setUserData(prev => ({
         ...prev,
         [e.target.name]: e.target.value
     }))
@@ -56,29 +56,28 @@ export default function Register() {
                     </h1>
                     <p className={styles.subText}>Join us to gain access to 100's of loos near you!</p>
                 </div>
-                { // @ts-ignore
-                    (errorMessage || isError) && <p className={styles.errorText}>{errorMessage || error}</p>}
+                {(errorMessage || isError) && <p className={styles.errorText}>{errorMessage || String(error)}</p>}
                 <form onSubmit={createUser} className={`${styles.flexCol5} w-[26rem] ${styles.formBorder}`}>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Username:
-                        <input onChange={handleInputChange} value={loginData.username} type="text"
+                        <input onChange={handleInputChange} value={userData.username} type="text"
                                className={styles.inputField} required name={'username'}
                                placeholder={'Username'}/>
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Email:
-                        <input onChange={handleInputChange} value={loginData.email} type="text"
+                        <input onChange={handleInputChange} value={userData.email} type="text"
                                className={styles.inputField} required name={'email'} placeholder={'Email'}/>
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Password:
-                        <input onChange={handleInputChange} value={loginData.password} type="password"
+                        <input onChange={handleInputChange} value={userData.password} type="password"
                                className={styles.inputField} required name={'password'}
                                placeholder={'Password'}/>
                     </label>
                     <label className={`${styles.flexCol2} ${styles.labelText}`}>
                         Confirm Password:
-                        <input onChange={handleInputChange} value={loginData.confirmPassword} type="password"
+                        <input onChange={handleInputChange} value={userData.confirmPassword} type="password"
                                className={styles.inputField} required name={'confirmPassword'}
                                placeholder={'Confirm Password'}/>
                     </label>
