@@ -54,7 +54,7 @@ export default function Loo() {
                     Please login or register to write a review for {loo.name}
                 </Alert>}
             {showReviewThanks && <ReviewThanks toggle={toggleReviewThanks}/>}
-            <div className={'max-w-6xl mx-auto text-slate-900 min-h-[35rem]'}>
+            <div className={'max-w-7xl mx-auto text-slate-900 min-h-[35rem]'}>
                 <section
                     className={`${styles.flexCol10} justify-between place-items-center max-h-[80%] mb-10 lg:flex-row lg:place-items-start`}>
                     <div className={'flex flex-col font-open-sans max-w-xl'}>
@@ -62,7 +62,7 @@ export default function Loo() {
                             {loo.name}
                         </h1>
                         <div
-                            className={`justify-between mb-5 ${styles.flexCol5} sm:gap-0 sm:flex-row text-center md:text-left`}>
+                            className={`justify-between mb-5 ${styles.flexCol10} sm:flex-row text-center md:text-left`}>
                             <address className={`not-italic ${styles.flexCol2}`}>
                                 <div className={styles.subBold}>
                                     <p>{loo.street}</p>
