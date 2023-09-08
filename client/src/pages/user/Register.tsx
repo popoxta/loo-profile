@@ -33,8 +33,10 @@ export default function Register() {
             if (allCredentials.find(user => user.username === username)) errorMsg = 'Username is taken'
 
             setErrorMessage(errorMsg)
-            if (errorMessage) return
-
+            if (errorMessage) {
+                console.log('lol')
+                return
+            }
             else await register.mutate(userData)
             if (!isError || !errorMessage) return redirect('/dashboard')
 

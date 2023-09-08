@@ -11,13 +11,20 @@ function getLocation(address: string): Promise<{ coordinates: Coordinates, stree
         .catch(rethrowError)
 }
 
-function getAllLoos(location: Coordinates = [0, 0], distance: number = 25): Promise<Loo[]> {
+function getAllLoosByDistance(location: Coordinates = [0, 0], distance: number = 25): Promise<Loo[]> {
     return request
         .get(`${URL}/loos/all?location=${String(location)}&distance=${distance}`)
         .then(res => res.body)
         .catch(rethrowError)
-
 }
+
+function getAllLoos(): Promise<Loo[]> {
+    return request
+        .get(`${URL}/loos/all`)
+        .then(res => res.body)
+        .catch(rethrowError)
+}
+
 
 function getLoo(id: number): Promise<{ loo: Loo, reviews: Review[] }> {
     return request
@@ -128,6 +135,7 @@ function rethrowError(err: Error) {
 
 export {
     getLocation,
+    getAllLoosByDistance,
     getAllLoos,
     getLoo,
     getLoosByUser,

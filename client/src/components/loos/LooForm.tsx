@@ -5,6 +5,7 @@ import {getLocation} from "../../lib/api-client.ts";
 import Loading from "../Loading.tsx";
 import styles from '../../lib/style-presets.ts'
 import Button from "../Button.tsx";
+import {useAllLoosQuery} from "../../lib/hooks/useAllLoosQuery.ts";
 
 const DEFAULT_COORDS: Coordinates = [-36.848461, 174.763336]
 
@@ -34,6 +35,7 @@ export default function LooForm(props: Props) {
     const [mapIsLoading, setMapIsLoading] = useState(false)
     const [error, setError] = useState('')
     const [page, setPage] = useState(1)
+    const {data: loos} = useAllLoosQuery()
 
     async function setNewLocation(e: SubmitEvent) {
         e.preventDefault()
@@ -41,11 +43,16 @@ export default function LooForm(props: Props) {
         try {
             setMapIsLoading(true)
             const {coordinates, street, region} = await getLocation(locationQuery)
-            setLooData(prev => ({...prev, lat: coordinates[0], long: coordinates[0], street, region}))
+            if (loos?.find(loo => loo.lat === coordinates[0] && loo.long === coordinates[1])) {
+                setError('Loo already exists for the selected location.')
+                return
+            }
+            setLooData(prev => ({...prev, lat: coordinates[0], long: coordinates[1], street, region}))
             setLocation(coordinates)
         } catch (error) {
-            // @ts-ignore
-            setError(String(error?.message ?? error))
+            if (error instanceof Error) {
+                setError(String(error.message))
+            } else setError(String(error))
         } finally {
             setMapIsLoading(false)
         }
@@ -64,6 +71,7 @@ export default function LooForm(props: Props) {
 
     const handleSubmit = async (e: SubmitEvent) => {
         e.preventDefault()
+        if (error) return
         if (Object.keys(defaultValues).some(val => {
             const currentVal = looData[val as keyof Loo]
             if (val === 'lat') return currentVal === DEFAULT_COORDS[0]
@@ -122,7 +130,7 @@ export default function LooForm(props: Props) {
                 : <div className={'md:w-[32rem] w-full'}>
                     <h3 className={styles.subBold}>Loo Location</h3>
                     <div className={`${styles.formBorder} ${styles.flexCol5}`}>
-                        {error && <p className={styles.errorText}>{error}</p>}
+                        {error && <p className={`${styles.errorText} text-center`}>{error}</p>}
                         <label className={`${styles.flexCol2} ${styles.labelText}`}>
                             Search Location
                             <div className={'flex'}>
