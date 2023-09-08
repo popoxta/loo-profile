@@ -9,10 +9,10 @@ const userRouter = express.Router()
 
 userRouter.get('/me', async (req, res, next) => {
     await tryCatchNext(async () => {
-        await verifyUserToken(req, res)
+        const token = await verifyUserToken(req, res)
         if (res.headersSent) return
 
-        const uId = req.headers.token as string
+        const uId = token.user_id
         const user = await db.getUser(uId)
         if (!user) return utils.notFoundError(res, 'Not Found Error: User could not be retrieved')
 

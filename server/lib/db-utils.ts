@@ -13,8 +13,18 @@ const getAllLoos = () => {
         .leftJoin(subQuery, 'l.id', '=', 'r.loo_id')
 }
 
-const getLoo = (id: number) => {
-    return connection('loos').where({id}).first()
+const getLoo = (id: number, uId?: number) => {
+    const looQuery = connection('loos').where({id}).first()
+
+    return uId
+        ? looQuery.select('*',
+            connection.raw(`CASE WHEN EXISTS (
+      SELECT *
+      FROM saved_loos AS s
+      JOIN users AS u ON u.id = s.user_id
+      WHERE s.loo_id = "${id}" AND s.user_id = "${uId}"
+      ) THEN true ELSE false END AS isSaved`))
+        : looQuery
 }
 
 const getLoosByUser = (id: number) => {

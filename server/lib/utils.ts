@@ -27,10 +27,10 @@ const validateAndReturnReview = async (id: number, res: Response, db) => {
     return review
 }
 
-const validateAndReturnLoo = async (id: number, res: Response, db) => {
+const validateAndReturnLoo = async (id: number, res: Response, db, uId?: number) => {
     validateId(id, res)
     if (res.headersSent) return
-    const loo = await db.getLoo(id)
+    const loo = await db.getLoo(id, uId ?? undefined)
     if (!loo) return utils.notFoundError(res, `Client Error: Loo ${id} does not exist.`)
 
     return loo

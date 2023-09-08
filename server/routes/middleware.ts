@@ -21,14 +21,14 @@ const isAuthenticated = async (req, res, next) => {
 
 const getAuthenticationIfAvailable = async (req, res, next) => {
     try {
-        req.body.token = req.headers.token
-            ? await firebaseAdmin.auth().verifyIdToken(req.headers.token)
+        req.headers.token = req.headers.token
+            ? (await firebaseAdmin.auth().verifyIdToken(req.headers.token)).user_id
             : null
     } catch (e) {
-        req.body.token = null
+        req.headers.token = null
     } finally {
         next()
     }
 }
 
-export {logger, isAuthenticated}
+export {logger, isAuthenticated, getAuthenticationIfAvailable}

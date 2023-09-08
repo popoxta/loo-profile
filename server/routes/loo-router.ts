@@ -3,14 +3,14 @@ import {filterDistance, tryCatchNext, validateAndReturnLoo} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Loo} from "../lib/types/types";
-import {isAuthenticated} from "./middleware";
+import {getAuthenticationIfAvailable, isAuthenticated} from "./middleware";
 
 const looRouter = express.Router()
 
 const LOO_PROPERTIES = ['name', 'street', 'region', 'contact', 'lat', 'long', 'user_id', 'weekday', 'weekend', 'fee', 'about']
 
 // query params e.g ?location=123,123&distance=5
-looRouter.get('/all', async (req, res, next) => {
+looRouter.get('/all', getAuthenticationIfAvailable, async (req, res, next) => {
     await tryCatchNext(async () => {
         const {location, distance} = req.query
 
@@ -26,10 +26,14 @@ looRouter.get('/all', async (req, res, next) => {
     }, next)
 })
 
-looRouter.get('/:id', async (req, res, next) => {
+looRouter.get('/:id', getAuthenticationIfAvailable, async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
-        const loo = await validateAndReturnLoo(id, res, db)
+
+        const uId = req.headers?.token as string
+
+        const user = await db.getUser(uId)
+        const loo = await validateAndReturnLoo(id, res, db, user.id)
         if (res.headersSent) return
 
         const reviews = await db.getReviews(id)

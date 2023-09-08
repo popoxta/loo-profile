@@ -23,6 +23,7 @@ export interface Loo {
     weekend: string
     fee: string
     about: string
+    isSaved?: boolean
 }
 
 export interface User {

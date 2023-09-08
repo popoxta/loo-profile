@@ -30,6 +30,7 @@ export interface Loo {
     avg_rating?: number
     user_id?: number
     about: string
+    isSaved?: boolean
 }
 
 export interface User {

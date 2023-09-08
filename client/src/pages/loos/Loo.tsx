@@ -13,6 +13,8 @@ import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import Alert from "../../components/Alert.tsx";
 import styles from '../../lib/style-presets.ts'
 import NotFound from "../NotFound.tsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHeart} from "@fortawesome/free-solid-svg-icons";
 
 export default function Loo() {
     const [showAddReview, setShowAddReview] = useState(false)
@@ -31,6 +33,8 @@ export default function Loo() {
         }
     </NotFound>
 
+    console.log(looData)
+
     if (isLoading || looData === undefined)
         return <div className={styles.screenContainer}><Loading/></div>
 
@@ -46,7 +50,7 @@ export default function Loo() {
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
 
     return (
-        <main className={`${styles.screenContainer}`}>
+        <main className={`${styles.screenContainer} my-12`}>
             {showAddReview && user && <AddReview submitCb={() => setShowReviewThanks(true)} loo_id={Number(loo?.id)}
                                                  toggle={toggleAddReview}/>}
             {showAddReview && !user &&
@@ -58,9 +62,12 @@ export default function Loo() {
                 <section
                     className={`${styles.flexCol10} justify-between place-items-center max-h-[80%] mb-10 lg:flex-row lg:place-items-start`}>
                     <div className={'flex flex-col font-open-sans max-w-xl'}>
-                        <h1 className={`${styles.looHeading} mb-5 text-center lg:text-left`}>
-                            {loo.name}
-                        </h1>
+                        <div className={'flex place-items-center mb-5 justify-between'}>
+                            <h1 className={`${styles.looHeading} text-center lg:text-left`}>
+                                {loo.name}
+                            </h1>
+                            {user && <FontAwesomeIcon className={`mb-2 ${loo?.isSaved ? 'hover:text-slate-300 text-pink-600' : 'text-slate-300 hover:text-pink-600'}`} size={'xl'} icon={faHeart}/>}
+                        </div>
                         <div
                             className={`justify-between mb-5 ${styles.flexCol10} sm:flex-row text-center md:text-left`}>
                             <address className={`not-italic ${styles.flexCol2}`}>
@@ -104,7 +111,8 @@ export default function Loo() {
                         className={`${styles.borderSlate} w-full min-h-[8rem] flex-col flex justify-center overflow-y-scroll`}>
                         {reviews.length > 0
                             ? reviewElements
-                            : <h3 className={`text-center text-slate-500 text-lg md:text-xl mb-0 md:mb-0`}>No reviews yet!</h3>
+                            : <h3 className={`text-center text-slate-500 text-lg md:text-xl mb-0 md:mb-0`}>No reviews
+                                yet!</h3>
                         }
                     </div>
 
