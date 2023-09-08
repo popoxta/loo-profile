@@ -67,12 +67,20 @@ const getAllUsernames = () => {
     return connection('users').select('username', 'email')
 }
 
-const getUser = (uid: string) => {
+const getUser = (uid: string): User => {
     return connection('users').where({firebase_uid: uid}).first()
 }
 
 const updateUser = (user: User) => {
     return connection('users').update(user).where({firebase_uid: user.firebase_uid}).returning('*')
+}
+
+const saveLoo = (uid: number, looId: number) => {
+    return connection('saved_loos').insert({user_id: uid, loo_id: looId}).returning('*')
+}
+
+const removeSavedLoo = (uid: number, looId: number) => {
+    return connection('saved_loos').delete().where({user_id: uid, loo_id: looId})
 }
 
 export default {
@@ -91,5 +99,7 @@ export default {
     getAllUsernames,
     updateUser,
     deleteLooReviews,
-    deleteLoo
+    deleteLoo,
+    saveLoo,
+    removeSavedLoo
 }

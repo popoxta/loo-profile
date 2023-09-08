@@ -22,7 +22,8 @@ reviewRouter.put('/:id', isAuthenticated, async (req, res, next) => {
         const prevReview = await validateAndReturnReview(id, res, db)
         if (res.headersSent) return
 
-        const user = await db.getUser(req.body.token)
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
         if (user.id !== prevReview.user_id) return utils.unauthorizedError(res, 'Client Error: Unauthorized')
 
         const {loo_id, review, rating, user_id} = req.body
@@ -61,7 +62,8 @@ reviewRouter.delete('/:id', isAuthenticated, async (req, res, next) => {
         const prevReview = await validateAndReturnReview(id, res, db)
         if (res.headersSent) return
 
-        const user = await db.getUser(req.body.token)
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
         if (user.id !== prevReview.user_id) return utils.unauthorizedError(res, 'Client Error: Unauthorized')
 
         await db.deleteReview(id)

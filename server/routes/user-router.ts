@@ -2,18 +2,18 @@ import express from "express";
 import {verifyUserToken} from "../lib/auth-utils";
 import db from '../lib/db-utils'
 import utils from '../lib/route-utils'
-import {tryCatchNext, validateId} from "../lib/utils";
+import {tryCatchNext} from "../lib/utils";
 import {isAuthenticated} from "./middleware";
-import looRouter from "./loo-router";
 
 const userRouter = express.Router()
 
 userRouter.get('/me', async (req, res, next) => {
     await tryCatchNext(async () => {
-        const userToken = await verifyUserToken(req, res)
+        await verifyUserToken(req, res)
         if (res.headersSent) return
 
-        const user = await db.getUser(userToken.uid)
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
         if (!user) return utils.notFoundError(res, 'Not Found Error: User could not be retrieved')
 
         res.json(user)
@@ -22,9 +22,9 @@ userRouter.get('/me', async (req, res, next) => {
 
 userRouter.get('/me/loos', isAuthenticated, async (req, res, next) => {
     await tryCatchNext(async () => {
-        const id = req.body.token
-        const userInfo = await db.getUser(id)
-        const loos = await db.getLoosByUser(userInfo.id)
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
+        const loos = await db.getLoosByUser(user.id)
         return res.json(loos)
     }, next)
 })

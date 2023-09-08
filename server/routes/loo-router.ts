@@ -1,5 +1,5 @@
 import express from "express";
-import {filterDistance, tryCatchNext, validateAndReturnLoo, validateAndReturnReview} from "../lib/utils";
+import {filterDistance, tryCatchNext, validateAndReturnLoo} from "../lib/utils";
 import utils from '../lib/route-utils'
 import db from '../lib/db-utils'
 import {Loo} from "../lib/types/types";
@@ -45,7 +45,8 @@ looRouter.put('/:id', isAuthenticated, async (req, res, next) => {
         const prevLoo = await validateAndReturnLoo(id, res, db)
         if (res.headersSent) return
 
-        const user = await db.getUser(req.body.token)
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
         if (user.id !== prevLoo.user_id) return utils.unauthorizedError(res, 'Client Error: Unauthorized')
 
         const {name, street, region, contact, lat, long, user_id, weekday, weekend, fee, about} = req.body
@@ -88,13 +89,42 @@ looRouter.post('/new', isAuthenticated, async (req, res, next) => {
     }, next)
 })
 
+looRouter.post('/:id/save', isAuthenticated, async (req, res, next) => {
+    await tryCatchNext(async () => {
+        const id = Number(req.params.id)
+        const loo = await validateAndReturnLoo(id, res, db)
+        if (res.headersSent) return
+
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
+
+        await db.saveLoo(user.id, loo.id)
+        res.status(200).end()
+    }, next)
+})
+
+looRouter.delete('/:id/save', isAuthenticated, async (req, res, next) => {
+    await tryCatchNext(async () => {
+        const id = Number(req.params.id)
+        const loo = await validateAndReturnLoo(id, res, db)
+        if (res.headersSent) return
+
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
+
+        await db.removeSavedLoo(user.id, loo.id)
+        res.status(200).end()
+    }, next)
+})
+
 looRouter.delete('/:id', isAuthenticated, async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
         const prevLoo = await validateAndReturnLoo(id, res, db)
         if (res.headersSent) return
 
-        const user = await db.getUser(req.body.token)
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
         if (user.id !== prevLoo.user_id) return utils.unauthorizedError(res, 'Client Error: Unauthorized')
 
         await db.deleteLooReviews(id)

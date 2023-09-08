@@ -1,5 +1,6 @@
 import utils from '../lib/route-utils'
 import {verifyUserToken} from "../lib/auth-utils";
+import {firebaseAdmin} from "../server";
 
 const logger = (req, res, next) => {
     console.log(`New request at ${req.path} at ${new Date()}`)
@@ -10,11 +11,23 @@ const isAuthenticated = async (req, res, next) => {
     try {
         const token = await verifyUserToken(req, res)
         if (res.headersSent) return
-        req.body.token = token.user_id
+        req.headers.token = token.user_id
         next()
     } catch (e) {
         console.log(`Authentication error: ${e}`)
         return utils.unauthorizedError(res, 'Unauthorized, no user found')
+    }
+}
+
+const getAuthenticationIfAvailable = async (req, res, next) => {
+    try {
+        req.body.token = req.headers.token
+            ? await firebaseAdmin.auth().verifyIdToken(req.headers.token)
+            : null
+    } catch (e) {
+        req.body.token = null
+    } finally {
+        next()
     }
 }
 
