@@ -64,7 +64,7 @@ const addUser = (user: User) => {
 }
 
 const getAllUsernames = () => {
-    return connection('users').select('username')
+    return connection('users').select('username', 'email')
 }
 
 const getUser = (uid: string) => {

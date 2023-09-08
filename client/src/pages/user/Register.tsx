@@ -1,5 +1,5 @@
 import {Link, Navigate, redirect} from "react-router-dom";
-import {getAllUsernames} from "../../lib/api-client.ts";
+import {getAllUserInfo} from "../../lib/api-client.ts";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import Button from "../../components/Button.tsx";
 import styles from '../../lib/style-presets.ts'
@@ -21,15 +21,16 @@ export default function Register() {
         e.preventDefault()
         try {
             const {email, username, password, confirmPassword} = userData
-            const allUsernames = await getAllUsernames()
+            const allCredentials = await getAllUserInfo()
             let errorMsg = ''
 
             if (!email || email.length < 6) errorMsg = 'Invalid email address'
+            if (allCredentials.find(user => user.email === email)) errorMsg = 'Email is taken'
             if (!username || username.length < 4) errorMsg = 'Invalid username'
             if (username.length > 16) errorMsg = 'User must be less than 16 characters'
             if (password.length < 6) errorMsg = 'Password must be at least 6 characters'
             if (!password || !confirmPassword || password !== confirmPassword) errorMsg = 'Passwords must match'
-            if (allUsernames.find(user => user.username === username)) errorMsg = 'Username is taken'
+            if (allCredentials.find(user => user.username === username)) errorMsg = 'Username is taken'
 
             setErrorMessage(errorMsg)
             if (errorMessage) return

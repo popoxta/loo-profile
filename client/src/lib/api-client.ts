@@ -103,7 +103,7 @@ async function getUser(): Promise<User | null> {
         .catch(rethrowError)
 }
 
-function getAllUsernames(): Promise<{ username: string }[]> {
+function getAllUserInfo(): Promise<{ username: string, email: string }[]> {
     return request
         .get(`${URL}/users/all`)
         .then(res => res.body)
@@ -132,7 +132,7 @@ export {
     getLoo,
     getLoosByUser,
     getUser,
-    getAllUsernames,
+    getAllUserInfo,
     register,
     addReview,
     updateReview,
