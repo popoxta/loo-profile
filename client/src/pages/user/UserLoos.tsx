@@ -24,11 +24,11 @@ export default function UserLoos() {
     const averageRating = Number((loos?.reduce((acc, curr) => acc + curr.avg_rating, 0) / loos?.length).toFixed(2))
 
     return (
-        <main className={`${styles.screenContainer} w-full`}>
+        <main className={`${styles.screenContainer} w-full md:my-0 my-10`}>
             {    // @ts-ignore
                 loos?.length > 0
                     ?
-                    <div className={`lg:w-[50rem] w-full md:w-[40rem] flex flex-col min-h-[25rem]`}>
+                    <div className={`lg:w-[50rem] w-full flex flex-col min-h-[25rem]`}>
                         <div className={'text-center mb-2.5'}>
                             <h1 className={`${styles.looHeading} mb-0.5`}>{user?.username}'s Loos</h1>
                             <div className={'flex gap-5 justify-center place-items-center'}>
@@ -43,7 +43,7 @@ export default function UserLoos() {
                             <Button size={'sm'} link={'/loos/new'} className={'w-[6rem] py-1'}>New</Button>
                         </div>
                         <div
-                            className={`${styles.borderSlate} min-h-[8rem] flex-col flex justify-center overflow-y-scroll`}>
+                            className={`${styles.borderSlate} md:max-h-[31rem] overflow-y-scroll min-h-[8rem] flex-col flex`}>
                             {looCards}
                         </div>
                     </div>
