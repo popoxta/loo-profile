@@ -14,7 +14,8 @@ looRouter.get('/all', getAuthenticationIfAvailable, async (req, res, next) => {
     await tryCatchNext(async () => {
         const {location, distance} = req.query
 
-        const loos = await db.getAllLoos()
+        const user = req.headers?.token ? await db.getUser(req.headers.token as string) : undefined
+        const loos = await db.getAllLoos(user?.id)
 
         if (location && distance) {
             const locationCoordinates = String(location).split(',').map(el => Number(el))
@@ -29,11 +30,9 @@ looRouter.get('/all', getAuthenticationIfAvailable, async (req, res, next) => {
 looRouter.get('/:id', getAuthenticationIfAvailable, async (req, res, next) => {
     await tryCatchNext(async () => {
         const id = Number(req.params.id)
+        const user = req.headers?.token ? await db.getUser(req.headers.token as string) : undefined
 
-        const uId = req.headers?.token as string
-
-        const user = await db.getUser(uId)
-        const loo = await validateAndReturnLoo(id, res, db, user.id)
+        const loo = await validateAndReturnLoo(id, res, db, user?.id)
         if (res.headersSent) return
 
         const reviews = await db.getReviews(id)

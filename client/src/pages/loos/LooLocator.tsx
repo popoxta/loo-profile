@@ -103,7 +103,7 @@ export default function LooLocator() {
                             : <Map center={view} markers={looMarkers}/>
                         }
                     </div>
-                    <div className={`flex-grow ${styles.borderSlate} w-full md:w-[30rem] overflow-y-scroll`}>
+                    <div className={`flex-grow ${styles.borderSlate} w-full md:w-[35rem] overflow-y-scroll`}>
                         {data && !mapIsLoading && looCards}
                     </div>
                 </div>

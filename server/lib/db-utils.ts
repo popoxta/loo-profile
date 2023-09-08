@@ -1,16 +1,24 @@
 import connection from '../db/knex-db.js'
 import {Loo, Review, User} from './types/types'
 
-const getAllLoos = () => {
+const getAllLoos = (uId?: number) => {
     const subQuery = connection('reviews').select('loo_id')
         .avg('rating AS avg_rating')
         .groupBy('loo_id')
         .as('r')
 
-    return connection('loos')
+    const looQuery = connection('loos')
         .select('l.*', 'r.avg_rating')
         .from('loos as l')
         .leftJoin(subQuery, 'l.id', '=', 'r.loo_id')
+
+    return uId ? looQuery.select(connection.raw(`CASE WHEN EXISTS (
+                  SELECT *
+                  FROM saved_loos AS s
+                  JOIN users AS u ON u.id = s.user_id
+                  WHERE s.loo_id = l.id AND s.user_id = "${uId}"
+                  ) THEN true ELSE false END AS isSaved`))
+        : looQuery
 }
 
 const getLoo = (id: number, uId?: number) => {
@@ -19,11 +27,11 @@ const getLoo = (id: number, uId?: number) => {
     return uId
         ? looQuery.select('*',
             connection.raw(`CASE WHEN EXISTS (
-      SELECT *
-      FROM saved_loos AS s
-      JOIN users AS u ON u.id = s.user_id
-      WHERE s.loo_id = "${id}" AND s.user_id = "${uId}"
-      ) THEN true ELSE false END AS isSaved`))
+                  SELECT *
+                  FROM saved_loos AS s
+                  JOIN users AS u ON u.id = s.user_id
+                  WHERE s.loo_id = "${id}" AND s.user_id = "${uId}"
+                  ) THEN true ELSE false END AS isSaved`))
         : looQuery
 }
 

@@ -11,9 +11,11 @@ function getLocation(address: string): Promise<{ coordinates: Coordinates, stree
         .catch(rethrowError)
 }
 
-function getAllLoosByDistance(location: Coordinates = [0, 0], distance: number = 25): Promise<Loo[]> {
+async function getAllLoosByDistance(location: Coordinates = [0, 0], distance: number = 25): Promise<Loo[]> {
+    const token = await getAccessToken() ?? ''
     return request
         .get(`${URL}/loos/all?location=${String(location)}&distance=${distance}`)
+        .set('token', token)
         .then(res => res.body)
         .catch(rethrowError)
 }
@@ -127,7 +129,7 @@ async function register(user: User): Promise<User> {
         .catch(rethrowError)
 }
 
-async function saveLoo(id: number): Promise<{user_id: number, loo_id: number} | null> {
+async function saveLoo(id: number): Promise<{ user_id: number, loo_id: number } | null> {
     const token = await getAccessToken()
     if (!token) return null
     return request
@@ -137,7 +139,7 @@ async function saveLoo(id: number): Promise<{user_id: number, loo_id: number} | 
         .catch(rethrowError)
 }
 
-async function removeSavedLoo(id: number): Promise<{user_id: number, loo_id: number} | null> {
+async function removeSavedLoo(id: number): Promise<{ user_id: number, loo_id: number } | null> {
     const token = await getAccessToken()
     if (!token) return null
     return request

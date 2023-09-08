@@ -33,8 +33,6 @@ export default function Loo() {
         }
     </NotFound>
 
-    console.log(looData)
-
     if (isLoading || looData === undefined)
         return <div className={styles.screenContainer}><Loading/></div>
 
@@ -50,7 +48,7 @@ export default function Loo() {
     const toggleReviewThanks = () => setShowReviewThanks(!showReviewThanks)
 
     return (
-        <main className={`${styles.screenContainer} my-12`}>
+        <main className={styles.screenContainer}>
             {showAddReview && user && <AddReview submitCb={() => setShowReviewThanks(true)} loo_id={Number(loo?.id)}
                                                  toggle={toggleAddReview}/>}
             {showAddReview && !user &&
@@ -66,7 +64,7 @@ export default function Loo() {
                             <h1 className={`${styles.looHeading} text-center lg:text-left`}>
                                 {loo.name}
                             </h1>
-                            {user && <FontAwesomeIcon className={`mb-2 ${loo?.isSaved ? 'hover:text-slate-300 text-pink-600' : 'text-slate-300 hover:text-pink-600'}`} size={'xl'} icon={faHeart}/>}
+                            {user && <FontAwesomeIcon className={`mb-2 transition-colors ${!!loo?.isSaved ? 'hover:text-slate-300 text-pink-600' : 'text-slate-300 hover:text-pink-600'}`} size={'xl'} icon={faHeart}/>}
                         </div>
                         <div
                             className={`justify-between mb-5 ${styles.flexCol10} sm:flex-row text-center md:text-left`}>
