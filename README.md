@@ -40,7 +40,7 @@ test coverage, user experience and use location services.
 - Click to select address
 - Improved User Profiles
 - Refactoring!
-- 
+  
 ### More Screenshots
 
 ![image](./preview/LOO-MAP.png)
