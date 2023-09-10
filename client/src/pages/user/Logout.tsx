@@ -2,7 +2,6 @@ import {getAuth, signOut} from "firebase/auth";
 import {Navigate, useNavigate} from "react-router-dom";
 import {useQueryClient} from "react-query";
 import Button from "../../components/Button.tsx";
-import styles from '../../lib/style-presets.ts'
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import {useState} from "react";
 import Loading from "../../components/Loading.tsx";
@@ -30,12 +29,12 @@ export default function Logout() {
     }
 
     return (
-        <main className={styles.screenContainer}>
+        <main className={'screen pt-40 md:pt-64 flex-text'}>
             <div className={'flex place-items-center flex-col min-h-[20rem]'}>
                 {isLoading
-                    ? <Loading/>
+                    ? <Loading full={true}/>
                     : <>
-                        <h1 className={`${styles.looHeading} mb-5`}>
+                        <h1 className={`heading-three mb-5`}>
                             Are you sure you want to log out?
                         </h1>
                         <div className={'flex gap-10'}>

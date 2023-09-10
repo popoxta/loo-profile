@@ -1,7 +1,6 @@
 import {Loo} from "../../lib/types/types.ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faToilet} from "@fortawesome/free-solid-svg-icons";
-import styles from "../../lib/style-presets.ts";
 import Stars from "../Stars.tsx";
 import Button from "../Button.tsx";
 import {User} from "firebase/auth";
@@ -37,17 +36,17 @@ export default function LooCardLarge(props: Props) {
                 <FontAwesomeIcon className={'mx-6 text-slate-400 hidden sm:inline-block'} size={'2xl'} icon={faToilet}/>
                 <div className={'flex flex-col w-full h-full justify-between'}>
                     <div className={'flex justify-between place-items-center'}>
-                        <h3 className={styles.looCardTitle}>{loo.name}</h3>
+                        <h3 className={'text-slate-900 font-open-sans text-sm font-semibold'}>{loo.name}</h3>
                         <div className={'flex gap-[0.1rem]'}>
                             <Stars rating={loo.avg_rating ?? 0} size={20}/>
                         </div>
                     </div>
-                    <div>
-                        <p className={styles.looCardSubtext}>{loo.street}</p>
-                        <p className={styles.looCardSubtext}>{loo.region}</p>
+                    <div className={'text-slate-900 font-open-sans text-xs'}>
+                        <p>{loo.street}</p>
+                        <p>{loo.region}</p>
                     </div>
                     <div className={'flex sm:place-items-center justify-between flex-col sm:flex-row'}>
-                        <p className={`py-2.5 ${styles.looCardSmallText}`}>{loo.contact}</p>
+                        <p className={`py-2.5 font-open-sans text-xs text-slate-500`}>{loo.contact}</p>
                         <div className={'flex sm:gap-5 gap-2.5 flex-wrap'}>
                             <Button size={'sm'} link={`/loos/${loo.id}`} className={'w-[6rem] py-1'}>View</Button>
                             <Button size={'sm'} link={`/loos/${loo.id}/edit`}

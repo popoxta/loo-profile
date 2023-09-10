@@ -3,7 +3,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import Button from "./Button.tsx";
 import {useEffect, useRef} from "react";
-import styles from '../lib/style-presets.ts'
 
 interface Props {
     title: string
@@ -26,20 +25,20 @@ export default function Alert(props: Props) {
     return (
         <>
             <Cover show={true} onClick={props.toggle}/>
-            <div className={styles.modalContainer}>
+            <div className={'modal'}>
                 <div
-                    className={styles.modalContentContainer}>
+                    className={'modal-container'}>
                     <FontAwesomeIcon icon={faXmark} size={'xl'}
                                      className={'cursor-pointer absolute right-5 top-3.5 text-slate-500'}
                                      onClick={props.toggle}
                     />
                     <div className={'w-full mx-auto text-center'}>
-                        <h4 className={`${styles.headingFour} mb-2`} ref={alert}>{props.title}</h4>
-                        <div className={styles.divider}></div>
+                        <h4 className={`heading-four mb-2`} ref={alert}>{props.title}</h4>
+                        <div className={'divider'}></div>
                     </div>
                     <div className={'mx-auto px-[10%] mt-5 mb-10'}>
-                        {props?.error && <p className={`${styles.errorText} mt-1`}>*{props?.error}</p>}
-                        <p className={styles.paragraphText}>
+                        {props?.error && <p className={`error-message mt-1`}>*{props?.error}</p>}
+                        <p className={'paragraph text-center'}>
                             {props.children}
                         </p>
                     </div>

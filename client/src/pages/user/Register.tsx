@@ -2,7 +2,6 @@ import {Link, Navigate, redirect} from "react-router-dom";
 import {getAllUserInfo} from "../../lib/api-client.ts";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import Button from "../../components/Button.tsx";
-import styles from '../../lib/style-presets.ts'
 import {ChangeEvent, FormEvent, useState} from "react";
 import Loading from "../../components/Loading.tsx";
 
@@ -15,7 +14,7 @@ export default function Register() {
 
     // todo check w alex for a better way to do this w/o errors
     if (user) return <Navigate to={'/dashboard'}/>
-    if (isLoading) return <main className={styles.screenContainer}><Loading/></main>
+    if (isLoading) return <Loading full={true}/>
 
     const createUser = async (e: FormEvent) => {
         e.preventDefault()
@@ -51,42 +50,42 @@ export default function Register() {
     }))
 
     return (
-        <main className={styles.screenContainer}>
-            <div className={`place-items-center ${styles.flexCol5}`}>
+        <main className={'screen pt-24 md:pt-40 md:mx-auto mx-0 pb-16'}>
+            <div className={`place-items-center flex-col-5`}>
                 <div className={'text-center'}>
-                    <h1 className={`${styles.looHeading} mb-2`}>
+                    <h1 className={`heading-three mb-2`}>
                         Register
                     </h1>
-                    <p className={styles.subText}>Join us to gain access to 100's of loos near you!</p>
+                    <p className={'paragraph text-slate-500'}>Join us to gain access to 100's of loos near you!</p>
                 </div>
-                {(errorMessage || isError) && <p className={styles.errorText}>{errorMessage || String(error)}</p>}
-                <form onSubmit={createUser} className={`${styles.flexCol5} w-[26rem] ${styles.formBorder}`}>
-                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
+                {(errorMessage || isError) && <p className={'error-message'}>{errorMessage || String(error)}</p>}
+                <form onSubmit={createUser} className={`flex-col-5 md:w-[26rem] w-full border-form`}>
+                    <label className={`flex-col-2 form-text`}>
                         Username:
                         <input onChange={handleInputChange} value={userData.username} type="text"
-                               className={styles.inputField} required name={'username'}
+                               className={'form-input'} required name={'username'}
                                placeholder={'Username'}/>
                     </label>
-                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
+                    <label className={`flex-col-2 form-text`}>
                         Email:
                         <input onChange={handleInputChange} value={userData.email} type="text"
-                               className={styles.inputField} required name={'email'} placeholder={'Email'}/>
+                               className={'form-input'} required name={'email'} placeholder={'Email'}/>
                     </label>
-                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
+                    <label className={'flex-col-2 form-text'}>
                         Password:
                         <input onChange={handleInputChange} value={userData.password} type="password"
-                               className={styles.inputField} required name={'password'}
+                               className={'form-input'} required name={'password'}
                                placeholder={'Password'}/>
                     </label>
-                    <label className={`${styles.flexCol2} ${styles.labelText}`}>
+                    <label className={`flex-col-2 form-text`}>
                         Confirm Password:
                         <input onChange={handleInputChange} value={userData.confirmPassword} type="password"
-                               className={styles.inputField} required name={'confirmPassword'}
+                               className={'form-input'} required name={'confirmPassword'}
                                placeholder={'Confirm Password'}/>
                     </label>
                     <Button className={'mt-3'}>Register</Button>
                 </form>
-                <div className={`${styles.tinyText} self-end text-right`}>
+                <div className={`font-open-sans text-xs text-slate-900 self-end text-right`}>
                     <p>Already have an account?</p>
                     <p className={'text-cyan-600 font-medium'}><Link to={'/login'}>Log in</Link></p>
                 </div>

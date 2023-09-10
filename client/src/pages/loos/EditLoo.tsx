@@ -1,5 +1,4 @@
 import LooForm from "../../components/loos/LooForm.tsx";
-import styles from '../../lib/style-presets.ts'
 import {Loo} from "../../lib/types/types.ts";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import {Navigate, useNavigate, useParams} from "react-router-dom";
@@ -12,7 +11,7 @@ export default function EditLoo() {
     const navigate = useNavigate()
     const queryClient = useQueryClient()
     const id: string | undefined = useParams().id
-    const {data: loo, isLoading, isError, updateLoo, } = useLooQuery(Number(id))
+    const {data: loo, isLoading, isError, updateLoo,} = useLooQuery(Number(id))
     const {data: user, isLoading: isLoadingUser} = useUserQuery()
 
     if (!user && !isLoadingUser) return <Navigate to={'/login'}/>
@@ -29,28 +28,22 @@ export default function EditLoo() {
         }
     </NotFound>
 
-    if (isLoading || loo === undefined)
-        return <div className={styles.screenContainer}><Loading/></div>
-
     const handleSubmit = async (loo: Loo) => {
         const newLoo: Loo = {...loo, user_id: user?.id}
         await updateLoo.mutate(newLoo, {
             onSuccess: () => {
-               queryClient.invalidateQueries(['loos', loo.id])
+                queryClient.invalidateQueries(['loos', loo.id])
                 navigate(`/loos/${loo.id}`)
             }
         })
     }
 
     return (
-        <main className={`${styles.screenContainer} ${styles.flexCol2}`}>
-            {isLoading
-                ? <Loading/>
-                : <>
-                    <h1 className={styles.looHeading}>add loo</h1>
-                    <LooForm submitFn={handleSubmit} loo={loo?.loo}/>
-                </>
-            }
-        </main>
+        (isLoading || loo?.loo === undefined)
+            ? <Loading/>
+            : <main className={`screen flex-col-2 pt-32 mx-0 md:mx-auto`}>
+                <h1 className={'heading-three'}>update {loo?.loo.name}</h1>
+                <LooForm submitFn={handleSubmit} loo={loo?.loo}/>
+            </main>
     )
 }

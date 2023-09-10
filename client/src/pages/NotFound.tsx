@@ -1,6 +1,5 @@
 import Button from "../components/Button.tsx";
 import {useNavigate} from "react-router-dom";
-import styles from '../lib/style-presets.ts'
 import {ReactElement} from "react";
 
 interface Props {
@@ -13,13 +12,13 @@ export default function NotFound(props: Props) {
     const handleGoBack = () => navigate('/')
 
     return (
-        <main className={styles.screenContainer}>
-            <div className={`${styles.flexCol10} place-items-center md:flex-row`}>
+        <main className={'screen pt-52 md:pt-80'}>
+            <div className={`flex-col-10 place-items-center md:flex-row`}>
                 <div className={'max-w-lg text-center flex flex-col place-items-center'}>
-                    <h1 className={`${styles.headingOneBold} normal-case`}>
+                    <h1 className={`heading-one font-bold normal-case`}>
                         Oops...
                     </h1>
-                    <div className={styles.subText}>
+                    <div className={'font-spartan text-slate-500'}>
                         {props?.children
                             ? props?.children
                             : <>

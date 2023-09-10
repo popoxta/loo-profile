@@ -7,7 +7,6 @@ import {geoError, geoSuccess, getMarkers} from "../../lib/geo-utils.ts";
 import {getLocation} from "../../lib/api-client.ts";
 import {useAllLoosQuery} from "../../lib/hooks/useAllLoosQuery.ts";
 import Loading from "../../components/Loading.tsx";
-import styles from '../../lib/style-presets.ts'
 
 const DEFAULT_COORDS: Coordinates = [-36.848461, 174.763336]
 
@@ -60,26 +59,26 @@ export default function LooLocator() {
                  loo={loo}/>)
 
     return (
-        <main className={styles.screenContainer}>
-            <div className={`${styles.flexibleCol5} flex-grow max-w-6xl`}>
-                <h2 className={`${styles.headingTwoBoldText} font-bold text-center md:text-left`}>Loocator</h2>
-                <div className={`place-items-center ${styles.flexibleCol10} md:flex-row`}>
+        <main className={'screen-flex pt-20 md:pt-36 pb-14'}>
+            <div className={`flex-col-2 md:gap-5 flex-grow max-w-6xl`}>
+                <h2 className={`heading-two font-bold flex-text`}>Loocator</h2>
+                <div className={`place-items-center flex-col-2 md:gap-10 md:flex-row`}>
                     <Form
                         onSubmit={setNewLocation}
                         className={'flex place-items-center gap-5 w-full md:w-fit'}>
-                        <label className={`${styles.labelText} flex-grow md:flex-grow-0`}>
+                        <label className={`form-text flex-grow md:flex-grow-0`}>
                             Enter a location
                             <input
                                 onChange={handleLocationInput}
                                 value={locationQuery}
-                                className={` ${styles.borderSlate} mt-1 block px-1 py-1 font-normal w-full md:w-60`}
+                                className={`border-card mt-1 block px-1 py-1 font-normal w-full md:w-60`}
                                 type={'text'} name={'location'}/>
                         </label>
                         <button
-                            className={`${styles.labelText} bg-slate-200 rounded-md block px-8 py-[0.4rem] place-self-end`}>Search
+                            className={`form-text bg-slate-200 rounded-md block px-8 py-[0.4rem] place-self-end`}>Search
                         </button>
                     </Form>
-                    <label className={`${styles.labelText} w-full md:w-fit`}>
+                    <label className={`form-text w-full md:w-fit`}>
                         Distance
                         <select
                             onChange={setDistanceFilter}
@@ -94,16 +93,17 @@ export default function LooLocator() {
                     </label>
                 </div>
                 <div
-                    className={`${styles.flexCol5} min-w-full md:min-w-[35rem] h-[40rem] md:h-[30rem] flex-col md:gap-10 md:flex-row`}>
+                    className={`flex-col-5 min-w-full md:min-w-[35rem] h-[40rem] md:h-[30rem] md:gap-10 md:flex-row`}>
                     <div className={'w-full h-full min-h-[20rem]'}>
                         {isLoading || mapIsLoading
                             ?
-                            <div className={'min-h-full flex justify-center place-items-center bg-slate-100'}><Loading/>
+                            <div className={'min-h-full flex justify-center place-items-center bg-slate-100'}>
+                                <Loading/>
                             </div>
                             : <Map center={view} markers={looMarkers}/>
                         }
                     </div>
-                    <div className={`flex-grow ${styles.borderSlate} w-full md:w-[35rem] overflow-y-scroll`}>
+                    <div className={`flex-grow border-card w-full md:w-[35rem] overflow-y-scroll`}>
                         {data && !mapIsLoading && looCards}
                     </div>
                 </div>

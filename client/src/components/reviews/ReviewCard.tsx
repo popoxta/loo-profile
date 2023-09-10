@@ -5,7 +5,6 @@ import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import AddReview from "./AddReview.tsx";
 import {useState} from "react";
 import DeleteReview from "./DeleteReview.tsx";
-import styles from "../../lib/style-presets.ts";
 import {getFormattedDate} from "../../lib/utils.ts";
 
 interface Props {
@@ -40,11 +39,11 @@ export default function ReviewCard(props: Props) {
                 <div className={'w-full'}>
                     <div className={'w-full flex place-items-center justify-between'}>
                         <div className={'flex place-items-center gap-2.5'}>
-                            <p className={styles.subBold}>{props.review.username}</p>
+                            <p className={'bold-text'}>{props.review.username}</p>
                             <div className={'flex place-content-center gap-0.5'}>
                                 <Stars style={{marginTop: '-4px'}} rating={review.rating} size={15}/>
                             </div>
-                            <p className={styles.looCardSmallText}>{date.day} {date.hour}</p>
+                            <p className={'font-open-sans text-xs text-slate-500'}>{date.day} {date.hour}</p>
                         </div>
                         {isEditable && <div className={'flex gap-5'}>
                             <Button onClick={toggleEditing} className={''} size={'sm'}>Edit</Button>
@@ -52,7 +51,7 @@ export default function ReviewCard(props: Props) {
                         </div>
                         }
                     </div>
-                    <p className={`${styles.paragraphText} mt-1 max-w-4xl`}>
+                    <p className={`paragraph mt-1 max-w-4xl`}>
                         {review.review}
                     </p>
                 </div>

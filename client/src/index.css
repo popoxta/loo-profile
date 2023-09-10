@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,4 +17,90 @@ html, body {
 .leaflet-container {
     width: 100%;
     height: 100%;
+}
+
+@layer components {
+    .screen {
+        @apply mx-auto min-h-screen px-5
+    }
+
+    .screen-flex {
+        @apply flex justify-center min-h-screen px-5
+    }
+
+    .modal {
+        @apply absolute w-full h-full top-0 left-0 z-50 flex justify-center place-items-center
+    }
+
+    .modal-container {
+        @apply fixed mx-auto bg-white w-full flex flex-col min-h-[10rem] rounded-lg px-10 pt-14 pb-10 shadow font-open-sans md:w-[38rem]
+    }
+
+    .heading-one {
+        @apply font-bold font-spartan uppercase text-slate-900 text-5xl md:text-7xl
+    }
+
+    .heading-two {
+        @apply font-medium font-spartan uppercase text-slate-900 text-4xl md:text-5xl
+    }
+
+    .heading-three {
+        @apply text-4xl font-semibold font-spartan uppercase
+    }
+
+    .heading-four {
+        @apply text-3xl font-bold font-spartan
+    }
+
+    .subheading {
+        @apply text-slate-500 text-lg md:text-xl
+    }
+
+    .paragraph {
+        @apply font-open-sans text-sm text-slate-900
+    }
+
+    .bold-text {
+        @apply font-bold font-open-sans text-slate-900
+    }
+
+    .border-form {
+        @apply bg-slate-100 p-10 rounded-lg border
+    }
+
+    .border-card {
+        @apply border-2 border-slate-300 rounded-lg
+    }
+
+    .form-text {
+        @apply font-medium font-open-sans text-sm text-slate-900
+    }
+
+    .form-input {
+        @apply bg-white h-[2.2rem] rounded-md px-2.5 border-2
+    }
+
+    .error-message {
+        @apply font-open-sans text-red-800 text-xs
+    }
+
+    .flex-text {
+        @apply text-center md:text-left
+    }
+
+    .flex-col-2 {
+        @apply flex flex-col gap-2.5
+    }
+
+    .flex-col-5 {
+        @apply flex flex-col gap-5
+    }
+
+    .flex-col-10 {
+        @apply flex flex-col gap-10
+    }
+
+    .divider {
+        @apply h-[2px] bg-slate-300 mx-auto my-2.5
+    }
 }

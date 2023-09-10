@@ -3,7 +3,6 @@ import {faHeart, faToilet} from "@fortawesome/free-solid-svg-icons";
 import {Loo} from "../../lib/types/types.ts";
 import Button from "../Button.tsx";
 import Stars from "../Stars.tsx";
-import styles from '../../lib/style-presets.ts'
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 
 interface Props {
@@ -25,7 +24,7 @@ export default function LooCard(props: Props) {
             <div className={'flex flex-col w-full h-full justify-between'}>
                 <div className={'flex justify-between place-items-center'}>
                     <div className={'flex gap-2 place-items-center'}>
-                        <h3 className={styles.looCardTitle}>{loo.name}</h3>
+                        <h3 className={'text-slate-900 font-open-sans text-sm font-semibold'}>{loo.name}</h3>
                         {user &&
                             <FontAwesomeIcon
                                 className={`-mb-0.5 cursor-pointer transition-colors ${!!loo?.isSaved ? 'hover:text-slate-300 text-pink-600' : 'text-slate-300 hover:text-pink-600'}`}
@@ -36,12 +35,12 @@ export default function LooCard(props: Props) {
                         <Stars rating={loo.avg_rating ?? 0} size={15}/>
                     </div>
                 </div>
-                <div>
-                    <p className={styles.looCardSubtext}>{loo.street}</p>
-                    <p className={styles.looCardSubtext}>{loo.region}</p>
+                <div className={'text-slate-900 font-open-sans text-xs'}>
+                    <p>{loo.street}</p>
+                    <p>{loo.region}</p>
                 </div>
                 <div className={'flex place-items-center justify-between'}>
-                    <p className={styles.looCardSmallText}>{loo.contact}</p>
+                    <p className={'font-open-sans text-xs text-slate-500'}>{loo.contact}</p>
                     <Button size={'sm'} link={`/loos/${loo.id}`}>View</Button>
                 </div>
             </div>

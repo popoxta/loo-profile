@@ -1,5 +1,4 @@
 import LooForm from "../../components/loos/LooForm.tsx";
-import styles from '../../lib/style-presets.ts'
 import {Loo} from "../../lib/types/types.ts";
 import {useAllLoosQuery} from "../../lib/hooks/useAllLoosQuery.ts";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
@@ -26,14 +25,11 @@ export default function AddLoo() {
     }
 
     return (
-        <main className={`${styles.screenContainer} ${styles.flexCol2}`}>
-            {isLoading
-                ? <Loading/>
-                : <>
-                    <h1 className={styles.looHeading}>add loo</h1>
-                    <LooForm submitFn={handleSubmit}/>
-                </>
-            }
-        </main>
+        isLoading
+            ? <Loading full={true}/>
+            : <main className={`screen flex-col-2 pt-32 mx-0 md:mx-auto`}>
+                <h1 className={'heading-three'}>add loo</h1>
+                <LooForm submitFn={handleSubmit}/>
+            </main>
     )
 }

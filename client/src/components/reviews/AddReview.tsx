@@ -7,7 +7,6 @@ import {Rating} from "react-simple-star-rating";
 import {useLooQuery} from "../../lib/hooks/useLooQuery.ts";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
 import {Review} from "../../lib/types/types.ts";
-import styles from '../../lib/style-presets.ts'
 
 interface Props {
     toggle: () => void
@@ -65,27 +64,27 @@ export default function AddReview(props: Props) {
     return (
         <>
             <Cover show={true} onClick={props.toggle}/>
-            <div className={styles.modalContainer}>
+            <div className={'modal'}>
                 <div
-                    className={styles.modalContentContainer}>
+                    className={'modal-container'}>
                     <FontAwesomeIcon icon={faXmark} size={'xl'}
                                      className={'cursor-pointer absolute right-5 top-3.5 text-slate-500'}
                                      onClick={props.toggle}/>
                     <div className={'w-full mx-auto text-center'}>
-                        <h4 className={`${styles.headingFour} mb-2`}>Leave a review</h4>
-                        <div className={styles.divider}></div>
+                        <h4 className={`heading-four mb-2`}>Leave a review</h4>
+                        <div className={'divider'}></div>
                     </div>
-                    <form onSubmit={handleSubmit} className={`mx-auto ${styles.flexCol10} mt-10`}>
+                    <form onSubmit={handleSubmit} className={`mx-auto flex-col-10 mt-10`}>
                         <div>
-                            <h5 className={`${styles.subBold} mb-2.5`}>Some title for a thing</h5>
-                            <p className={styles.paragraphText}>
+                            <h5 className={`font-bold mb-2.5`}>Some title for a thing</h5>
+                            <p className={'paragraph'}>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ante eu elit
                                 pretium
                                 imperdiet. Nullam in tristique justo.
                             </p>
                         </div>
                         <div>
-                            <h5 className={`${styles.subBold} mb-2.5`}>Rating</h5>
+                            <h5 className={`bold-text mb-2.5`}>Rating</h5>
                             <div className={'w-full'}>
                                 <Rating allowFraction={true} initialValue={rating} size={32}
                                         emptyStyle={{display: "flex"}}
@@ -94,11 +93,11 @@ export default function AddReview(props: Props) {
                         </div>
                         <div>
                             <div className={'flex gap-5'}>
-                                <label htmlFor={'review'} className={`${styles.subBold} mb-2.5`}>Review</label>
-                                {error && <p className={`${styles.errorText} mt-1`}>*{error}</p>}
+                                <label htmlFor={'review'} className={`bold-text mb-2.5`}>Review</label>
+                                {error && <p className={`error-message mt-1`}>*{error}</p>}
                             </div>
                             <textarea name={'review'} onChange={handleChange} value={review}
-                                      className={` flex-grow  w-full min-h-[10rem] ${styles.inputField} overflow-y-scroll`}/>
+                                      className={` flex-grow  w-full min-h-[10rem] form-input overflow-y-scroll`}/>
                         </div>
                         <Button className={'mx-auto'} size={'md'}>Submit Review</Button>
                     </form>
