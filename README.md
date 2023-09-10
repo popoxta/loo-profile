@@ -23,13 +23,11 @@ test coverage, user experience and use location services.
 - <a href="https://tanstack.com/">TanStack Query</a>
 - <a href="https://www.npmjs.com/package/superagent">SuperAgent</a>
 - <a href="https://leafletjs.com/">Leaflet</a> & <a href="https://www.openstreetmap.org/">OpenStreetMaps</a>
-
 - NodeJS / <a href="https://www.npmjs.com/package/express">Express</a>
 - <a href="https://knexjs.org/">KNEX / SQLITE / PostgreSQL</a> 
 - <a href="https://firebase.google.com/">FireBase Auth / Admin</a>
 - <a href="https://www.npmjs.com/package/cors">cors</a>
 - <a href="https://www.npmjs.com/package/geolib">GeoLib</a>
-
 - <a href="https://testing-library.com/">Testing Library</a>
 - <a href="https://www.npmjs.com/package/supertest">SuperTest</a>
 
