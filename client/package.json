@@ -26,6 +26,7 @@
     "uninstall": "^0.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.37.1",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
