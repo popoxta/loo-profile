@@ -14,7 +14,7 @@ export default function Menu({show, toggle}: { show: boolean, toggle: () => void
             <Cover show={show} onClick={toggle}/>
             <nav
                 className={`${show ? 'translate-x-0 visible' : 'translate-x-full invisible'} duration-200 transition-all ease-in-out fixed right-0 top-0 h-full w-full bg-white z-50 font-spartan min-w-[26rem] lg:w-1/4 py-5 px-8 md:w-1/2`}>
-                <FontAwesomeIcon icon={faXmark} size={'2xl'} title={'Close Menu'}
+                <FontAwesomeIcon icon={faXmark} size={'2xl'} title={'Close Menu'} data-testid={'hamburger-close'}
                                  className={'cursor-pointer absolute top-3 right-5 sm:right-12'} onClick={toggle}/>
                 <ul>
                     {user
@@ -27,7 +27,7 @@ export default function Menu({show, toggle}: { show: boolean, toggle: () => void
                                 </div>
                             </li>
                             <li className={`border-b-2 ${LIST_STYLE}`}>
-                                <Link onClick={toggle} to={'/loos'}>Locator</Link>
+                                <Link onClick={toggle} to={'/loos'}>Loocator</Link>
                             </li>
                             <li
                                 className={`border-b-2 ${LIST_STYLE}`}>
@@ -54,7 +54,7 @@ export default function Menu({show, toggle}: { show: boolean, toggle: () => void
                                 </div>
                             </li>
                             <li className={`border-b-2 ${LIST_STYLE}`}>
-                                <Link onClick={toggle} to={'/loos'}>Locator</Link>
+                                <Link onClick={toggle} to={'/loos'}>Loocator</Link>
                             </li>
                             <li className={`border-b-2 ${LIST_STYLE}`}>
                                 <Link onClick={toggle} to={'/register'}>Register</Link>

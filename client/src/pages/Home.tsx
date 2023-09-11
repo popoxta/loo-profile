@@ -10,7 +10,7 @@ export default function Home() {
                     className={'w-[22rem] h-[22rem] rounded-2xl object-cover'}
                 />
                 <div className={'max-w-lg flex-text'}>
-                    <h1 className={`heading-one mb-2.5 md:mb-5`}>Loo Profile</h1>
+                    <h1 data-testid={'home-title'} className={`heading-one mb-2.5 md:mb-5`}>Loo Profile</h1>
                     <p className={`subheading mb-5 md:mb-8`}>Slightly less witty subtitle that describes what this is,
                         probably.</p>
                     <Button size={'lg'} link={'/loos'}>Get started</Button>
