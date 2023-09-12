@@ -25,7 +25,7 @@ export default function Alert(props: Props) {
     return (
         <>
             <Cover show={true} onClick={props.toggle}/>
-            <div className={'modal'}>
+            <div className={'modal'} data-testid={'alert'} >
                 <div
                     className={'modal-container'}>
                     <FontAwesomeIcon icon={faXmark} size={'xl'}
