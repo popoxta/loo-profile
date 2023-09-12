@@ -34,3 +34,9 @@ export interface User {
 }
 
 export type Coordinates = [number, number]
+
+export interface Location {
+    coordinates: Coordinates
+    street: string
+    region: string
+}

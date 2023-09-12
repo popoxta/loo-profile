@@ -2,12 +2,12 @@ import express from "express";
 import utils from '../lib/route-utils'
 import {tryCatchNext} from "../lib/utils";
 import axios from "axios";
-import {Coordinates} from "../lib/types/types";
+import {Location} from "../lib/types/types";
 
 const locationRouter = express.Router()
 
 locationRouter.get('/', async (req, res, next) => {
-    await tryCatchNext(async (): Promise<Coordinates> => {
+    await tryCatchNext(async (): Promise<Location> => {
         const {address} = req.query
         if (!address) return utils.clientError(res, 'Client Error: Address query must be provided.')
 
