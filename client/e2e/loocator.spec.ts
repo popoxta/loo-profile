@@ -19,9 +19,7 @@ test.describe('Loocator Page', () => {
                 }))
         })
 
-        await page.route('*/**/loos/all*', async route => {
-            await route.fulfill({json: loos})
-        })
+        await page.route('*/**/loos/all*', async route => await route.fulfill({json: loos}))
 
         await page.route('*/**/location*', async route => {
             await route.fulfill({json: {coordinates: [0, 0], street: 'fake st', region: 'computer'}})
@@ -68,33 +66,26 @@ test.describe('Loocator Page', () => {
         await expect(page).toHaveURL('/loos?distance=10')
     })
 
-    test('Distance and search filters should update search parameters separately', async ({page}) => {
+    test('Filters should update search parameters separately', async ({page}) => {
         await page.goto('/loos')
         await page.getByLabel(/distance/i).selectOption('5km')
         await expect(page).toHaveURL('/loos?distance=5')
-        await page.getByLabel(/enter a location/i).type('11 Test st')
+        await page.getByLabel(/enter a location/i).type('11 test st')
         await page.getByRole('button', {name: 'Search'}).click()
-        await expect(page).toHaveURL('/loos?location=11+test+st&distance=5')
+        await expect(page).toHaveURL('/loos?distance=5&location=11+test+st')
+    })
+
+    test('Should prepopulate filters per search parameters', async ({page}) => {
+        await page.goto('/loos?location=275+cuba+street&distance=5')
+        await expect(await page.getByLabel(/location/i)).toHaveValue(/275 cuba street/i)
+        await expect(await page.getByLabel(/distance/i)).toHaveValue('5')
+    })
+
+    test('Should render an alert if location cannot be found', async ({page}) => {
+        await page.route('*/**/location*', async route => await route.abort('failed'))
+        await page.goto('/loos?location=2+amazingwow+st')
+        const alert = await page.getByTestId('alert')
+        await expect(alert).toBeVisible()
+        await expect(page.getByText(/could not set location/i)).toBeVisible()
     })
 })
-
-// test.describe('Loocator Location', () => {
-//
-//     test.beforeEach(async ({page}) => {
-//         await page.addInitScript(() => {
-//             window.navigator.geolocation.getCurrentPosition = async (success) =>
-//                 Promise.resolve(success({
-//                     coords: {
-//                         latitude: 43.5320,
-//                         longitude: 172.6306,
-//                         accuracy: 10,
-//                         altitude: 10,
-//                         heading: 10,
-//                         speed: 10,
-//                         altitudeAccuracy: 10,
-//                     }, timestamp: Date.now()
-//                 }))
-//         })
-//     })
-//
-// })
