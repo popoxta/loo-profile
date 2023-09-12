@@ -105,10 +105,10 @@ export default function Loo() {
                         <Button title={'Write a review'} size={'md'} onClick={toggleAddReview}>Write a review</Button>
                     </div>
                     <div
-                        className={`border-card w-full min-h-[8rem] flex-col`}>
+                        className={`border-card w-full min-h-[8rem] flex flex-col ${reviews.length <= 0 ? 'flex-row justify-center' : ''}`}>
                         {reviews.length > 0
                             ? reviewElements
-                            : <h3 className={`text-center subheading`}>No reviews
+                            : <h3 className={`text-center subheading place-self-center`}>No reviews
                                 yet!</h3>
                         }
                     </div>
