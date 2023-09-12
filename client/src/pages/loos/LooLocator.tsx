@@ -2,11 +2,12 @@ import {Form, useSearchParams} from "react-router-dom";
 import Map from "../../components/Map.tsx";
 import {Coordinates, Loo} from "../../lib/types/types.ts";
 import LooCard from "../../components/loos/LooCard.tsx";
-import {ChangeEvent, ReactElement, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, ReactElement, useEffect, useState} from "react";
 import {geoError, geoSuccess, getMarkers} from "../../lib/geo-utils.ts";
 import {getLocation} from "../../lib/api-client.ts";
 import {useAllLoosQuery} from "../../lib/hooks/useAllLoosQuery.ts";
 import Loading from "../../components/Loading.tsx";
+import Alert from "../../components/Alert.tsx";
 
 const DEFAULT_COORDS: Coordinates = [-36.848461, 174.763336]
 
@@ -19,6 +20,7 @@ export default function LooLocator() {
     const [view, setView] = useState(DEFAULT_COORDS)
     const [distance, setDistance] = useState<number>(queryDistance > 0 ? queryDistance : 25)
     const [mapIsLoading, setMapIsLoading] = useState(!!navigator.geolocation && !locationQuery)
+    const [error, setError] = useState('')
 
     const {data, isLoading} = useAllLoosQuery(location, distance)
 
@@ -41,15 +43,27 @@ export default function LooLocator() {
         setSearchParams(searchParams)
     }
 
-    const handleLocationInput = (e: ChangeEvent<HTMLInputElement>) => setLocationQuery(e.target.value)
+    const handleLocationInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setLocationQuery(e.target.value)
+        searchParams.set('location', e.target.value)
+        setSearchParams(searchParams)
+    }
 
-    async function setNewLocation() {
+    async function setNewLocation(e?: FormEvent) {
+        if (e) e.preventDefault()
         if (!locationQuery) return
-        setMapIsLoading(true)
-        const {coordinates} = await getLocation(locationQuery)
-        setLocation(coordinates)
-        setView(coordinates)
-        setMapIsLoading(false)
+        try {
+            setMapIsLoading(true)
+            const {coordinates} = await getLocation(locationQuery)
+            setLocation(coordinates)
+            setView(coordinates)
+        } catch (error) {
+            if (error instanceof Error) {
+                setError(String(error.message))
+            } else setError(String(error))
+        } finally {
+            setMapIsLoading(false)
+        }
     }
 
     const looMarkers = data ? getMarkers(data) : undefined
@@ -58,8 +72,16 @@ export default function LooLocator() {
         <LooCard isLast={i === (data?.length - 1)} onClick={() => setView([loo.lat, loo.long])} key={loo.id + loo.name}
                  loo={loo}/>)
 
+    const hideError = () => setError('')
+
     return (
         <main className={'screen-flex pt-20 md:pt-36 pb-14'}>
+            {error &&
+                <Alert title={'Could Not Set Location'} buttonText={'Close'} toggle={hideError}
+                       buttonToggle={hideError}>
+                    {error}
+                </Alert>
+            }
             <div className={`flex-col-2 md:gap-5 flex-grow max-w-6xl`}>
                 <h2 className={`heading-two font-bold flex-text`}>Loocator</h2>
                 <div className={`place-items-center flex-col-2 md:gap-10 md:flex-row`}>

@@ -19,6 +19,7 @@ export default function LooCard(props: Props) {
         <div
             onClick={props?.onClick ? props.onClick : () => {
             }}
+            data-testid={'loo-card'}
             className={`flex w-full place-items-center py-5 pr-5 ${isLast ? '' : 'border-b-2'} border-slate-200 h-32`}>
             <FontAwesomeIcon className={'mx-5 text-slate-400'} size={'2xl'} icon={faToilet}/>
             <div className={'flex flex-col w-full h-full justify-between'}>
@@ -41,7 +42,7 @@ export default function LooCard(props: Props) {
                 </div>
                 <div className={'flex place-items-center justify-between'}>
                     <p className={'font-open-sans text-xs text-slate-500'}>{loo.contact}</p>
-                    <Button size={'sm'} link={`/loos/${loo.id}`}>View</Button>
+                    <Button title={`Visit Loo ${loo.id}`} size={'sm'} link={`/loos/${loo.id}`}>View</Button>
                 </div>
             </div>
         </div>
