@@ -102,7 +102,8 @@ describe('POST /me/register', () => {
     it('Should create a new user', async () => {
         const res = await request(app).post('/users/register')
             .send({email: '123@email.com', username: 'person', firebase_uid: 'horse'})
-            .expect(400)
+            .expect(200)
+
         expect(res.body[0]).toStrictEqual({
                 id: 3,
                 firebase_uid: 'horse',
@@ -121,7 +122,7 @@ describe('POST /me/register', () => {
             .send({email: '456@email.com', username: 'human', firebase_uid: 'horse'})
             .expect(400)
 
-        expect(res.body.message).toBe(/client error/i)
+        expect(res.body.message).toMatch(/client error/i)
     })
 })
 

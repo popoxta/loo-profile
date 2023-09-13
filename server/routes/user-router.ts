@@ -32,7 +32,11 @@ userRouter.get('/me/loos', isAuthenticated, async (req, res, next) => {
 userRouter.post('/register', async (req, res, next) => {
     await tryCatchNext(async () => {
         const {firebase_uid, email, username} = req.body
+        if (!firebase_uid || !email || !username)
+            return utils.clientError(res, 'Client Error: Please fill out all details')
+
         const user = await db.addUser({username, email, firebase_uid})
+
         if (user) res.json(user)
         else return utils.serverError(res, 'Server Error: User request could not be processed')
     }, next)

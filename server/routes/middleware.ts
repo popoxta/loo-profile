@@ -15,7 +15,7 @@ const isAuthenticated = async (req, res, next) => {
         next()
     } catch (e) {
         console.log(`Authentication error: ${e}`)
-        return utils.unauthorizedError(res, 'Unauthorized, no user found')
+        return utils.unauthorizedError(res, 'Unauthorized: No user found')
     }
 }
 
