@@ -26,13 +26,13 @@ reviewRouter.put('/:id', isAuthenticated, async (req, res, next) => {
         const user = await db.getUser(uId)
         if (user.id !== prevReview.user_id) return utils.unauthorizedError(res, 'Client Error: Unauthorized')
 
-        const {loo_id, review, rating, user_id} = req.body
-        if (!loo_id || !review || !rating || !user_id) return utils.clientError(res, 'Client Error: Please fill out all details')
+        const {loo_id, review, rating} = req.body
+        if (!loo_id || !review || !rating || !user.id) return utils.clientError(res, 'Client Error: Please fill out all details')
 
         await validateAndReturnLoo(loo_id, res, db)
         if (res.headersSent) return
 
-        const updatedReview: Review = {id, user_id, loo_id, review, rating}
+        const updatedReview: Review = {id, user_id: user.id, loo_id, review, rating}
         await db.updateReview(updatedReview)
 
         return res.json(updatedReview)
@@ -42,13 +42,17 @@ reviewRouter.put('/:id', isAuthenticated, async (req, res, next) => {
 
 reviewRouter.post('/new', isAuthenticated, async (req, res, next) => {
     await tryCatchNext(async () => {
-        const {loo_id, review, rating, user_id} = req.body
-        if (!loo_id || !review || !rating || !user_id) return utils.clientError(res, 'Client Error: Please fill out all details')
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
+        if (!user) return utils.unauthorizedError(res, 'Client Error: Unauthorized')
+
+        const {loo_id, review, rating} = req.body
+        if (!loo_id || !review || !rating) return utils.clientError(res, 'Client Error: Please fill out all details')
 
         await validateAndReturnLoo(loo_id, res, db)
         if (res.headersSent) return
 
-        const newReview: Review = {loo_id, review, rating, user_id, timestamp: Date.now()}
+        const newReview: Review = {loo_id, review, rating, user_id: user.id, timestamp: Date.now()}
         const addedReview = (await db.addReview(newReview))[0]
 
         return res.json(addedReview)
