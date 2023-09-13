@@ -1,4 +1,4 @@
-import request from "superagent";
+import request, {ResponseError} from "superagent";
 import {Coordinates, Loo, Review, User} from "./types/types.ts";
 import {getAccessToken} from "./utils.ts";
 
@@ -150,11 +150,10 @@ async function removeSavedLoo(id: number): Promise<{ user_id: number, loo_id: nu
 }
 
 //todo add better error handling
-function rethrowError(err: Error) {
+function rethrowError(err: ResponseError | Error) {
     console.log('from rethrow -> ', err)
-    // @ts-ignore
-    const errMsg = err?.response.text ?? err.message
-    throw new Error(String(errMsg))
+    if ("response" in err && err.response) throw new Error(JSON.parse(err.response.text).message)
+     else throw new Error(err.message)
 }
 
 export {

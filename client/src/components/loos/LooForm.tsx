@@ -50,7 +50,7 @@ export default function LooForm(props: Props) {
             setLocation(coordinates)
         } catch (error) {
             if (error instanceof Error) {
-                setError(String(error.message))
+                setError(error.message)
             } else setError(String(error))
         } finally {
             setMapIsLoading(false)
