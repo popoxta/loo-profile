@@ -15,8 +15,8 @@ locationRouter.get('/', async (req, res, next) => {
         if (!foundAddress?.data.length) return utils.notFoundError(res, 'Error: Address could not be found')
         const {lat, lon} = foundAddress.data[0]
         const value = foundAddress.data[0].display_name.split(', ')
-        const street = value.splice(0, 3).join(' ')
-        const region = value.splice(3, 6).join(' ')
+        const street = value.slice(0, 3).join(' ')
+        const region = value.slice(3, 6).join(' ')
 
         res.send({coordinates: [Number(lat), Number(lon)], street, region})
     }, next)
