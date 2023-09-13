@@ -20,12 +20,6 @@ const getUser = async (req, res, next) => {
     }
 }
 
-
-const nullUser = async (req, res, next) => {
-    req.headers.token = null
-    next()
-}
-
 const verifyToken = (req, res) => {
     const token = req.headers.token
     if (!token) return utils.unauthorizedError(res, 'Unauthorized: No token')
