@@ -1,34 +1,10 @@
-import {expect, it, describe, vi} from "vitest";
+import {describe, expect, it, vi} from "vitest";
 import request from 'supertest'
-import app, {firebaseAdmin} from '../server'
+import app from '../server'
 import './test-setup'
-import * as middleware from "../routes/middleware";
 import utils from '../lib/route-utils'
 import * as authUtils from "../lib/auth-utils";
 import connection from '../db/knex-db.js'
-
-const getUser = async (req, res, next) => {
-    console.log('mwemwe')
-    try {
-        const token = verifyToken(req, res)
-        if (res.headersSent) return
-        req.headers.token = token?.user_id
-        next()
-    } catch (e) {
-        console.log(`Authentication error: ${e}`)
-        return utils.unauthorizedError(res, 'Unauthorized: No user found')
-    }
-}
-
-const verifyToken = (req, res) => {
-    const token = req.headers.token
-    if (!token) return utils.unauthorizedError(res, 'Unauthorized: No token')
-    else return {user_id: 'abc123'}
-}
-
-vi.spyOn(middleware, 'isAuthenticated').mockImplementation(getUser)
-vi.spyOn(middleware, 'getAuthenticationIfAvailable').mockImplementation(getUser)
-vi.spyOn(authUtils, 'verifyUserToken').mockImplementation(verifyToken)
 
 describe('GET /me', () => {
     it('Should return a 401 if no token is present', async () => {
