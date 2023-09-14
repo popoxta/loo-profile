@@ -29,7 +29,7 @@ describe('GET /', () => {
         expect(res.body).toStrictEqual({
                 coordinates: [-41.2968174, 174.7739342],
                 street: '275 Cuba Street Te Aro',
-                region: '6040 New Zealand'
+                region: 'Wellington Wellington City Wellington'
             }
         )
     })
