@@ -14,7 +14,7 @@ function getLocation(address: string): Promise<{ coordinates: Coordinates, stree
 async function getAllLoosByDistance(location: Coordinates = [0, 0], distance: number = 25): Promise<Loo[]> {
     const token = await getAccessToken() ?? ''
     return request
-        .get(`${URL}/loos/all?location=${String(location)}&distance=${distance}`)
+        .get(`${URL}/loos/all?location=${location}&distance=${distance}`)
         .set('token', token)
         .then(res => res.body)
         .catch(rethrowError)
