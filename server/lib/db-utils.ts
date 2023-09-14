@@ -40,7 +40,7 @@ const getLoosByUser = (id: number) => {
 }
 
 const updateLoo = (loo: Loo) => {
-    return connection('loos').update(loo).where({id: loo.id})
+    return connection('loos').update(loo).where({id: loo.id}).returning('*')
 }
 
 const addLoo = (loo: Loo) => {
