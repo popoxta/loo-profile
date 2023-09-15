@@ -27,6 +27,7 @@ test.describe('Home Page', () => {
 test.describe('Menu', () => {
     test.beforeEach(async ({page}) => {
         await page.goto('/')
+
     })
 
     test('Displays a header', async ({page}) => {
@@ -54,8 +55,8 @@ test.describe('Menu', () => {
         const menu = await page.getByRole('navigation')
         await page.getByTestId('hamburger-open').click()
         await expect(menu).toBeVisible()
-        await expect(await page.getByText(/loocator/i)).toBeVisible()
-        await expect(await page.getByText(/register/i)).toBeVisible()
-        await expect(await page.getByText(/login/i)).toBeVisible()
+        await expect(page.getByText(/loocator/i)).toBeVisible()
+        await expect(page.getByText(/register/i)).toBeVisible()
+        await expect(page.getByText(/login/i)).toBeVisible()
     })
 })

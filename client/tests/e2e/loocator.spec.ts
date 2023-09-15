@@ -24,19 +24,19 @@ test.describe('Loocator Page', () => {
         await page.route('*/**/location*', async route => {
             await route.fulfill({json: {coordinates: [0, 0], street: 'fake st', region: 'computer'}})
         })
+
+        await page.goto('/loos')
     })
 
     test('Renders a list of loos', async ({page}) => {
-        await page.goto('/loos')
         await expect(await page.getByTestId('loo-card').count()).toBe(50)
     })
 
     test('Renders information about each loo', async ({page}) => {
-        await page.goto('/loos')
-        await expect(await page.getByRole('heading', {name: 'TEST'})).toBeVisible()
-        await expect(await page.getByText('123 TEST Street')).toBeVisible()
-        await expect(await page.getByText('TEST City')).toBeVisible()
-        await expect(await page.getByText('John TEST - 123-456-7890')).toBeVisible()
+        await expect(page.getByRole('heading', {name: 'TEST'})).toBeVisible()
+        await expect(page.getByText('123 TEST Street')).toBeVisible()
+        await expect(page.getByText('TEST City')).toBeVisible()
+        await expect(page.getByText('John TEST - 123-456-7890')).toBeVisible()
     })
 
     test('Renders a link to each individual loo', async ({page}) => {
@@ -49,7 +49,6 @@ test.describe('Loocator Page', () => {
     })
 
     test('Should have a location search that updates search parameters', async ({page}) => {
-        await page.goto('/loos')
         const search = await page.getByLabel(/enter a location/i)
         await expect(search).toBeVisible()
         await search.type('test street')
@@ -58,7 +57,6 @@ test.describe('Loocator Page', () => {
     })
 
     test('Should render a distance filter that updates search parameters', async ({page}) => {
-        await page.goto('/loos')
         const combobox = await page.getByLabel(/distance/i)
         await expect(combobox).toBeVisible()
         await expect(await page.getByRole('option').count()).toBe(4)
@@ -67,7 +65,6 @@ test.describe('Loocator Page', () => {
     })
 
     test('Filters should update search parameters separately', async ({page}) => {
-        await page.goto('/loos')
         await page.getByLabel(/distance/i).selectOption('5km')
         await expect(page).toHaveURL('/loos?distance=5')
         await page.getByLabel(/enter a location/i).type('11 test st')
@@ -77,8 +74,8 @@ test.describe('Loocator Page', () => {
 
     test('Should prepopulate filters per search parameters', async ({page}) => {
         await page.goto('/loos?location=275+cuba+street&distance=5')
-        await expect(await page.getByLabel(/location/i)).toHaveValue(/275 cuba street/i)
-        await expect(await page.getByLabel(/distance/i)).toHaveValue('5')
+        await expect(page.getByLabel(/location/i)).toHaveValue(/275 cuba street/i)
+        await expect(page.getByLabel(/distance/i)).toHaveValue('5')
     })
 
     test('Should render an alert if location cannot be found', async ({page}) => {
