@@ -19,7 +19,7 @@ export default function Loo() {
     const [showAddReview, setShowAddReview] = useState(false)
     const [showReviewThanks, setShowReviewThanks] = useState(false)
     const id: string | undefined = useParams().id
-    const {data: looData, isLoading, isError} = useLooQuery(Number(id))
+    const {data: looData, isLoading, isError, saveLoo, removeSavedLoo} = useLooQuery(Number(id))
     const {data: user} = useUserQuery()
 
     if (isError) return <NotFound>
@@ -63,7 +63,13 @@ export default function Loo() {
                             <h1 className={`heading-three text-center lg:text-left`}>
                                 {loo.name}
                             </h1>
-                            {user && <FontAwesomeIcon className={`mb-2 transition-colors ${!!loo?.isSaved ? 'hover:text-slate-300 text-pink-600' : 'text-slate-300 hover:text-pink-600'}`} size={'xl'} icon={faHeart}/>}
+                            {user && <FontAwesomeIcon
+                                className={`mb-2 cursor-pointer transition-colors ${!!loo?.isSaved ? 'hover:text-slate-300 text-pink-600' : 'text-slate-300 hover:text-pink-600'}`}
+                                size={'xl'} onClick={
+                                loo.isSaved
+                                    ? () => removeSavedLoo.mutate(Number(loo?.id))
+                                    : () => saveLoo.mutate(Number(loo?.id))
+                            } icon={faHeart}/>}
                         </div>
                         <div
                             className={`justify-between mb-5 flex-col-10 sm:flex-row text-center md:text-left`}>

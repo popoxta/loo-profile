@@ -4,16 +4,23 @@ import {Loo} from "../../lib/types/types.ts";
 import Button from "../Button.tsx";
 import Stars from "../Stars.tsx";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
+import {useLooQuery} from "../../lib/hooks/useLooQuery.ts";
+import {useQueryClient} from "react-query";
+
 
 interface Props {
     loo: Loo,
+    saveLoo?: any,
+    removeSavedLoo?: any,
     isLast: boolean
     onClick?: () => void
 }
 
 export default function LooCard(props: Props) {
     const {loo, isLast} = props
+    const {saveLoo, removeSavedLoo} = useLooQuery(Number(loo?.id))
     const {data: user} = useUserQuery()
+    const queryClient = useQueryClient()
 
     return (
         <div
@@ -29,6 +36,11 @@ export default function LooCard(props: Props) {
                         {user &&
                             <FontAwesomeIcon
                                 className={`-mb-0.5 cursor-pointer transition-colors ${!!loo?.isSaved ? 'hover:text-slate-300 text-pink-600' : 'text-slate-300 hover:text-pink-600'}`}
+                                onClick={
+                                    loo.isSaved
+                                        ? () => removeSavedLoo.mutate(Number(loo?.id), {onSuccess: () => queryClient.invalidateQueries()})
+                                        : () => saveLoo.mutate(Number(loo?.id), {onSuccess: () => queryClient.invalidateQueries()})
+                                }
                                 size={'xs'} icon={faHeart}/>
                         }
                     </div>

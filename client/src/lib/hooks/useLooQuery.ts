@@ -1,6 +1,14 @@
 import {MutationFunction, useMutation, useQuery, useQueryClient} from "react-query";
-import {addReview, deleteLoo, deleteReview, getLoo, updateLoo, updateReview} from "../api-client.ts";
-import {useLoosMutation} from "./useAllLoosQuery.ts";
+import {
+    addReview,
+    deleteLoo,
+    deleteReview,
+    getLoo,
+    removeSavedLoo,
+    saveLoo,
+    updateLoo,
+    updateReview
+} from "../api-client.ts";
 
 export function useLooQuery(id: number) {
 
@@ -17,7 +25,9 @@ export function useLooQuery(id: number) {
         updateReview: useUpdateReview(id),
         deleteReview: useDeleteReview(id),
         updateLoo: useUpdateLoo(id),
-        deleteLoo: useDeleteLoo(id)
+        deleteLoo: useDeleteLoo(id),
+        saveLoo: useSaveLoo(id),
+        removeSavedLoo: useRemoveSaveLoo(id),
     }
 }
 
@@ -40,4 +50,7 @@ export const useDeleteReview = (looId: number) => useLooMutation(deleteReview, l
 export const useUpdateLoo = (looId: number) => useLooMutation(updateLoo, looId)
 
 //@ts-ignore
-export const useDeleteLoo = (looId: number) => useLoosMutation(deleteLoo, looId)
+export const useDeleteLoo = (looId: number) => useLooMutation(deleteLoo, looId)
+
+export const useSaveLoo = (looId: number) => useLooMutation(saveLoo, looId)
+export const useRemoveSaveLoo = (looId: number) => useLooMutation(removeSavedLoo, looId)

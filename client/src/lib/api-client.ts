@@ -129,7 +129,7 @@ async function register(user: User): Promise<User> {
         .catch(rethrowError)
 }
 
-async function saveLoo(id: number): Promise<{ user_id: number, loo_id: number } | null> {
+async function saveLoo(id: number): Promise<void | null> {
     const token = await getAccessToken()
     if (!token) return null
     return request
@@ -139,7 +139,7 @@ async function saveLoo(id: number): Promise<{ user_id: number, loo_id: number } 
         .catch(rethrowError)
 }
 
-async function removeSavedLoo(id: number): Promise<{ user_id: number, loo_id: number } | null> {
+async function removeSavedLoo(id: number): Promise<void | null> {
     const token = await getAccessToken()
     if (!token) return null
     return request
