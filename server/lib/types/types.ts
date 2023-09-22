@@ -33,6 +33,12 @@ export interface User {
     email: string
 }
 
+export interface UserInformation extends User {
+    saved: number
+    loos: number
+    reviews: number
+}
+
 export type Coordinates = [number, number]
 
 export interface Location {
