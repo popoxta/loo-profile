@@ -1,5 +1,5 @@
 import connection from '../db/knex-db.js'
-import {Loo, Review, User} from './types/types'
+import {Loo, Review, User, UserInformation} from './types/types'
 
 const getAllLoos = (uId?: number) => {
     const subQuery = connection('reviews').select('loo_id')
@@ -85,8 +85,18 @@ const getAllUsernames = () => {
     return connection('users').select('username', 'email')
 }
 
-const getUser = (uid: string): User => {
-    return connection('users').where({firebase_uid: uid}).first()
+const getUser = (uid: string): UserInformation => {
+
+    const reviewSubQuery = connection('reviews AS r').count().where('r.user_id', connection.raw('u.id'))
+    const looSubQuery = connection('loos AS l').count().where('l.user_id', connection.raw('u.id'))
+    const savedSubQuery = connection('saved_loos AS s').count().where('s.user_id', connection.raw('u.id'))
+
+    return connection('users AS u')
+        .select('u.*',
+            savedSubQuery.as('saved'),
+            looSubQuery.as('loos'),
+            reviewSubQuery.as('reviews'))
+        .where({firebase_uid: uid}).first()
 }
 
 const updateUser = (user: User) => {
