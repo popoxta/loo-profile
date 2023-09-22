@@ -1,3 +1,9 @@
+export const user = {
+    id: 1,
+    username: 'Anonymous Bunny',
+    firebase_uid: 'abc123',
+    email: 'anonymous@lawwibunny.com'
+}
 
 export const loos = [
     {

@@ -1,5 +1,5 @@
 import {expect, test} from "@playwright/test";
-import {loos} from './fakeData'
+import {loos} from '../lib/fakeData'
 
 test.describe('Loocator Page', () => {
 
@@ -18,6 +18,8 @@ test.describe('Loocator Page', () => {
                     }, timestamp: Date.now()
                 }))
         })
+
+        await page.route('*/**/users/me', async route => await route.fulfill({json: loos}))
 
         await page.route('*/**/loos/all*', async route => await route.fulfill({json: loos}))
 
