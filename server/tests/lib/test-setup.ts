@@ -1,7 +1,7 @@
 import {beforeAll, beforeEach, afterAll, vi} from "vitest";
-import connection from '../db/knex-db.js'
-import utils from "../lib/route-utils";
-import * as authUtils from "../lib/auth-utils";
+import connection from '../../db/knex-db.js'
+import utils from "../../lib/route-utils";
+import * as authUtils from "../../lib/auth-utils";
 
 const getUser = async (req, res, next) => {
     try {
@@ -29,7 +29,6 @@ const verifyToken = (req, res) => {
 vi.spyOn(authUtils, 'getUserIfAvailable').mockImplementation(getUserIfExists)
 vi.spyOn(authUtils, 'getUser').mockImplementation(getUser)
 vi.spyOn(authUtils, 'verifyUserToken').mockImplementation(verifyToken)
-
 
 beforeAll(() => {
     return connection.migrate.latest()

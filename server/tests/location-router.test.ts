@@ -1,9 +1,9 @@
 import {expect, it, describe, beforeEach} from "vitest";
 import request from 'supertest'
 import app from '../server'
-import './test-setup'
+import './lib/test-setup'
 import nock from "nock";
-import testData from "./testData";
+import testData from "./lib/testData";
 
 describe('GET /', () => {
 

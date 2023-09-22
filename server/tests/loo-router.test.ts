@@ -1,7 +1,7 @@
 import {expect, it, describe} from "vitest";
 import request from 'supertest'
 import app from '../server'
-import './test-setup'
+import './lib/test-setup'
 import connection from '../db/knex-db.js'
 
 const FAKE_LOO = {

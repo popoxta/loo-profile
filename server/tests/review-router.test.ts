@@ -1,7 +1,7 @@
 import {describe, expect, it} from "vitest";
 import request from 'supertest'
 import app from '../server'
-import './test-setup'
+import './lib/test-setup'
 
 describe('GET /:id', () => {
     it('Should return a 400 if the id is non-numeric', async () => {

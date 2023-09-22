@@ -1,7 +1,7 @@
 import {describe, expect, it, vi} from "vitest";
 import request from 'supertest'
 import app from '../server'
-import './test-setup'
+import './lib/test-setup'
 import utils from '../lib/route-utils'
 import * as authUtils from "../lib/auth-utils";
 import connection from '../db/knex-db.js'
