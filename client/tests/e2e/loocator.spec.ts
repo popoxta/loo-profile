@@ -1,5 +1,6 @@
 import {expect, test} from "@playwright/test";
 import {loos} from '../lib/fakeData'
+import {getAccessToken} from "../../src/lib/utils";
 
 test.describe('Loocator Page', () => {
 
@@ -19,7 +20,7 @@ test.describe('Loocator Page', () => {
                 }))
         })
 
-        await page.route('*/**/users/me', async route => await route.fulfill({json: loos}))
+        await page.route('*/**/users/me', async route => await route.fulfill(null))
 
         await page.route('*/**/loos/all*', async route => await route.fulfill({json: loos}))
 

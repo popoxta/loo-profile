@@ -2,7 +2,10 @@ export const user = {
     id: 1,
     username: 'Anonymous Bunny',
     firebase_uid: 'abc123',
-    email: 'anonymous@lawwibunny.com'
+    email: 'anonymous@lawwibunny.com',
+    saved: 2,
+    loos: 23,
+    reviews: 48
 }
 
 export const loos = [

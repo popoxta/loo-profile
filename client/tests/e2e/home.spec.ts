@@ -1,9 +1,11 @@
 import {test, expect} from '@playwright/test';
+import {user} from "../lib/fakeData";
 
 test.describe('Home Page', () => {
 
     test.beforeEach(async ({page}) => {
         await page.goto('/')
+        await page.route('*/**/users/me', async route => await route.fulfill(null))
     })
 
     test('Renders a Heading', async ({page}) => {
@@ -27,7 +29,7 @@ test.describe('Home Page', () => {
 test.describe('Menu', () => {
     test.beforeEach(async ({page}) => {
         await page.goto('/')
-
+        // await page.route('*/**/users/me', async route => await route.fulfill(null))
     })
 
     test('Displays a header', async ({page}) => {
@@ -59,4 +61,16 @@ test.describe('Menu', () => {
         await expect(page.getByText(/register/i)).toBeVisible()
         await expect(page.getByText(/login/i)).toBeVisible()
     })
+
+    // //todo mock the getUser method
+    // test('Menu renders correct user information when authenticated', async ({page}) => {
+    //     await page.route('*/**/users/me', async route => await route.fulfill({json: user}))
+    //     const menu = await page.getByRole('navigation')
+    //     await page.getByTestId('hamburger-open').click()
+    //     await expect(menu).toBeVisible()
+    //     await expect(page.getByText(user.username)).toBeVisible()
+    //     await expect(page.getByText(`${user.reviews} reviews`)).toBeVisible()
+    //     await expect(page.getByText(`${user.loos} loos`)).toBeVisible()
+    //     await expect(page.getByText(`${user.saved} saved`)).toBeVisible()
+    // })
 })
