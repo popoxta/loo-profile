@@ -23,7 +23,7 @@ export default function Menu({show, toggle}: { show: boolean, toggle: () => void
                                 <div className={'w-20 h-20 bg-slate-500 rounded-full'}></div>
                                 <div className={'flex flex-col justify-center'}>
                                     <p className={'font-bold text-2xl uppercase text-slate-900'}>{user?.username}</p>
-                                    <p className={'text-slate-500'}>123 reviews | 34 saved</p>
+                                    <p className={'text-slate-500'}>{user.loos} loos  |  {user.reviews} reviews  |  {user.saved} saved</p>
                                 </div>
                             </li>
                             <li className={`border-b-2 ${LIST_STYLE}`}>
