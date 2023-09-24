@@ -37,7 +37,10 @@ export interface User {
     id?: number
     firebase_uid: string
     username: string
-    email: string,
+    email: string
+    loos: number
+    reviews: number
+    saved: number
 }
 
 export interface UserLogin {
