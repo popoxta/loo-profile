@@ -1,5 +1,5 @@
 import request, {ResponseError} from "superagent";
-import {Coordinates, Loo, Review, User} from "./types/types.ts";
+import {Coordinates, Loo, Review, User, UserInformation} from "./types/types.ts";
 import {getAccessToken} from "./utils.ts";
 
 const URL = `http://localhost:3000`
@@ -104,7 +104,7 @@ async function updateReview(review: Review) {
         .catch(rethrowError)
 }
 
-async function getUser(): Promise<User | null> {
+async function getUser(): Promise<UserInformation | null> {
     const token = await getAccessToken()
     if (!token) return null
     return request

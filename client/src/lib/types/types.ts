@@ -38,6 +38,9 @@ export interface User {
     firebase_uid: string
     username: string
     email: string
+}
+
+export interface UserInformation extends User {
     loos: number
     reviews: number
     saved: number

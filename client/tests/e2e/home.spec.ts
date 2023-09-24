@@ -5,7 +5,6 @@ test.describe('Home Page', () => {
 
     test.beforeEach(async ({page}) => {
         await page.goto('/')
-        await page.route('*/**/users/me', async route => await route.fulfill(null))
     })
 
     test('Renders a Heading', async ({page}) => {
