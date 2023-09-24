@@ -1,6 +1,5 @@
 import {expect, test} from "@playwright/test";
 import {loos} from '../lib/fakeData'
-import * as utils from "../../src/lib/utils";
 
 test.describe('Loocator Page', () => {
 
