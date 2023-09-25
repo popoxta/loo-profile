@@ -20,37 +20,37 @@ const FAKE_LOO = {
 
 describe('GET /all', () => {
     it('Should return an array of all loos', async () => {
-        const res = await request(app).get('/loos/all').expect(200)
+        const res = await request(app).get('/api/loos/all').expect(200)
             .expect('Content-Type', /json/)
         expect(res.body.length).toBe(50)
     })
 
     it('Should filter loos by distance', async () => {
-        const res = await request(app).get('/loos/all?location=-36.848461,174.763336&distance=25').expect(200)
+        const res = await request(app).get('/api/loos/all?location=-36.848461,174.763336&distance=25').expect(200)
             .expect('Content-Type', /json/)
         expect(res.body.length).toBe(19)
-        const secondRes = await request(app).get('/loos/all?location=-36.848461,174.763336&distance=10').expect(200)
+        const secondRes = await request(app).get('/api/loos/all?location=-36.848461,174.763336&distance=10').expect(200)
             .expect('Content-Type', /json/)
         expect(secondRes.body.length).toBe(19)
-        const thirdRes = await request(app).get('/loos/all?location=-36.848461,174.763336&distance=5').expect(200)
+        const thirdRes = await request(app).get('/api/loos/all?location=-36.848461,174.763336&distance=5').expect(200)
             .expect('Content-Type', /json/)
         expect(thirdRes.body.length).toBe(4)
-        const fourthRes = await request(app).get('/loos/all?location=-36.848461,174.763336&distance=1').expect(200)
+        const fourthRes = await request(app).get('/api/loos/all?location=-36.848461,174.763336&distance=1').expect(200)
             .expect('Content-Type', /json/)
         expect(fourthRes.body.length).toBe(1)
     })
 
     it('Should not filter if only location or distance are given', async () => {
-        const location = await request(app).get('/loos/all?location=-36.848461,174.763336').expect(200)
+        const location = await request(app).get('/api/loos/all?location=-36.848461,174.763336').expect(200)
             .expect('Content-Type', /json/)
         expect(location.body.length).toBe(50)
-        const distance = await request(app).get('/loos/all?distance=5').expect(200)
+        const distance = await request(app).get('/api/loos/all?distance=5').expect(200)
             .expect('Content-Type', /json/)
         expect(distance.body.length).toBe(50)
     })
 
     it('Should include an isSaved property if the request is authenticated', async () => {
-        const res = await request(app).get('/loos/all')
+        const res = await request(app).get('/api/loos/all')
             .set('token', 'faketoken').expect(200)
             .expect('Content-Type', /json/)
         res.body.forEach(loo => expect(loo.isSaved).toBeDefined())
@@ -59,7 +59,7 @@ describe('GET /all', () => {
 
 describe('GET /:id', () => {
     it('Should return a singular loo', async () => {
-        const res = await request(app).get('/loos/5').expect(200)
+        const res = await request(app).get('/api/loos/5').expect(200)
             .expect('Content-Type', /json/)
         expect(res.body.loo).toStrictEqual({
                 id: 5,
@@ -79,7 +79,7 @@ describe('GET /:id', () => {
     })
 
     it('Should return all submitted reviews', async () => {
-        const res = await request(app).get('/loos/6').expect(200)
+        const res = await request(app).get('/api/loos/6').expect(200)
             .expect('Content-Type', /json/)
         expect(res.body.reviews.length).toBe(2)
         expect(res.body.reviews[0].id).toBe(18)
@@ -89,19 +89,19 @@ describe('GET /:id', () => {
     })
 
     it('Should return a 400 if the id is non-numeric', async () => {
-        const res = await request(app).get('/loos/horse').expect(400)
+        const res = await request(app).get('/api/loos/horse').expect(400)
             .expect('Content-Type', /json/)
         expect(res.body.message).toMatch(/client error/i)
     })
 
     it('Should return a 404 if the loo does not exist', async () => {
-        const res = await request(app).get('/loos/9999').expect(404)
+        const res = await request(app).get('/api/loos/9999').expect(404)
             .expect('Content-Type', /json/)
         expect(res.body.message).toMatch(/not found error/i)
     })
 
     it('Should include an isSaved property if the request is authenticated', async () => {
-        const res = await request(app).get('/loos/6').expect(200)
+        const res = await request(app).get('/api/loos/6').expect(200)
             .set('token', 'faketoken').expect('Content-Type', /json/)
         expect(res.body.loo.isSaved).toBeDefined()
     })
@@ -110,27 +110,27 @@ describe('GET /:id', () => {
 describe('PUT /:id', () => {
 
     it('Should return a 400 if the id is non-numeric', async () => {
-        const res = await request(app).put('/loos/horse').expect(400)
+        const res = await request(app).put('/api/loos/horse').expect(400)
             .set('token', 'faketoken').send(FAKE_LOO)
             .expect('Content-Type', /json/)
         expect(res.body.message).toMatch(/client error/i)
     })
 
     it('Should return a 404 if the loo does not exist', async () => {
-        const res = await request(app).put('/loos/999').expect(404)
+        const res = await request(app).put('/api/loos/999').expect(404)
             .set('token', 'faketoken').send(FAKE_LOO)
             .expect('Content-Type', /json/)
         expect(res.body.message).toMatch(/not found error/i)
     })
 
     it('Should return a 401 if no token is present', async () => {
-        const res = await request(app).put('/loos/3').expect(401)
+        const res = await request(app).put('/api/loos/3').expect(401)
             .send(FAKE_LOO).expect('Content-Type', /json/)
         expect(res.body.message).toMatch(/unauthorized/i)
     })
 
     it('Should return a 401 if the user id does not match', async () => {
-        const res = await request(app).put('/loos/1').expect(401)
+        const res = await request(app).put('/api/loos/1').expect(401)
             .set('token', 'faketoken').send(FAKE_LOO)
             .expect('Content-Type', /json/)
         expect(res.body.message).toMatch(/unauthorized/i)
@@ -140,14 +140,14 @@ describe('PUT /:id', () => {
         const loo = Object.fromEntries(
             Object.entries(FAKE_LOO).filter(entry => !(entry[0] === 'name'))
         )
-        const res = await request(app).put('/loos/30').expect(400)
+        const res = await request(app).put('/api/loos/30').expect(400)
             .set('token', 'faketoken').send(loo)
             .expect('Content-Type', /json/)
         expect(res.body.message).toMatch(/client error/i)
     })
 
     it('Should successfully update a loo', async () => {
-        const res = await request(app).put('/loos/30').expect(200)
+        const res = await request(app).put('/api/loos/30').expect(200)
             .set('token', 'faketoken').send(FAKE_LOO)
             .expect('Content-Type', /json/)
         expect(res.body).toStrictEqual({
@@ -160,37 +160,37 @@ describe('PUT /:id', () => {
 
 describe('DELETE /:id', () => {
     it('Should return a 400 if the id is non-numeric', async () => {
-        const res = await request(app).delete('/loos/potato').expect(400)
+        const res = await request(app).delete('/api/loos/potato').expect(400)
             .set('token', 'faketoken')
         expect(res.body.message).toMatch(/client error/i)
     })
 
     it('Should return a 404 if the loo does not exist', async () => {
-        const res = await request(app).delete('/loos/9999').expect(404)
+        const res = await request(app).delete('/api/loos/9999').expect(404)
             .set('token', 'faketoken')
         expect(res.body.message).toMatch(/not found error/i)
     })
 
     it('Should return a 401 if no user token is present', async () => {
-        const res = await request(app).delete('/loos/68').expect(401)
+        const res = await request(app).delete('/api/loos/68').expect(401)
         expect(res.body.message).toMatch(/unauthorized/i)
     })
 
     it('Should return a 401 if the user id does not match', async () => {
-        const res = await request(app).delete('/loos/2').expect(401)
+        const res = await request(app).delete('/api/loos/2').expect(401)
             .set('token', 'faketoken')
         expect(res.body.message).toMatch(/unauthorized/i)
     })
 
     it('Should delete all reviews associated to the loo', async () => {
-        await request(app).delete('/loos/30').expect(200)
+        await request(app).delete('/api/loos/30').expect(200)
             .set('token', 'faketoken')
         const reviews = await connection('reviews').select().where({loo_id: 30})
         expect(reviews).toStrictEqual([])
     })
 
     it('Should successfully delete the loo', async () => {
-        await request(app).delete('/loos/43').expect(200)
+        await request(app).delete('/api/loos/43').expect(200)
             .set('token', 'faketoken')
         const loo = await connection('loos').select().where({id: 43})
         expect(loo).toStrictEqual([])
@@ -199,7 +199,7 @@ describe('DELETE /:id', () => {
 
 describe('POST /new', () => {
     it('Should return a 401 if no user token is present', async () => {
-        const res = await request(app).post('/loos/new').expect(401)
+        const res = await request(app).post('/api/loos/new').expect(401)
             .send(FAKE_LOO).expect('Content-Type', /json/)
         expect(res.body.message).toMatch(/unauthorized/i)
     })
@@ -208,13 +208,13 @@ describe('POST /new', () => {
         const loo = Object.fromEntries(
             Object.entries(FAKE_LOO).filter(entry => !(entry[0] === 'name'))
         )
-        const res = await request(app).post('/loos/new').expect(400)
+        const res = await request(app).post('/api/loos/new').expect(400)
             .set('token', 'faketoken').send(loo).expect('Content-Type', /json/)
         expect(res.body.message).toMatch(/client error/i)
     })
 
     it('Should create a new loo', async () => {
-        const res = await request(app).post('/loos/new').expect(200)
+        const res = await request(app).post('/api/loos/new').expect(200)
             .set('token', 'faketoken').send(FAKE_LOO).expect('Content-Type', /json/)
         expect(res.body).toStrictEqual({
                 id: 51,
@@ -236,51 +236,51 @@ describe('POST /new', () => {
 
 describe('POST /:id/save', () => {
     it('Should return a 400 if the id is non-numeric', async () => {
-        const res = await request(app).post('/loos/horse/save').expect(400).set('token', 'faketoken')
+        const res = await request(app).post('/api/loos/horse/save').expect(400).set('token', 'faketoken')
         expect(res.body.message).toMatch(/client error/i)
     })
 
     it('Should return a 404 if the loo does not exist', async () => {
-        const res = await request(app).post('/loos/66/save').expect(404).set('token', 'faketoken')
+        const res = await request(app).post('/api/loos/66/save').expect(404).set('token', 'faketoken')
         expect(res.body.message).toMatch(/not found/i)
     })
 
     it('Should return a 401 if no user token is present', async () => {
-        const res = await request(app).post('/loos/5/save').expect(401)
+        const res = await request(app).post('/api/loos/5/save').expect(401)
         expect(res.body.message).toMatch(/unauthorized/i)
     })
 
     it('Should return a status of 200 if request succeeded', async () => {
-        await request(app).post('/loos/10/save').expect(200).set('token', 'faketoken')
+        await request(app).post('/api/loos/10/save').expect(200).set('token', 'faketoken')
         const saved_loo = await connection('saved_loos').select().where({user_id: 1, loo_id: 10})
         expect(saved_loo).toStrictEqual([{user_id: 1, loo_id: 10}])
     })
 
     it('Should return a 400 if the loo has already been saved', async () => {
-        await request(app).post('/loos/10/save').expect(200).set('token', 'faketoken')
-        const res = await request(app).post('/loos/10/save').expect(400).set('token', 'faketoken')
+        await request(app).post('/api/loos/10/save').expect(200).set('token', 'faketoken')
+        const res = await request(app).post('/api/loos/10/save').expect(400).set('token', 'faketoken')
         expect(res.body.message).toMatch(/invalid request/i)
     })
 })
 
 describe('DELETE /:id/save', () => {
     it('Should return a 400 if the id is non-numeric', async () => {
-        const res = await request(app).delete('/loos/horse/save').expect(400).set('token', 'faketoken')
+        const res = await request(app).delete('/api/loos/horse/save').expect(400).set('token', 'faketoken')
         expect(res.body.message).toMatch(/client error/i)
     })
 
     it('Should return a 404 if the loo does not exist', async () => {
-        const res = await request(app).delete('/loos/66/save').expect(404).set('token', 'faketoken')
+        const res = await request(app).delete('/api/loos/66/save').expect(404).set('token', 'faketoken')
         expect(res.body.message).toMatch(/not found/i)
     })
 
     it('Should return a 401 if no user token is present', async () => {
-        const res = await request(app).delete('/loos/5/save').expect(401)
+        const res = await request(app).delete('/api/loos/5/save').expect(401)
         expect(res.body.message).toMatch(/unauthorized/i)
     })
 
     it('Should return a status of 200 if request succeeded', async () => {
-        await request(app).delete('/loos/5/save').expect(200).set('token', 'faketoken')
+        await request(app).delete('/api/loos/5/save').expect(200).set('token', 'faketoken')
         const saved_loo = await connection('saved_loos').select().where({user_id: 1, loo_id: 10})
         expect(saved_loo).toStrictEqual([])
     })

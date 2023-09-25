@@ -8,7 +8,7 @@ import testData from "./lib/testData";
 describe('GET /', () => {
 
     it('Should return a 400 if no query parameters are present', async () => {
-        const res = await request(app).get('/location').expect(400)
+        const res = await request(app).get('/api/location').expect(400)
         expect(res.body.message).toMatch(/error/i)
     })
 
@@ -16,7 +16,7 @@ describe('GET /', () => {
         nock('https://nominatim.openstreetmap.org/').get('/search?q=999%20cuba%20street&format=json&limit=1')
             .reply(200, [])
 
-        const res = await request(app).get('/location?address=999+cuba+street').expect(404)
+        const res = await request(app).get('/api/location?address=999+cuba+street').expect(404)
         expect(res.body.message).toMatch(/error/i)
     })
 
@@ -24,7 +24,7 @@ describe('GET /', () => {
         nock('https://nominatim.openstreetmap.org/').get('/search?q=275%20cuba%20street&format=json&limit=1')
             .reply(200, testData.nominatimData)
 
-        const res = await request(app).get('/location?address=275+cuba+street').expect(200)
+        const res = await request(app).get('/api/location?address=275+cuba+street').expect(200)
             .expect('Content-Type', /json/)
         expect(res.body).toStrictEqual({
                 coordinates: [-41.2968174, 174.7739342],
