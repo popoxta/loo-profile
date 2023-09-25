@@ -2,7 +2,7 @@ import request, {ResponseError} from "superagent";
 import {Coordinates, Loo, Review, User, UserInformation} from "./types/types.ts";
 import {getAccessToken} from "./utils.ts";
 
-const URL = `http://localhost:3000`
+const URL = `http://localhost:3000/api`
 
 function getLocation(address: string): Promise<{ coordinates: Coordinates, street: string, region: string }> {
     return request

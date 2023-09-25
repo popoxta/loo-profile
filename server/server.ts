@@ -25,10 +25,10 @@ server.use(logger)
 // todo remove this and put on specific routes that require it
 // server.use(isAuthenticated)
 
-server.use('/users', userRouter)
-server.use('/loos', looRouter)
-server.use('/reviews', reviewRouter)
-server.use('/location', locationRouter)
+server.use('/api/users', userRouter)
+server.use('/api/loos', looRouter)
+server.use('/api/reviews', reviewRouter)
+server.use('/api/location', locationRouter)
 
 server.use((err, req, res, next) => {
     if (!err) return
