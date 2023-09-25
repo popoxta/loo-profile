@@ -19,9 +19,9 @@ test.describe('Loocator Page', () => {
                 }))
         })
 
-        await page.route('*/**/loos/all*', async route => await route.fulfill({json: loos}))
+        await page.route('*/api/loos/all*', async route => await route.fulfill({json: loos}))
 
-        await page.route('*/**/location*', async route => {
+        await page.route('*/api/location*', async route => {
             await route.fulfill({json: {coordinates: [0, 0], street: 'fake st', region: 'computer'}})
         })
 
