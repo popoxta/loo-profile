@@ -29,6 +29,15 @@ userRouter.get('/me/loos', isAuthenticated, async (req, res, next) => {
     }, next)
 })
 
+userRouter.get('/me/saved', isAuthenticated, async (req, res, next) => {
+    await tryCatchNext(async () => {
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
+        const loos = await db.getSavedLoos(user.id)
+        return res.json(loos)
+    }, next)
+})
+
 userRouter.post('/register', async (req, res, next) => {
     await tryCatchNext(async () => {
         const {firebase_uid, email, username} = req.body
