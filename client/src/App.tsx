@@ -14,6 +14,7 @@ import UserLoos from "./pages/user/UserLoos.tsx";
 import AddLoo from "./pages/loos/AddLoo.tsx";
 import EditLoo from "./pages/loos/EditLoo.tsx";
 import SavedLoos from "./pages/user/SavedLoos.tsx";
+import UserReviews from "./pages/user/UserReviews.tsx";
 
 export const routes = createRoutesFromElements(
     <Route path={'/'} element={<MainLayout/>} id={'root'}>
@@ -35,6 +36,7 @@ export const routes = createRoutesFromElements(
             <Route index element={<Dashboard/>}/>
             <Route path={'loos'} element={<UserLoos/>}/>
             <Route path={'saved'} element={<SavedLoos/>}/>
+            <Route path={'reviews'} element={<UserReviews/>}/>
         </Route>
     </Route>
 )
