@@ -104,6 +104,36 @@ describe('GET  /me/saved', () => {
     })
 })
 
+describe('GET  /me/reviews', () => {
+    it('Should return a 401 if no token is present', async () => {
+        const res = await request(app).get('/api/users/me/reviews').expect(401)
+        expect(res.body.message).toMatch(/unauthorized/i)
+    })
+
+    it('Should return all reviews created by the user', async () => {
+        const res = await request(app).get('/api/users/me/reviews').set('token', 'faketoken')
+            .expect(200).expect('Content-Type', /json/)
+
+        expect(res.body.length).toBe(48)
+
+        const firstReview = res.body[0]
+
+        expect(firstReview.id).toBe(53)
+        expect(firstReview.loo_id).toBe(11)
+        expect(firstReview.review).toBe('Great view from the restroom. Facilities were clean.')
+        expect(firstReview.rating).toBe(4)
+        expect(firstReview.user_id).toBe(1)
+    })
+
+    it('Should return an empty array if no reviews exist', async () => {
+        await connection('reviews').delete().where({user_id: 1})
+        const res = await request(app).get('/api/users/me/reviews').set('token', 'faketoken')
+            .expect(200).expect('Content-Type', /json/)
+
+        expect(res.body).toStrictEqual([])
+    })
+})
+
 describe('POST /me/register', () => {
     it('Should return an error if not all information is supplied', async () => {
         const res = await request(app).post('/api/users/register')
