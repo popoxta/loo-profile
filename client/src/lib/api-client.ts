@@ -130,6 +130,15 @@ async function getSavedLoos() {
         .catch(rethrowError)
 }
 
+async function getReviewsByUser() {
+    const token = await getAccessToken()
+    if (!token) return null
+    return request
+        .get(`${URL}/users/me/reviews`)
+        .set('token', String(token))
+        .then(res => res.body)
+        .catch(rethrowError)
+}
 function register(user: User): Promise<User> {
     return request
         .post(`${URL}/users/register`)
@@ -182,5 +191,6 @@ export {
     deleteLoo,
     saveLoo,
     removeSavedLoo,
-    getSavedLoos
+    getSavedLoos,
+    getReviewsByUser
 }
