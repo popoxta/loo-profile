@@ -44,6 +44,10 @@ const getSavedLoos = (id: number) => {
         .leftJoin('loos AS l', 's.loo_id', 'l.id')
 }
 
+const getReviewsByUser = (id: number) => {
+    return connection('reviews').select().where({user_id: id})
+}
+
 const updateLoo = (loo: Loo) => {
     return connection('loos').update(loo).where({id: loo.id}).returning('*')
 }
@@ -135,5 +139,6 @@ export default {
     deleteLoo,
     saveLoo,
     removeSavedLoo,
-    getSavedLoos
+    getSavedLoos,
+    getReviewsByUser
 }

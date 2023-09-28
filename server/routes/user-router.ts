@@ -4,6 +4,7 @@ import db from '../lib/db-utils'
 import utils from '../lib/route-utils'
 import {tryCatchNext} from "../lib/utils";
 import {isAuthenticated} from "./middleware";
+import {isA} from "@vitest/expect";
 
 const userRouter = express.Router()
 
@@ -35,6 +36,15 @@ userRouter.get('/me/saved', isAuthenticated, async (req, res, next) => {
         const user = await db.getUser(uId)
         const loos = await db.getSavedLoos(user.id)
         return res.json(loos)
+    }, next)
+})
+
+userRouter.get('/me/reviews', isAuthenticated, async (req, res, next) => {
+    await tryCatchNext(async () => {
+        const uId = req.headers.token as string
+        const user = await db.getUser(uId)
+        const reviews = await db.getReviewsByUser(user.id)
+        return res.json(reviews)
     }, next)
 })
 
