@@ -45,7 +45,10 @@ const getSavedLoos = (id: number) => {
 }
 
 const getReviewsByUser = (id: number) => {
-    return connection('reviews').select().where({user_id: id})
+    return connection('reviews').select('reviews.*', 'users.username', 'loos.name')
+        .where({'reviews.user_id': id})
+        .leftJoin('users', 'users.id', '=', 'reviews.user_id')
+        .leftJoin('loos', 'reviews.loo_id', 'loos.id')
 }
 
 const updateLoo = (loo: Loo) => {
