@@ -11,6 +11,7 @@ interface Props {
     review: Review | UserReview
     isLast: boolean
     loo_id: number
+    submitCb?: () => any | Promise<void>
 }
 
 export default function ReviewCard(props: Props) {
@@ -31,7 +32,10 @@ export default function ReviewCard(props: Props) {
             {showDelete &&
                 <DeleteReview review={review} toggle={toggleDelete} loo_id={props?.loo_id}>Are you sure you would like
                     to delete this review?</DeleteReview>}
-            {editing && <AddReview submitCb={() => setEditing(false)} review={props?.review} loo_id={props?.loo_id}
+            {editing && <AddReview submitCb={() => {
+                setEditing(false)
+                if (props?.submitCb) props.submitCb()
+            }} review={props?.review} loo_id={props?.loo_id}
                                    toggle={toggleEditing}/>}
             <div
                 className={`w-full px-2.5 md:px-5 py-5 md:py-10 ${'name' in props.review ? 'py-2.5 md:py-5' : 'py-5 md:py-10'} ${isLast ? '' : 'border-b-2'} border-slate-200 text-slate-900 place-items-center font-open-sans flex-col-2`}>

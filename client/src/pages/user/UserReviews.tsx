@@ -9,13 +9,13 @@ import ReviewCard from "../../components/reviews/ReviewCard.tsx";
 export default function UserReviews() {
     const navigate = useNavigate()
     const {data: user, isLoading: isLoadingUser} = useUserQuery()
-    const {data: reviews, isLoading} = useUserReviewsQuery(Number(user?.id))
+    const {data: reviews, isLoading, invalidateReviews} = useUserReviewsQuery(Number(user?.id))
 
     if (isLoading || isLoadingUser) return <Loading full={true}/>
     if (!user && !isLoadingUser) return <Navigate to={'/login'}/>
 
     const reviewCards = reviews
-        ? reviews?.map((review: Review, i: number) => <ReviewCard isLast={i === reviews.length - 1} review={review} loo_id={review.loo_id} key={review.id}/>)
+        ? reviews?.map((review: Review, i: number) => <ReviewCard isLast={i === reviews.length - 1} submitCb={invalidateReviews} review={review} loo_id={review.loo_id} key={review.id}/>)
         : undefined
 
     return (
