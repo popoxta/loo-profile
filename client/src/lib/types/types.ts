@@ -16,6 +16,10 @@ export interface Review {
     timestamp?: number
 }
 
+export interface UserReview extends Review {
+    name: string
+}
+
 export interface Loo {
     id?: number
     name: string
