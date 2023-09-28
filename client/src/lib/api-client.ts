@@ -27,7 +27,6 @@ function getAllLoos(): Promise<Loo[]> {
         .catch(rethrowError)
 }
 
-
 async function getLoo(id: number): Promise<{ loo: Loo, reviews: Review[] }> {
     const token = await getAccessToken() ?? ''
     return request
@@ -121,7 +120,17 @@ function getAllUserInfo(): Promise<{ username: string, email: string }[]> {
         .catch(rethrowError)
 }
 
-async function register(user: User): Promise<User> {
+async function getSavedLoos() {
+    const token = await getAccessToken()
+    if (!token) return null
+    return request
+        .get(`${URL}/users/me/saved`)
+        .set('token', String(token))
+        .then(res => res.body)
+        .catch(rethrowError)
+}
+
+function register(user: User): Promise<User> {
     return request
         .post(`${URL}/users/register`)
         .send(user)
@@ -172,5 +181,6 @@ export {
     updateLoo,
     deleteLoo,
     saveLoo,
-    removeSavedLoo
+    removeSavedLoo,
+    getSavedLoos
 }
