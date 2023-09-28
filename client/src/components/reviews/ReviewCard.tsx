@@ -1,4 +1,4 @@
-import {Review} from "../../lib/types/types.ts";
+import {Review, UserReview} from "../../lib/types/types.ts";
 import Stars from "../Stars.tsx";
 import Button from "../Button.tsx";
 import {useUserQuery} from "../../lib/hooks/useUserQuery.ts";
@@ -8,7 +8,7 @@ import DeleteReview from "./DeleteReview.tsx";
 import {getFormattedDate} from "../../lib/utils.ts";
 
 interface Props {
-    review: Review
+    review: Review | UserReview
     isLast: boolean
     loo_id: number
 }
@@ -34,26 +34,30 @@ export default function ReviewCard(props: Props) {
             {editing && <AddReview submitCb={() => setEditing(false)} review={props?.review} loo_id={props?.loo_id}
                                    toggle={toggleEditing}/>}
             <div
-                className={`w-full px-5 py-10 ${isLast ? '' : 'border-b-2'} border-slate-200 text-slate-900 place-items-center font-open-sans flex gap-5`}>
-                <div className={'w-12 h-12 bg-slate-500 rounded-full flex-shrink-0'}></div>
-                <div className={'w-full'}>
-                    <div className={'w-full flex place-items-center justify-between'}>
-                        <div className={'flex place-items-center gap-2.5'}>
-                            <p className={'bold-text'}>{props.review.username}</p>
-                            <div className={'flex place-content-center gap-0.5'}>
-                                <Stars style={{marginTop: '-4px'}} rating={review.rating} size={15}/>
+                className={`w-full px-2.5 md:px-5 py-5 md:py-10 ${'name' in props.review ? 'py-2.5 md:py-5' : 'py-5 md:py-10'} ${isLast ? '' : 'border-b-2'} border-slate-200 text-slate-900 place-items-center font-open-sans flex-col-2`}>
+                <div className={'w-full flex gap-5'}>
+                    <div className={'w-12 h-12 bg-slate-500 rounded-full flex-shrink-0'}></div>
+                    <div className={'w-full'}>
+                        <div className={'w-full flex place-items-center justify-between flex-wrap gap-5'}>
+                            <div className={'flex place-items-center gap-2.5'}>
+                                <p className={'bold-text'}>{props.review.username}</p>
+                                <div className={'flex place-content-center gap-0.5'}>
+                                    <Stars style={{marginTop: '-4px'}} rating={review.rating} size={15}/>
+                                </div>
+                                <p className={'font-open-sans text-xs text-slate-500 hidden lg:inline-block'}>{date.day} {date.hour}</p>
                             </div>
-                            <p className={'font-open-sans text-xs text-slate-500'}>{date.day} {date.hour}</p>
+                            {isEditable && <div className={'flex gap-2.5 -mt-2.5 md:mt-0 md:gap-5 flex-wrap'}>
+                                <Button onClick={toggleEditing} size={'sm'}>Edit</Button>
+                                <Button onClick={toggleDelete} size={'sm'}>Delete</Button>
+                                {'name' in props.review && <Button link={`/loos/${props.loo_id}`} className={'h-full hidden sm:inline-block'} size={'sm'}>View</Button>}
+                            </div>
+                            }
                         </div>
-                        {isEditable && <div className={'flex gap-5'}>
-                            <Button onClick={toggleEditing} className={''} size={'sm'}>Edit</Button>
-                            <Button onClick={toggleDelete} className={''} size={'sm'}>Delete</Button>
-                        </div>
-                        }
+                        {'name' in props.review && <p className={'font-open-sans text-xs text-slate-500 self-start'}>{props.review.name}</p>}
+                        <p className={`paragraph mt-1 max-w-4xl`}>
+                            {review.review}
+                        </p>
                     </div>
-                    <p className={`paragraph mt-1 max-w-4xl`}>
-                        {review.review}
-                    </p>
                 </div>
             </div>
         </>

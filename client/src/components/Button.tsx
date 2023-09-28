@@ -25,9 +25,8 @@ export default function Button(props: Props) {
     return (
         <>
             {props.link
-                ? <Link to={props.link}>
-                    <button disabled={props?.disabled ?? false} onClick={props.onClick} title={props.title ? props.title : ''}
-                            className={buttonStyles}>{props.children}</button>
+                ? <Link className={buttonStyles} to={props.link}>
+                    <button disabled={props?.disabled ?? false} onClick={props.onClick} title={props.title ? props.title : ''}>{props.children}</button>
                 </Link>
                 : <button disabled={props?.disabled ?? false} onClick={props.onClick} title={props.title ? props.title : ''}
                           className={buttonStyles}>{props.children}</button>}
